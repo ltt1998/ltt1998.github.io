@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Redis | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis学习方式：不是为了面试和工作学习！仅仅是为了兴趣！  基本的理论先学习，然后将知识融会贯通。  一、Nosql概述1、为什么要用Nosql大数据时代：一般的数据库无法进行分析处理了。  单机MySQL的年代！     Memcached（缓存）+MySQL+垂直拆分（读写分离）     分库分表+水平拆分+MYSQL拆分     如今的时代    目前一个基本的互联网项目    为什么要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="http://example.com/2021/01/25/Redis/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Redis学习方式：不是为了面试和工作学习！仅仅是为了兴趣！  基本的理论先学习，然后将知识融会贯通。  一、Nosql概述1、为什么要用Nosql大数据时代：一般的数据库无法进行分析处理了。  单机MySQL的年代！     Memcached（缓存）+MySQL+垂直拆分（读写分离）     分库分表+水平拆分+MYSQL拆分     如今的时代    目前一个基本的互联网项目    为什么要">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125152757605.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125153112920.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125153734570.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125153429097.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125154212339.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125153959426.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125154913850.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125155320454.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125155524026.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125162258381.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125163259616.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125163406371.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125173318754.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125173705075.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125180705257.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125180938348.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125182855284.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125183410263.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125183511290.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125184009231.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210125184126133.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129214257991.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129214311198.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129211528798.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129222953876.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129224833395.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129225108950.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129225416317.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129225605020.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129225830001.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129225938280.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129225954376.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129230319989.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210129231010773.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210130163453494.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210130165040867.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210130165230072.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210130165839190.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210130165908905.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210130170520956.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131195644140.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131195835326.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131202211563.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131202427169.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131203211746.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131220727635.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131220935501.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131221251014.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131223324153.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131223519900.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131223704228.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131223959699.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131224021320.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131224243389.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131225009688.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131225059273.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131225210205.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131225315404.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131225501571.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131232145352.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131233329701.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131233644556.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131233339898.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131233538577.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131233835920.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210131234207522.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201135958602.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201141438104.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201144150927.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201153142195.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201162107096.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201162222688.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201162258473.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201170358862.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201170820614.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201194256967.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201194647452.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201194952904.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201201518795.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201203924087.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210201220405190.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202144731348.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202163652769.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202163844960.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202163954414.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202165602792.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202165720286.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202173455909.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202173321739.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202174619951.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202175338951.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202175432363.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202182728097.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202183132875.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202222954675.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202223805017.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202224713209.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202200440102.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202201205541.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202222006509.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202222541298.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202224925897.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202224942686.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202225119395.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202225355854.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202225442663.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202225551880.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202225910620.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202230006776.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202230138945.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202230414986.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202231940517.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202231951771.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202232126463.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202232521748.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202232854799.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202233009900.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202233651903.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202233923284.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210202234253859.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203111655887.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203115945141.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203120105283.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203120247728.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203120419053.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203121036186.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203121052624.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203121145889.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203121159396.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203121223933.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203121825856.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203122154431.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203122327308.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Redis/image-20210203123212613.png">
+<meta property="article:published_time" content="2021-01-25T04:53:10.000Z">
+<meta property="article:modified_time" content="2021-02-03T05:39:07.096Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/25/Redis/image-20210125152757605.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Redis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/25/Redis/" class="article-date">
+  <time datetime="2021-01-25T04:53:10.000Z" itemprop="datePublished">2021-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>学习方式：不是为了面试和工作学习！仅仅是为了兴趣！</p>
+<ul>
+<li>基本的理论先学习，然后将知识融会贯通。</li>
+</ul>
+<h3 id="一、Nosql概述"><a href="#一、Nosql概述" class="headerlink" title="一、Nosql概述"></a>一、Nosql概述</h3><h4 id="1、为什么要用Nosql"><a href="#1、为什么要用Nosql" class="headerlink" title="1、为什么要用Nosql"></a>1、为什么要用Nosql</h4><p>大数据时代：一般的数据库无法进行分析处理了。</p>
+<blockquote>
+<p>单机MySQL的年代！</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125152757605.png" alt="image-20210125152757605"></p>
+<p><img src="/2021/01/25/Redis/image-20210125153112920.png" alt="image-20210125153112920"></p>
+<blockquote>
+<p>Memcached（缓存）+MySQL+垂直拆分（读写分离）</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125153734570.png" alt="image-20210125153734570"></p>
+<p><img src="/2021/01/25/Redis/image-20210125153429097.png" alt="image-20210125153429097"></p>
+<blockquote>
+<p>分库分表+水平拆分+MYSQL拆分</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125154212339.png" alt="image-20210125154212339"></p>
+<p><img src="/2021/01/25/Redis/image-20210125153959426.png" alt="image-20210125153959426"></p>
+<blockquote>
+<p>如今的时代</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125154913850.png" alt="image-20210125154913850"></p>
+<blockquote>
+<p>目前一个基本的互联网项目</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125155320454.png" alt="image-20210125155320454"></p>
+<blockquote>
+<p>为什么要用Nosql</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125155524026.png" alt="image-20210125155524026"></p>
+<h4 id="2、什么是Nosql"><a href="#2、什么是Nosql" class="headerlink" title="2、什么是Nosql"></a>2、什么是Nosql</h4><p>NoSQL = Not Only SQL（不仅仅是SQL）泛指非关系型数据库</p>
+<p><img src="/2021/01/25/Redis/image-20210125162258381.png" alt="image-20210125162258381"></p>
+<blockquote>
+<p>NoSQL特点</p>
+</blockquote>
+<p>解耦！</p>
+<p>1、方便扩展(数据之间没有关系，很好扩展！)</p>
+<p>2、大数据量高性能（Redis一秒写8万次，读取11万次，NoSQL的缓存记录级，是一种细粒度的缓存，性能会比较高）</p>
+<p>3、数据类型是多样的。（不需要事先设计数据库！随取随用！如果是数据量十分大的表，很多人就无法设计了）</p>
+<p><img src="/2021/01/25/Redis/image-20210125163259616.png" alt="image-20210125163259616"></p>
+<p><strong>3V和3高</strong></p>
+<p><img src="/2021/01/25/Redis/image-20210125163406371.png" alt="image-20210125163406371"></p>
+<p>真正在公司中的实践：NOSQL+MySQL 一起使用</p>
+<h4 id="3、阿里巴巴演进分析"><a href="#3、阿里巴巴演进分析" class="headerlink" title="3、阿里巴巴演进分析"></a>3、阿里巴巴演进分析</h4><p><img src="/2021/01/25/Redis/image-20210125173318754.png" alt="image-20210125173318754"></p>
+<p><img src="/2021/01/25/Redis/image-20210125173705075.png" alt="image-20210125173705075"></p>
+<h4 id="4、NoSQL的四大分类"><a href="#4、NoSQL的四大分类" class="headerlink" title="4、NoSQL的四大分类"></a>4、NoSQL的四大分类</h4><p><img src="/2021/01/25/Redis/image-20210125180705257.png" alt="image-20210125180705257"></p>
+<p><strong>列存储数据库</strong></p>
+<ul>
+<li>HBase</li>
+<li>分布式文件系统</li>
+</ul>
+<p><strong>图关系数据库</strong></p>
+<p>不是存图形，放的是关系，比如：朋友圈社交网络，广告推荐！例如Neo4j、InfoGrid</p>
+<p><img src="/2021/01/25/Redis/image-20210125180938348.png" alt="image-20210125180938348"></p>
+<h3 id="二、Redis入门"><a href="#二、Redis入门" class="headerlink" title="二、Redis入门"></a>二、Redis入门</h3><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><blockquote>
+<p>Redis是什么？</p>
+</blockquote>
+<p>Redis（Remote Dictionary Server），即远程字典服务！</p>
+<p>是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多语言的API。</p>
+<p><img src="/2021/01/25/Redis/image-20210125182855284.png" alt="image-20210125182855284"></p>
+<p>redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave（主从）同步。</p>
+<p>免费和开源！是当下最热门的NoSQL技术之一！也被人们称之为结构化数据库！</p>
+<blockquote>
+<p>Redis能干嘛</p>
+</blockquote>
+<p>1、内存存储、持久化，内存中是断电即失，所以说持久化很重要（rdb、aof）</p>
+<p>2、效率高，可以用于高速缓存</p>
+<p>3、发布订阅系统</p>
+<p>4、地图信息分析</p>
+<p>5、计时器、计数器（浏览量！）</p>
+<p>6、……</p>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<p>1、多样的数据类型</p>
+<p>2、持久化</p>
+<p>3、集群</p>
+<p>4、事务</p>
+<p>……</p>
+<blockquote>
+<p>学习中需要用到的东西</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210125183410263.png" alt="image-20210125183410263"></p>
+<p>下载地址：<img src="/2021/01/25/Redis/image-20210125183511290.png" alt="image-20210125183511290"></p>
+<p>注意：Windows在github上下载（停更很久了）</p>
+<p>Redis推荐都是在Linux服务器上搭建的，我们是基于Linux学习</p>
+<h4 id="2、Windows安装"><a href="#2、Windows安装" class="headerlink" title="2、Windows安装"></a>2、Windows安装</h4><p>1、下载安装包</p>
+<p>2、得到压缩包</p>
+<p>3、解压到自己电脑的环境目录下即可，Redis十分的小</p>
+<p>4、开启Redis，双击运行服务即可 默认端口6379</p>
+<p>5、使用redis客户端来连接Redis</p>
+<p><img src="/2021/01/25/Redis/image-20210125184009231.png" alt="image-20210125184009231"></p>
+<p>Windows下使用确实简单，但是Redis推荐我们使用Linux去开发使用</p>
+<p><img src="/2021/01/25/Redis/image-20210125184126133.png" alt="image-20210125184126133"></p>
+<h4 id="3、Linux安装"><a href="#3、Linux安装" class="headerlink" title="3、Linux安装"></a>3、Linux安装</h4><p>1、下载安装包</p>
+<p>2、解压Redis的安装包！程序放在/opt目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf</span><br></pre></td></tr></table></figure>
+
+<p>3、进入解压后的文件，可以看到我们redis的配置文件</p>
+<p>4、基本的环境安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum intasll gcc-c++ （tcl）</span><br><span class="line">make</span><br><span class="line"><span class="comment"># 出现很多错误</span></span><br><span class="line"><span class="comment"># 解决方案：升级gcc版本（6.0版本需要升级gcc版本才能正常make 至少版本9？）</span></span><br><span class="line"><span class="comment"># 或者将redis换成5.0版本</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/25/Redis/image-20210129214257991.png" alt="image-20210129214257991"></p>
+<p><img src="/2021/01/25/Redis/image-20210129214311198.png" alt="image-20210129214311198"></p>
+<p>5、redis的默认安装路径 usr/local/bin</p>
+<p>6、将redis配置文件，复制到我们当前目录下！</p>
+<p><img src="/2021/01/25/Redis/image-20210129211528798.png" alt="image-20210129211528798"></p>
+<p>7、redis默认不是后台启动的，修改配置文件。</p>
+<p><img src="/2021/01/25/Redis/image-20210129222953876.png" alt="image-20210129222953876"></p>
+<p><img src="/2021/01/25/Redis/image-20210129224833395.png" alt="image-20210129224833395"></p>
+<p><img src="/2021/01/25/Redis/image-20210129225108950.png" alt="image-20210129225108950"></p>
+<p>8、启动redis服务！</p>
+<p>通过指定的配置文件启动redis</p>
+<p><img src="/2021/01/25/Redis/image-20210129225416317.png" alt="image-20210129225416317"></p>
+<p>9、使用Redis客户端进行连接测试</p>
+<p><img src="/2021/01/25/Redis/image-20210129225605020.png" alt="image-20210129225605020"></p>
+<p>10、查看redis的进程是否开启</p>
+<p><img src="/2021/01/25/Redis/image-20210129225830001.png" alt="image-20210129225830001"></p>
+<p>11、如何关闭redis服务呢？shutdown</p>
+<p><img src="/2021/01/25/Redis/image-20210129225938280.png" alt="image-20210129225938280"></p>
+<p>12、再次查看进程是否存在</p>
+<p><img src="/2021/01/25/Redis/image-20210129225954376.png" alt="image-20210129225954376"></p>
+<p>13、后面我们会使用单机多Redis启动集群测试。</p>
+<h4 id="4、测试性能"><a href="#4、测试性能" class="headerlink" title="4、测试性能"></a>4、测试性能</h4><p><strong>redis-benchmark</strong>是一个压力测试工具！</p>
+<p>官方自带的性能测试工具！redis-benchmark 命令参数！</p>
+<p><img src="/2021/01/25/Redis/image-20210129230319989.png" alt="image-20210129230319989"></p>
+<p>我们来简单测试下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试：100个并发连接 100000个请求</span></span><br><span class="line">redis-benchmark -h localhost -p 6379 -c 100 -n 100000</span><br></pre></td></tr></table></figure>
+
+<p>如何查看这些分析呢？</p>
+<p><img src="/2021/01/25/Redis/image-20210129231010773.png" alt="image-20210129231010773"></p>
+<h4 id="5、基础知识"><a href="#5、基础知识" class="headerlink" title="5、基础知识"></a>5、基础知识</h4><p>redis默认有16个数据库，默认使用的是第0个，可以使用select进行切换数据库！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; select 3 <span class="comment">#切换数据库</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; dbsize <span class="comment">#数据库容量</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<p>清除当前数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushdb</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2021/01/25/Redis/image-20210130163453494.png" alt="image-20210130163453494"></p>
+<p>清除全部数据库内容 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<p>思考：为什么redis是6379？</p>
+<blockquote>
+<p>Redis是单线程的！</p>
+</blockquote>
+<p>明白Redis是很快的，官方表示，Redis是基于内存操作，CPU不是Redis性能瓶颈，Redis的瓶颈是根据机器的内存和网络带宽，既然可以使用单线程来实现，就使用单线程了！（6.0以后使用多线程，因为之前读写内存还是堵塞的，删除一个大文件会卡）</p>
+<p>Redis是C语言写的，官方提供的数据为10-0000+的QPS（每秒查询率），这个完全不比使用key-value的Memecache差！</p>
+<p><strong>Redis为什么单线程还这么快？</strong></p>
+<p>1、误区1：高性能的服务器一定是多线程的？</p>
+<p>2、误区2：多线程（CPU上下文会切换！）一定比单线程效率高！</p>
+<p>CPU、内存、硬盘的速度要有所了解  CPU&gt;内存&gt;硬盘</p>
+<p>核心：redis是将所有的数据都放在内存中的，所以使用单线程去操作效率就是最高的，多线程（CPU上下文会切换：耗时的操作！！！）对于内存系统来说，如果没有上下文切换效率就是最高的！多次读写都是再一个CPU上的，在内存情况下，这个就是最佳的方案！</p>
+<h3 id="三、五大数据类型"><a href="#三、五大数据类型" class="headerlink" title="三、五大数据类型"></a>三、五大数据类型</h3><blockquote>
+<p>官网文档</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210130165040867.png" alt="image-20210130165040867">               </p>
+<p>全段翻译：</p>
+<p><img src="/2021/01/25/Redis/image-20210130165230072.png" alt="image-20210130165230072"></p>
+<p>现在讲解的全部命令都要记住，后面使用SpringBoot、Jedis，所有的方法就是这些命令！</p>
+<h4 id="1、Redis-Key"><a href="#1、Redis-Key" class="headerlink" title="1、Redis-Key"></a>1、Redis-Key</h4><p>判断某个key是否存在，以及移动某个key。</p>
+<p><img src="/2021/01/25/Redis/image-20210130165839190.png" alt="image-20210130165839190"></p>
+<p>设置某个key的过期时间，查看剩余时间等 ttl（time to live），单位是秒。</p>
+<p><img src="/2021/01/25/Redis/image-20210130165908905.png" alt="image-20210130165908905"></p>
+<p>查看某个key的类型。</p>
+<p><img src="/2021/01/25/Redis/image-20210130170520956.png" alt="image-20210130170520956"></p>
+<p>后面如果遇到不会的命令，可以去官网查看。</p>
+<h4 id="2、String（字符串）"><a href="#2、String（字符串）" class="headerlink" title="2、String（字符串）"></a>2、String（字符串）</h4><p>90% 的Java程序员使用redis只会使用一个String类型！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> key1 v1 <span class="comment">#设置值</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key1 <span class="comment">#获得值</span></span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; keys * <span class="comment">#获得所有的key</span></span><br><span class="line">1) <span class="string">&quot;key1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; EXISTS key1 <span class="comment">#判断某一个key是否存在</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; APPEND key1 <span class="string">&quot;hello&quot;</span> <span class="comment">#追加字符串，若不存在key1，就相当于set key</span></span><br><span class="line">(<span class="built_in">integer</span>) 7</span><br><span class="line">127.0.0.1:6379&gt; get key1</span><br><span class="line"><span class="string">&quot;v1hello&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; STRLEN key1 <span class="comment">#获取字符串长度</span></span><br><span class="line">(<span class="built_in">integer</span>) 7</span><br><span class="line">127.0.0.1:6379&gt; APPEND key1 <span class="string">&quot;,ltt&quot;</span></span><br><span class="line">(<span class="built_in">integer</span>) 11</span><br><span class="line">127.0.0.1:6379&gt; STRLEN key1</span><br><span class="line">(<span class="built_in">integer</span>) 11</span><br><span class="line">127.0.0.1:6379&gt; get key1</span><br><span class="line"><span class="string">&quot;v1hello,ltt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> views 0 <span class="comment">#初始浏览量为0</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get views</span><br><span class="line"><span class="string">&quot;0&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; incr views <span class="comment">#自增1</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; incr views</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; decr views <span class="comment">#自减1</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; get views</span><br><span class="line"><span class="string">&quot;1&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; INCRBY views 10 <span class="comment">#设置增加步长为10</span></span><br><span class="line">(<span class="built_in">integer</span>) 11</span><br><span class="line">127.0.0.1:6379&gt; get views</span><br><span class="line"><span class="string">&quot;11&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> key1 <span class="string">&quot;hello,ltt&quot;</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key1</span><br><span class="line"><span class="string">&quot;hello,ltt&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; getrange key1 0 5 <span class="comment">#字符串范围 range</span></span><br><span class="line"><span class="string">&quot;hello,&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; getrange key1 0 -1 <span class="comment">#获取全部字符串</span></span><br><span class="line"><span class="string">&quot;hello,ltt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> key2 abcdefg</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key2</span><br><span class="line"><span class="string">&quot;abcdefg&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; setrange key2 1 xx <span class="comment">#替换指定位置开始的字符串</span></span><br><span class="line">(<span class="built_in">integer</span>) 7</span><br><span class="line">127.0.0.1:6379&gt; get key2</span><br><span class="line"><span class="string">&quot;axxdefg&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#setex （set with expire） #设置过期时间</span></span><br><span class="line"><span class="comment">#setnx （set if not exist） #不存在再设置</span></span><br><span class="line">127.0.0.1:6379&gt; setex key3 30 <span class="string">&quot;hello&quot;</span> <span class="comment">#设置key3的值为hello，30秒后过期</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ttl key3</span><br><span class="line">(<span class="built_in">integer</span>) 25</span><br><span class="line">127.0.0.1:6379&gt; get key3</span><br><span class="line"><span class="string">&quot;hello&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; setnx mykey <span class="string">&quot;redis&quot;</span> <span class="comment">#如果mykey不存在，创建mykey</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;mykey&quot;</span></span><br><span class="line">2) <span class="string">&quot;key1&quot;</span></span><br><span class="line">3) <span class="string">&quot;key3&quot;</span></span><br><span class="line">4) <span class="string">&quot;key2&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; ttl key3</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; setnx mykey <span class="string">&quot;MongDB&quot;</span> <span class="comment">#因为mykey存在，创建失败！</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; get mykey</span><br><span class="line"><span class="string">&quot;redis&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3 <span class="comment"># 同时设置多个值</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;k1&quot;</span></span><br><span class="line">2) <span class="string">&quot;k3&quot;</span></span><br><span class="line">3) <span class="string">&quot;k2&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; mget k1 k2 k3 <span class="comment"># 同时获取多个值</span></span><br><span class="line">1) <span class="string">&quot;v1&quot;</span></span><br><span class="line">2) <span class="string">&quot;v2&quot;</span></span><br><span class="line">3) <span class="string">&quot;v3&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; msetnx k1 v1 k4 v4 <span class="comment">#msetnx是一个原子性的操作</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; get k4</span><br><span class="line">(nil)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/25/Redis/image-20210131195644140.png" alt="image-20210131195644140"></p>
+<p><img src="/2021/01/25/Redis/image-20210131195835326.png" alt="image-20210131195835326"></p>
+<p>数据结构是相同的！</p>
+<p>String类似的使用场景：value除了是我们的字符串还可以是我们的数字！</p>
+<ul>
+<li>计数器</li>
+<li>统计多单位的数量 uid：790799542：follow 0</li>
+</ul>
+<h4 id="3、List（列表）"><a href="#3、List（列表）" class="headerlink" title="3、List（列表）"></a>3、List（列表）</h4><p>基本的数据类型，列表！</p>
+<p>在redis里面，我们可以把list玩成栈、队列、阻塞队列！</p>
+<p>所有的list命令都是l开头的。Redis不区分大小写命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; LPUSH list one <span class="comment">#将一个值或多个值，插入到列表头部（左）</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; LPUSH list two</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; LPUSH list three</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt; LRANGE list 0 -1</span><br><span class="line">1) <span class="string">&quot;three&quot;</span></span><br><span class="line">2) <span class="string">&quot;two&quot;</span></span><br><span class="line">3) <span class="string">&quot;one&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; LRANGE list 0 1</span><br><span class="line">1) <span class="string">&quot;three&quot;</span></span><br><span class="line">2) <span class="string">&quot;two&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; RPUSH list right<span class="comment">#将一个值或多个值，插入到列表尾部（右）</span></span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br><span class="line">127.0.0.1:6379&gt; LRANGE list 0 -1 </span><br><span class="line">1) <span class="string">&quot;three&quot;</span></span><br><span class="line">2) <span class="string">&quot;two&quot;</span></span><br><span class="line">3) <span class="string">&quot;one&quot;</span></span><br><span class="line">4) <span class="string">&quot;right&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; LRANGE list 0 -1</span><br><span class="line">1) <span class="string">&quot;three&quot;</span></span><br><span class="line">2) <span class="string">&quot;two&quot;</span></span><br><span class="line">3) <span class="string">&quot;one&quot;</span></span><br><span class="line">4) <span class="string">&quot;right&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; LPOP list <span class="comment">#移除list的第一个元素</span></span><br><span class="line"><span class="string">&quot;three&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; RPOP list <span class="comment"># 移除list的最后一个元素</span></span><br><span class="line"><span class="string">&quot;right&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; LRANGE list 0 -1</span><br><span class="line">1) <span class="string">&quot;two&quot;</span></span><br><span class="line">2) <span class="string">&quot;one&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; lindex list 1 <span class="comment"># 通过下标获得list中的某一个值</span></span><br><span class="line"><span class="string">&quot;one&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; lindex list 0</span><br><span class="line"><span class="string">&quot;two&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; Llen list <span class="comment">#获得列表的长度</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/25/Redis/image-20210131202211563.png" alt="image-20210131202211563"></p>
+<p><img src="/2021/01/25/Redis/image-20210131202427169.png" alt="image-20210131202427169"></p>
+<p>trim 修剪；list 截断！<strong>只剩下截取的元素！</strong></p>
+<p><img src="/2021/01/25/Redis/image-20210131203211746.png" alt="image-20210131203211746"></p>
+<p>rpoplpush 移除列表的最后一个元素，将他移动到新的列表中</p>
+<p><img src="/2021/01/25/Redis/image-20210131220727635.png" alt="image-20210131220727635"></p>
+<p><img src="/2021/01/25/Redis/image-20210131220935501.png" alt="image-20210131220935501"></p>
+<blockquote>
+<p>小结</p>
+</blockquote>
+<ul>
+<li>它实际上是一个链表，before Node after，left，right都可以插入值</li>
+<li>如果key不存在，创建新的链表</li>
+<li>如果key存在，新增内容</li>
+<li>如果移除了所有值，空链表，也代表不存在！</li>
+<li>在两边插入或者改动值，效率最高！中间元素，相对来说效率会低一点~</li>
+</ul>
+<p>消息队列！<img src="/2021/01/25/Redis/image-20210131221251014.png" alt="image-20210131221251014"></p>
+<h4 id="4、Set（集合）"><a href="#4、Set（集合）" class="headerlink" title="4、Set（集合）"></a>4、Set（集合）</h4><p>set中的值是不能重读的。</p>
+<p><img src="/2021/01/25/Redis/image-20210131223324153.png" alt="image-20210131223324153"></p>
+<p><img src="/2021/01/25/Redis/image-20210131223519900.png" alt="image-20210131223519900"></p>
+<p><img src="/2021/01/25/Redis/image-20210131223704228.png" alt="image-20210131223704228"></p>
+<p><img src="/2021/01/25/Redis/image-20210131223959699.png" alt="image-20210131223959699"></p>
+<p><img src="/2021/01/25/Redis/image-20210131224021320.png" alt="image-20210131224021320"></p>
+<p>数字集合类</p>
+<ul>
+<li>差集</li>
+<li>交集</li>
+<li>并集</li>
+</ul>
+<p><img src="/2021/01/25/Redis/image-20210131224243389.png" alt="image-20210131224243389"></p>
+<p>微博，A用户将所有关注的人放在一个set集合中！将它的粉丝也放在一个集合中！</p>
+<p>共同关注，共同爱好，二度好友，推荐好友！（六度分割理论）</p>
+<h4 id="5、Hash（哈希）"><a href="#5、Hash（哈希）" class="headerlink" title="5、Hash（哈希）"></a>5、Hash（哈希）</h4><p>Map集合，Key-Map！这个时候值是一个Map集合！</p>
+<p>本质和String类型没有太大区别，还是一个简单的key-value！</p>
+<p><img src="/2021/01/25/Redis/image-20210131225009688.png" alt="image-20210131225009688"></p>
+<p><img src="/2021/01/25/Redis/image-20210131225059273.png" alt="image-20210131225059273"></p>
+<p><img src="/2021/01/25/Redis/image-20210131225210205.png" alt="image-20210131225210205"></p>
+<p><img src="/2021/01/25/Redis/image-20210131225315404.png" alt="image-20210131225315404"></p>
+<p><img src="/2021/01/25/Redis/image-20210131225501571.png" alt="image-20210131225501571"></p>
+<p>hash变更的数据 user name age，尤其是用户信息之类的，经常变动的信息！hash更适合于对象的存储，String更加适合字符的存储。</p>
+<h4 id="6、Zset（有序集合）"><a href="#6、Zset（有序集合）" class="headerlink" title="6、Zset（有序集合）"></a>6、Zset（有序集合）</h4><p>在set的基础上，增加了一个值，set k1 v1  zset k1 score1 v1</p>
+<p><img src="/2021/01/25/Redis/image-20210131232145352.png" alt="image-20210131232145352"></p>
+<p><strong>排序如何实现？</strong></p>
+<p><img src="/2021/01/25/Redis/image-20210131233329701.png" alt="image-20210131233329701"></p>
+<p><img src="/2021/01/25/Redis/image-20210131233644556.png" alt="image-20210131233644556"></p>
+<p><img src="/2021/01/25/Redis/image-20210131233339898.png" alt="image-20210131233339898"></p>
+<p><img src="/2021/01/25/Redis/image-20210131233538577.png" alt="image-20210131233538577"></p>
+<p><img src="/2021/01/25/Redis/image-20210131233835920.png" alt="image-20210131233835920"></p>
+<p>其余的一些API，通过学习，剩下的工作需要可查询官方文档！</p>
+<p><img src="/2021/01/25/Redis/image-20210131234207522.png" alt="image-20210131234207522"></p>
+<h3 id="四、三大特殊数据类型"><a href="#四、三大特殊数据类型" class="headerlink" title="四、三大特殊数据类型"></a>四、三大特殊数据类型</h3><h4 id="1、Geospatial-地理位置"><a href="#1、Geospatial-地理位置" class="headerlink" title="1、Geospatial 地理位置"></a>1、Geospatial 地理位置</h4><p>朋友的位置、附近的人，打车距离计算？</p>
+<p>Redis的Geo在3.2版本就推出了！这个功能可以推算地理位置的信息，两地之间的距离，方圆几里的人。可以查询一些测试数据 <a target="_blank" rel="noopener" href="https://m.ximizi.com/m/jingweidu.php">https://m.ximizi.com/m/jingweidu.php</a></p>
+<p>只有六个命令</p>
+<p><img src="/2021/01/25/Redis/image-20210201135958602.png" alt="image-20210201135958602"></p>
+<blockquote>
+<p>geoadd</p>
+</blockquote>
+<p>官网文档：<a target="_blank" rel="noopener" href="https://www.php.cn/manual/view/36388.html">https://www.php.cn/manual/view/36388.html</a></p>
+<p><img src="/2021/01/25/Redis/image-20210201141438104.png" alt="image-20210201141438104"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># geoadd 添加地理位置</span></span><br><span class="line"><span class="comment">#规则：两级无法直接添加，我们一般会下载城市数据，直接通过JAVA程序一次性导入</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 39.92 116.46 beijing</span><br><span class="line">(error) ERR invalid longitude,latitude pair 39.920000,116.460000</span><br><span class="line"></span><br><span class="line"><span class="comment">#参数 key 值（纬度、经度、名称）</span></span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 116.46 39.92 beijing</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 121.48 31.22 shanghai</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 106.54 29.59 chongqing</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 114.07 22.62 shenzhen 108.95 34.27 xian</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>geopos</p>
+</blockquote>
+<p>获得当前定位：一定是一个坐标值！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geopos china:city beijing chongqing <span class="comment">#获取指定城市的经度纬度</span></span><br><span class="line">1) 1) <span class="string">&quot;116.45999997854232788&quot;</span></span><br><span class="line">   2) <span class="string">&quot;39.9199990416181052&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;106.54000014066696167&quot;</span></span><br><span class="line">   2) <span class="string">&quot;29.58999896356930748&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>geodist</p>
+</blockquote>
+<p>两人之间的距离！</p>
+<p>该单位必须是以下之一，并且默认为米：</p>
+<ul>
+<li><p><strong>m</strong> 为米。</p>
+</li>
+<li><p><strong>km</strong> 为千米。</p>
+</li>
+<li><p><strong>mi</strong> 为英里。</p>
+</li>
+<li><p><strong>ft</strong> 为英尺。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; geodist china:city beijing shanghai</span><br><span class="line"><span class="string">&quot;1068458.0856&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; geodist china:city beijing shanghai km <span class="comment">#查看北京到上海的直线距离</span></span><br><span class="line"><span class="string">&quot;1068.4581&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>georadius 由中心和半径界定的圆形区域的边界框内的元素的数量</p>
+</blockquote>
+<p>附近的人？（获得所有附近的人的地址，定位！）通过半径来查询！</p>
+<p>所有数据都应该录入china：city内，才会让结果更加精确！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 1000 km</span><br><span class="line">1) <span class="string">&quot;chongqing&quot;</span></span><br><span class="line">2) <span class="string">&quot;xian&quot;</span></span><br><span class="line">3) <span class="string">&quot;shenzhen&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 500 km</span><br><span class="line">1) <span class="string">&quot;chongqing&quot;</span></span><br><span class="line">2) <span class="string">&quot;xian&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 500 km withcoord</span><br><span class="line">1) 1) <span class="string">&quot;chongqing&quot;</span></span><br><span class="line">   2) 1) <span class="string">&quot;106.54000014066696167&quot;</span></span><br><span class="line">      2) <span class="string">&quot;29.58999896356930748&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;xian&quot;</span></span><br><span class="line">   2) 1) <span class="string">&quot;108.95000249147415161&quot;</span></span><br><span class="line">      2) <span class="string">&quot;34.26999911916288966&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 500 km withdist</span><br><span class="line">1) 1) <span class="string">&quot;chongqing&quot;</span></span><br><span class="line">   2) <span class="string">&quot;337.0554&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;xian&quot;</span></span><br><span class="line">   2) <span class="string">&quot;485.1131&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 500 km withdist withcoord count 1</span><br><span class="line">1) 1) <span class="string">&quot;chongqing&quot;</span></span><br><span class="line">   2) <span class="string">&quot;337.0554&quot;</span></span><br><span class="line">   3) 1) <span class="string">&quot;106.54000014066696167&quot;</span></span><br><span class="line">      2) <span class="string">&quot;29.58999896356930748&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>georadiusbymember</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找出位于指定元素周围的其他元素</span></span><br><span class="line">127.0.0.1:6379&gt; georadiusbymember china:city beijing 1000 km</span><br><span class="line">1) <span class="string">&quot;beijing&quot;</span></span><br><span class="line">2) <span class="string">&quot;xian&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>geohash 返回表示地理空间索引的排序集值中一个或多个元素位置的有效 Geohash 字符串</p>
+</blockquote>
+<p>返回11个字符的 Geohash 字符串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将二维的经纬度转换为一维的字符串，两个字符串越接近，那么则距离越近！</span></span><br><span class="line">127.0.0.1:6379&gt; geohash china:city beijing chongqing</span><br><span class="line">1) <span class="string">&quot;wx4g455wfe0&quot;</span></span><br><span class="line">2) <span class="string">&quot;wm7b26sn1z0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>GEO 底层的实现原理其实就是Zset！我们可以使用Zset命令来操作geo！</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210201144150927.png" alt="image-20210201144150927"></p>
+<h4 id="2、Hyperloglog"><a href="#2、Hyperloglog" class="headerlink" title="2、Hyperloglog"></a>2、Hyperloglog</h4><blockquote>
+<p>什么是基数？</p>
+</blockquote>
+<p>基数（不重复的元素个数）</p>
+<blockquote>
+<p>简介</p>
+</blockquote>
+<p>Redis 2.8.9 版本就更新了 Hyperloglog 数据结构！</p>
+<p>Redis Hyperloglog 基数统计的算法！</p>
+<p>优点：占用的内存是固定地，2^64不同的元素的计数，只需要废12KB的内存！</p>
+<p>如果要从内存角度来比较的话，Hyperloglog是首选！</p>
+<p><strong>网页的UV（一个人访问一个网站多次，但是还是算作一个人！）</strong></p>
+<p>传统的方式：set保存用户的id，然后就可以统计set中的元素数量作为标准判断！</p>
+<p>这个方式如果保存大量的用户id，就会比较麻烦！我们的目的是为了计数，而不是保存用户id！0.81%错误率！统计UV任务，可以忽略不计的！</p>
+<blockquote>
+<p>测试使用</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210201153142195.png" alt="image-20210201153142195"></p>
+<p>如果可以容错，那么一定可以使用Hyperloglog！</p>
+<p>如果不允许容错，就使用set或者自己的数据类型即可！</p>
+<h4 id="3、Bitmaps"><a href="#3、Bitmaps" class="headerlink" title="3、Bitmaps"></a>3、Bitmaps</h4><blockquote>
+<p>位存储</p>
+</blockquote>
+<p>统计用户信息，活跃，不活跃！登录，未登录！打卡！两个状态的，都可以使用Bitmaps！</p>
+<p>Bitmaps 位图，数据结构！都是操作二进制位来进行记录，就只有0和1两个状态！</p>
+<p>365天=365bit 1字节=8bit 46个字节左右！</p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<p>使用Bitmap来记录周一到周日的打卡！</p>
+<p><img src="/2021/01/25/Redis/image-20210201162107096.png" alt="image-20210201162107096"></p>
+<p>查看某一天是否有打卡！</p>
+<p><img src="/2021/01/25/Redis/image-20210201162222688.png" alt="image-20210201162222688"></p>
+<p>统计操作，统计打卡的天数！</p>
+<p><img src="/2021/01/25/Redis/image-20210201162258473.png" alt="image-20210201162258473"></p>
+<h3 id="五、事务"><a href="#五、事务" class="headerlink" title="五、事务"></a>五、事务</h3><p>Redis事务本质：一组命令的集合！一个事务中的所有命令都会被序列化，在事务执行过程中，</p>
+<p>一次性、顺序性、排他性！执行一系列命令！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">----队列 <span class="built_in">set</span> <span class="built_in">set</span> <span class="built_in">set</span> 执行----</span><br></pre></td></tr></table></figure>
+
+<p><strong>Redis单条命令是保证原子性的，但是事务不保证原子性！</strong></p>
+<p><strong>Redis事务没有隔离级别的概念！</strong></p>
+<p>所有的命令在事务中，并没有直接被执行！只有发起执行命令的时候才会执行！Exec</p>
+<p>redis的事务：</p>
+<ul>
+<li>开启事务（multi）</li>
+<li>命令入队（……）</li>
+<li>执行事务（exec）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) OK</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>放弃事务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi <span class="comment">#开启事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; discard <span class="comment">#取消事务</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k4 <span class="comment">#事务队列中命令都不会被执行</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编译器异常（代码有问题！命令有错！）事务中所有的命令都不会被执行！</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210201170358862.png" alt="image-20210201170358862"></p>
+<blockquote>
+<p>运行时异常（1/0），如果事务队列中存在语法型错误，那么执行命令的时候，其他命令是可以正常执行的，错误命令抛出异常！</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210201170820614.png" alt="image-20210201170820614"></p>
+<blockquote>
+<p>监控！Watch（面试常问！）</p>
+</blockquote>
+<p><strong>悲观锁：</strong></p>
+<ul>
+<li>很悲观，什么时候都会出问题，无论做什么都会加锁！</li>
+</ul>
+<p><strong>乐观锁：</strong></p>
+<ul>
+<li>很乐观，认为什么时候都不会出问题，所以不会上锁！更新数据的时候去判断一下，在此期间，是否有人修改过这个数据，version！</li>
+<li>获取version</li>
+<li>更新的时候比较version</li>
+</ul>
+<blockquote>
+<p> Redis测监视测试</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210201194256967.png" alt="image-20210201194256967"></p>
+<p>测试多线程修改值，使用watch可以当作redis的乐观锁操作！</p>
+<p><img src="/2021/01/25/Redis/image-20210201194647452.png" alt="image-20210201194647452"></p>
+<p>如果修改失败，获取最新的值即可。</p>
+<p><img src="/2021/01/25/Redis/image-20210201194952904.png" alt="image-20210201194952904"></p>
+<h3 id="六、Jedis"><a href="#六、Jedis" class="headerlink" title="六、Jedis"></a>六、Jedis</h3><p>我们要使用Java来操作Redis</p>
+<blockquote>
+<p>什么是Jedis？</p>
+</blockquote>
+<p>Jedis是Redis官方推荐的java连接开发工具！使用Java操作Redis中间件！如果你要使用java操作redis，那么一定要对Jedis十分的熟悉！</p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<p>1、导入对应依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--导入Jedis的包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--fastjson--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、编码测试</p>
+<ul>
+<li>连接数据库</li>
+</ul>
+<p>1、首先修改服务器提供商的安全组规则，开放6379端口</p>
+<p><img src="/2021/01/25/Redis/image-20210201201518795.png" alt="image-20210201201518795"></p>
+<p>2、修改服务器的防火墙规则，开放6379端口（CentOS7）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ2zeby6lqcg00glrmo3v8Z ~]<span class="comment"># systemctl start firewalld</span></span><br><span class="line">[root@iZ2zeby6lqcg00glrmo3v8Z ~]<span class="comment"># systemctl status firewalld</span></span><br><span class="line">● firewalld.service - firewalld - dynamic firewall daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since Mon 2021-02-01 20:16:56 CST; 8s ago</span><br><span class="line">     Docs: man:firewalld(1)</span><br><span class="line"> Main PID: 28191 (firewalld)</span><br><span class="line">   CGroup: /system.slice/firewalld.service</span><br><span class="line">           └─28191 /usr/bin/python2 -Es /usr/sbin/firewalld --nofork --no...</span><br><span class="line"></span><br><span class="line">Feb 01 20:16:56 iZ2zeby6lqcg00glrmo3v8Z systemd[1]: Starting firewalld - ...</span><br><span class="line">Feb 01 20:16:56 iZ2zeby6lqcg00glrmo3v8Z systemd[1]: Started firewalld - d...</span><br><span class="line">Feb 01 20:16:56 iZ2zeby6lqcg00glrmo3v8Z firewalld[28191]: WARNING: AllowZ...</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line">[root@iZ2zeby6lqcg00glrmo3v8Z ~]<span class="comment"># firewall-cmd --zone=public --add-port=6379/tcp --permanent</span></span><br><span class="line">success</span><br></pre></td></tr></table></figure>
+
+<p>3、修改redis配置文件</p>
+<p>protected修改为no</p>
+<p><img src="/2021/01/25/Redis/image-20210201203924087.png" alt="image-20210201203924087"></p>
+<p>注释掉bind</p>
+<p>#bind 127.0.0.1 将这里前面加上#否则远程无法连接redis或者只能连接ip为127.0.0.1的本地回环地址，无法连接真实的ip。</p>
+<ul>
+<li>操作命令</li>
+<li>断开连接</li>
+</ul>
+<p><strong>常用的API</strong></p>
+<p>String List Set Hash Zset</p>
+<p>所有的API命令就是我们学习的上面的对应指令，一个都没有变！</p>
+<blockquote>
+<p>jedis操作事务</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPing</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1、new Jedis 对象即可</span></span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;8.131.49.214&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">        <span class="comment">//Jedis 所有的命令就是我们之前学习的所有指令</span></span><br><span class="line">        <span class="comment">//所以之前的指令学习很重要！</span></span><br><span class="line">        jedis.auth(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/25/Redis/image-20210201220405190.png" alt="image-20210201220405190"></p>
+<p><strong>注意：记得关闭redis的防火墙。</strong></p>
+<h3 id="七、SpringBoot整合"><a href="#七、SpringBoot整合" class="headerlink" title="七、SpringBoot整合"></a>七、SpringBoot整合</h3><p>SpringBoot操作数据：spring-data jpa jdbc mongodb redis！</p>
+<p>SpringData也是和SpringBoot齐名的项目！</p>
+<p>说明：在SpringBoot2.x之后，原来使用的jedis被替换为了lettuce！</p>
+<p>Jedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全的，使用jedis pool连接池。BIO</p>
+<p>lettuce：采用netty，实例可以在多个线程中进行共享，不存在线程不安全的情况。可以减少线程数量。NIO</p>
+<p>源码分析：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(</span></span><br><span class="line"><span class="meta">    name = &#123;&quot;redisTemplate&quot;&#125;</span></span><br><span class="line"><span class="meta">)</span><span class="comment">//我们可以自己定义一个redisTemplate来替换这个默认的！</span></span><br><span class="line"><span class="meta">@ConditionalOnSingleCandidate(RedisConnectionFactory.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//默认的redisTemplate没有过多的设置，redis对象都是需要序列化！</span></span><br><span class="line">    <span class="comment">//两个泛型都是Object，Object的类型，我们后使用需要强制转换&lt;String，Object&gt;</span></span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="keyword">new</span> RedisTemplate();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean</span><span class="comment">//由于String是redis中最常用的类型，所以单独提出了一个bean</span></span><br><span class="line"><span class="meta">@ConditionalOnSingleCandidate(RedisConnectionFactory.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> StringRedisTemplate <span class="title">stringRedisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> </span>&#123;</span><br><span class="line">    StringRedisTemplate template = <span class="keyword">new</span> StringRedisTemplate();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>整合测试一下</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202144731348.png" alt="image-20210202144731348"></p>
+<p>注意：配置redis的时候要用lettuce.pool</p>
+<p><img src="/2021/01/25/Redis/image-20210202163652769.png" alt="image-20210202163652769"></p>
+<p>因为在RedisAutoConfiguration中配置redisTemplate的时候要用到接口RedisConnectionFactory，其中有两个实现类</p>
+<p><img src="/2021/01/25/Redis/image-20210202163844960.png" alt="image-20210202163844960"></p>
+<p>其中JedisConnectionFactory实现类的源代码中可以看到有很多参数都不存在了。</p>
+<p><img src="/2021/01/25/Redis/image-20210202163954414.png" alt="image-20210202163954414"></p>
+<p>1、导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、配置连接</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置redis</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">8.131.49.214</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6379</span></span><br><span class="line"><span class="meta">spring.redis.password</span>=<span class="string">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>3、测试！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Redis02SpringbootApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//RedisTemplate 操作不同的数据类型</span></span><br><span class="line">        <span class="comment">//opsForValue 操作字符串，类似String</span></span><br><span class="line">        <span class="comment">//opsForList 操作List 类似List</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//除了基本的操作，我们常用的方法都可以直接通过redisTemplate来操作</span></span><br><span class="line">        <span class="comment">//比如事务和基本的增删改查</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取redis的连接对象</span></span><br><span class="line">        <span class="comment">/*RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();</span></span><br><span class="line"><span class="comment">        connection.flushDb();</span></span><br><span class="line"><span class="comment">        connection.flushAll();*/</span></span><br><span class="line"></span><br><span class="line">        redisTemplate.opsForValue().set(<span class="string">&quot;mykey&quot;</span>,<span class="string">&quot;ltt&quot;</span>);</span><br><span class="line">        System.out.println(redisTemplate.opsForValue().get(<span class="string">&quot;mykey&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>值的序列化配置</p>
+<p><img src="/2021/01/25/Redis/image-20210202165602792.png" alt="image-20210202165602792"></p>
+<p>默认的序列化方式是JDK序列化，我们可能会使用JSON来序列化！</p>
+<p><img src="/2021/01/25/Redis/image-20210202165720286.png" alt="image-20210202165720286"></p>
+<p><img src="/2021/01/25/Redis/image-20210202173455909.png" alt="image-20210202173455909"></p>
+<p><img src="/2021/01/25/Redis/image-20210202173321739.png" alt="image-20210202173321739"></p>
+<p>用的时候，测试类里导入的要是自己的template。</p>
+<p>@Qualifier(“XXX”) 中的 XX是 Bean 的名称，所以 @Autowired 和 @Qualifier 结合使用时，自动注入的策略就从 byType 转变成 byName 了。</p>
+<p><img src="/2021/01/25/Redis/image-20210202174619951.png" alt="image-20210202174619951"></p>
+<p>所有的redis操作，其实对于java开发人员来说，十分的简单，更重要的是要去理解redis的思想和每一种数据结构的用处和应用场景！</p>
+<h3 id="八、Redis-conf详解"><a href="#八、Redis-conf详解" class="headerlink" title="八、Redis.conf详解"></a>八、Redis.conf详解</h3><p>启动的时候，就通过配置文件来启动！</p>
+<blockquote>
+<p>单位</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202175338951.png" alt="image-20210202175338951"></p>
+<p>1、配置文件 unit单位 对大小写不敏感</p>
+<blockquote>
+<p>包含</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202175432363.png" alt="image-20210202175432363"></p>
+<p>就好比我们学习Spring、Import、Include</p>
+<blockquote>
+<p>网络</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bind</span> 127.0.0.1 <span class="comment">#绑定的Ip</span></span><br><span class="line">protected-mode yes <span class="comment">#保护模式</span></span><br><span class="line">port 6379 <span class="comment">#端口设置</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通用General</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes <span class="comment">#以守护进程的方式运行，默认是no，我们需要自己开启为yes！</span></span><br><span class="line">pidfile /var/run/redis_6379.pid <span class="comment">#如果以后台的方式运行，我们就需要指定一个pid文件！</span></span><br><span class="line"><span class="comment"># Specify the server verbosity level.</span></span><br><span class="line"><span class="comment"># This can be one of:</span></span><br><span class="line"><span class="comment"># debug (a lot of information, useful for development/testing)</span></span><br><span class="line"><span class="comment"># verbose (many rarely useful info, but not a mess like the debug level)</span></span><br><span class="line"><span class="comment"># notice (moderately verbose, what you want in production probably)生产环境使用</span></span><br><span class="line"><span class="comment"># warning (only very important / critical messages are logged)</span></span><br><span class="line">loglevel notice</span><br><span class="line">logfile <span class="string">&quot;&quot;</span> <span class="comment">#日志的文件位置名</span></span><br><span class="line">databases 16 <span class="comment">#数据库的数量，默认是 16 个数据库</span></span><br><span class="line">always-show-logo yes <span class="comment">#是否总是显示LOGO</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>快照</p>
+</blockquote>
+<p>持久化，在规定的时间内，执行了多少次操作，则会持久化到文件 .rdb .aof</p>
+<p>redis是内存数据库，如果没有持久化，那么数据断电即失！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果900s内，如果至少有一个key进行了修改，我们就进行持久化操作</span></span><br><span class="line">save 900 1</span><br><span class="line"><span class="comment"># 如果300s内，如果至少有10个key进行了修改，我们就进行持久化操作</span></span><br><span class="line">save 300 10</span><br><span class="line"><span class="comment"># 如果60s内，如果至少有10000个key进行了修改，我们就进行持久化操作</span></span><br><span class="line">save 60 10000</span><br><span class="line"><span class="comment"># 我们之后学习持久化，会自己定义这个测试！</span></span><br><span class="line">stop-writes-on-bgsave-error yes <span class="comment">#持久化如果出错，是否还需要继续工作！</span></span><br><span class="line">rdbcompression yes <span class="comment">#是否压缩rdb文件，需要消耗一些CPU资源！</span></span><br><span class="line">rdbchecksum yes <span class="comment">#保存rdb文件的时候，进行错误地检查校验！</span></span><br><span class="line">dir ./ <span class="comment">#rdb文件保存的目录</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>REPLICATION 复制，后面讲解主从复制的时候再讲解</p>
+</blockquote>
+<blockquote>
+<p>SECURITY 安全</p>
+</blockquote>
+<p>可以在这里设置redis的密码，默认是没有密码的！</p>
+<p><img src="/2021/01/25/Redis/image-20210202182728097.png" alt="image-20210202182728097"></p>
+<blockquote>
+<p>限制CLIENTS</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">maxclients 10000 <span class="comment"># 设置能连接上redis的最大客户端的数量</span></span><br><span class="line">maxmemory &lt;bytes&gt; <span class="comment"># redis配置最大的内存容量</span></span><br><span class="line">maxmemory-policy noeviction <span class="comment"># 内存到达上限之后的处理策略</span></span><br><span class="line"><span class="comment">#移除一些过期的key</span></span><br><span class="line"><span class="comment">#报错</span></span><br><span class="line"><span class="comment">#。。。</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/25/Redis/image-20210202183132875.png" alt="image-20210202183132875"></p>
+<blockquote>
+<p>APPEND ONLY 模式 aof配置</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">appendonly no <span class="comment">#默认是不开启aof模式的，默认是使用rdb方式持久化的，在大部分所有的情况下，rdb完全够用！</span></span><br><span class="line">appendfilename <span class="string">&quot;appendonly.aof&quot;</span> <span class="comment">#持久化的文件的名字</span></span><br><span class="line"><span class="comment"># appendfsync always #每次修改都会 sync。速度慢，消耗性能</span></span><br><span class="line">appendfsync everysec   <span class="comment">#每秒执行一次 sync，可能会丢失这1s的数据！</span></span><br><span class="line"><span class="comment"># appendfsync no #不 sync，这个时候操作系统自己同步数据，速度最快！</span></span><br></pre></td></tr></table></figure>
+
+<p>具体的配置，接下来详细讲解！</p>
+<h3 id="九、Redis持久化"><a href="#九、Redis持久化" class="headerlink" title="九、Redis持久化"></a>九、Redis持久化</h3><p>面试和工作，持久化都是重点！</p>
+<p>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失，所以redis提供了持久化功能！</p>
+<h4 id="1、AOF"><a href="#1、AOF" class="headerlink" title="1、AOF"></a>1、AOF</h4><p>将我们的所有命令都记录下来，history，恢复的时候就把这个文件全部再执行一遍！</p>
+<blockquote>
+<p>是什么？</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202222954675.png" alt="image-20210202222954675"></p>
+<p>以日志的形式来记录每个写操作，将Redis执行过的所有指令记录下来（读操作不记录），只许追加文件但不可以改写文件，redis启动之初会读取该文件重新构建数据，换言之，redis重启的话就根据日志文件的内容将写命令从前到后执行一次以完成数据的恢复工作。</p>
+<p><strong>AOF保存的是appendonly.aof文件</strong></p>
+<blockquote>
+<p>append</p>
+</blockquote>
+<p>配置文件中默认是不开启的，需要手动进行配置，只需要将appendonly改为yes就开启了aof！</p>
+<p>重启，redis就可以生效了！</p>
+<p>如果这个aof文件有错误，这时候redis是启动不起来的！我们需要修复这个aof文件。</p>
+<p>redis给我们提供了一个工具 <strong>redis-check-aof  –fix</strong></p>
+<p><img src="/2021/01/25/Redis/image-20210202223805017.png" alt="image-20210202223805017"></p>
+<p>如果文件正常，重启就可以直接恢复了！</p>
+<blockquote>
+<p>重写规则说明</p>
+</blockquote>
+<p>aof默认就是文件的无限追加，文件会越来越大！</p>
+<p><img src="/2021/01/25/Redis/image-20210202224713209.png" alt="image-20210202224713209"></p>
+<p>如果aof文件大于64m，太大了！fork一个新的进程来将我们的文件进行重写</p>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<p><strong>优点：</strong></p>
+<p>1、每一次修改都同步，文件的完整性会更加好</p>
+<p>2、每秒同步一次，可能会丢失一秒的数据</p>
+<p>3、从不同不，效率最高的！</p>
+<p><strong>缺点：</strong></p>
+<p>1、相对于数据文件来说，aof远远大于rdb，修复的速度也比rdb慢！</p>
+<p>2、Aof运行效率也比rdb慢，所以我们redis默认的配置就是rdb持久化！</p>
+<h4 id="2、RDB"><a href="#2、RDB" class="headerlink" title="2、RDB"></a>2、RDB</h4><blockquote>
+<p>什么是RDB</p>
+</blockquote>
+<p>在主从复制中，rdb就是做备份的！从机中！</p>
+<p><img src="/2021/01/25/Redis/image-20210202200440102.png" alt="image-20210202200440102"></p>
+<p>在指定的时间间隔内将内存中的数据集快照写入磁盘，也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里。</p>
+<p>Redis会单独创建（fork）一个子进程来进行持久化，会先将数据写入到一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。整个过程中，主进程是不进行任何IO操作的。这就确保了极高的性能。如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比AOF方式更加的高效。RDB的缺点是最后一次持久化后的数据可能丢失。我们默认的就是RDB，一般情况下不需要修改这个配置！</p>
+<p>有时候在生产环境我们会将这个文件进行备份！</p>
+<p><strong>RDB保存的文件是 dump.rdb</strong> 都是在我们的配置文件中快照中进行配置的！</p>
+<p><img src="/2021/01/25/Redis/image-20210202201205541.png" alt="image-20210202201205541"></p>
+<p><img src="/2021/01/25/Redis/image-20210202222006509.png" alt="image-20210202222006509"></p>
+<blockquote>
+<p>触发机制</p>
+</blockquote>
+<p>1、save的规则满足的情况下，会自动触发rdb规则</p>
+<p>2、执行flushall命令，也会触发我们的rdb规则！</p>
+<p>3、退出redis，也会产生rdb文件</p>
+<p>备份就自动生成一个dump.rdb</p>
+<blockquote>
+<p>如何恢复rdb文件！</p>
+</blockquote>
+<p>1、只需要将rdb文件放在我们redis启动目录就可以，redis启动的时候会自动检查dump.rdb 恢复其中的数据</p>
+<p>2、查看需要存在的位置</p>
+<p><img src="/2021/01/25/Redis/image-20210202222541298.png" alt="image-20210202222541298"></p>
+<p>几乎redis的默认配置就够用了！</p>
+<p><strong>优点：</strong></p>
+<p>1、适合大规模的数据恢复！</p>
+<p>2、对数据的完整性要求不高！</p>
+<p><strong>缺点：</strong></p>
+<p>1、需要一定的时间间隔进行操作！如果redis意外宕机了，这个最后一次修改数据就没有的了！</p>
+<p>2、fork进程的适合，会占用一定的内容空间！</p>
+<p><strong>扩展</strong></p>
+<p><img src="/2021/01/25/Redis/image-20210202224925897.png" alt="image-20210202224925897"></p>
+<p><img src="/2021/01/25/Redis/image-20210202224942686.png" alt="image-20210202224942686"></p>
+<h3 id="十、Redis发布订阅"><a href="#十、Redis发布订阅" class="headerlink" title="十、Redis发布订阅"></a>十、Redis发布订阅</h3><p>Redis发布订阅（pub/sub）是一种<strong>消息通信模式</strong>：发送者（pub）发送信息，订阅者（sub）接收信息。</p>
+<p>Redis客户端可以订阅任意数量的频道。</p>
+<p>订阅/发布消息图：</p>
+<p>第一个：消息发送者；第二个：频道；第三个：消息订阅者！</p>
+<p><img src="/2021/01/25/Redis/image-20210202225119395.png" alt="image-20210202225119395"></p>
+<p>下图展示了频道channel1，以及订阅这个频道的三个客户端——client2、client5和client1之间的关系：</p>
+<p><img src="/2021/01/25/Redis/image-20210202225355854.png" alt="image-20210202225355854"></p>
+<p>当有新消息通过publish命令发送给频道channel1时，这个消息就会被发送给订阅它的三个客户端：</p>
+<p><img src="/2021/01/25/Redis/image-20210202225442663.png" alt="image-20210202225442663"></p>
+<blockquote>
+<p>命令</p>
+</blockquote>
+<p>这些命令被广泛用于构建即时通信应用，比如网络聊天室（chatroom）和实时广播、实时广播等。</p>
+<p><img src="/2021/01/25/Redis/image-20210202225551880.png" alt="image-20210202225551880"></p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202225910620.png" alt="image-20210202225910620"></p>
+<blockquote>
+<p>原理</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202230006776.png" alt="image-20210202230006776"></p>
+<p><img src="/2021/01/25/Redis/image-20210202230138945.png" alt="image-20210202230138945"></p>
+<p>使用场景：</p>
+<p>1、实时消息系统</p>
+<p>2、实时聊天！（频道就当作是聊天室，将消息回显给所有人即可！）</p>
+<p>3、订阅、关注系统都是可以的！</p>
+<p>稍微复杂场景就会用到 消息中间件MQ</p>
+<h3 id="十一、Redis主从复制"><a href="#十一、Redis主从复制" class="headerlink" title="十一、Redis主从复制"></a>十一、Redis主从复制</h3><h4 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h4><p><img src="/2021/01/25/Redis/image-20210202230414986.png" alt="image-20210202230414986"></p>
+<p>主从复制，读写分离！80%的情况下都是在进行读操作！减缓服务器的压力！架构中经常使用！一主二从！</p>
+<p><img src="/2021/01/25/Redis/image-20210202231940517.png" alt="image-20210202231940517"></p>
+<p><img src="/2021/01/25/Redis/image-20210202231951771.png" alt="image-20210202231951771"></p>
+<p>只要在公司中，主从复制就是必须要使用的。</p>
+<h4 id="2、环境配置"><a href="#2、环境配置" class="headerlink" title="2、环境配置"></a>2、环境配置</h4><p>只配置从库，不用配置主库！</p>
+<p><img src="/2021/01/25/Redis/image-20210202232126463.png" alt="image-20210202232126463"></p>
+<p>复制三个配置文件，然后修改对应的信息</p>
+<p>1、端口</p>
+<p>2、pid名字</p>
+<p>3、log文件名字</p>
+<p>4、dump.rdb文件名字</p>
+<p>修改完毕之后，启动三个redis服务器，可以通过进程信息查看。</p>
+<p><img src="/2021/01/25/Redis/image-20210202232521748.png" alt="image-20210202232521748"></p>
+<h4 id="3、一主二从"><a href="#3、一主二从" class="headerlink" title="3、一主二从"></a>3、一主二从</h4><p>默认情况下，每台redis服务器都是主节点。</p>
+<p>我们一般情况下只要配置从机即可。</p>
+<p><img src="/2021/01/25/Redis/image-20210202232854799.png" alt="image-20210202232854799"></p>
+<p>如果两个都配置完，主机是有两个从机的</p>
+<p><img src="/2021/01/25/Redis/image-20210202233009900.png" alt="image-20210202233009900"></p>
+<p>真实的主从配置应该在配置文件中配置，这样的话是永久的，我们这里使用的是命令，暂时的！</p>
+<blockquote>
+<p>细节</p>
+</blockquote>
+<p><strong>主机只能写，从机不能写只能读！主机中的所有信息和数据，都会自动被从机保存！</strong></p>
+<p>测试：主机断开连接，从机依旧连接到主机的，但是没有写操作，这个时候，如果主机回来了，从机依旧可以直接获取到主机写的信息！</p>
+<p>如果是使用命令行来配置的从机，这个时候如果重启了，就会便会主机！只要变回从机，立马就会从主机中获取值。</p>
+<blockquote>
+<p>复制原理</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210202233651903.png" alt="image-20210202233651903"></p>
+<blockquote>
+<p>层层链路</p>
+</blockquote>
+<p>上一个master连接下一个slave</p>
+<p><img src="/2021/01/25/Redis/image-20210202233923284.png" alt="image-20210202233923284"></p>
+<p>这时候也可以完成主从复制！</p>
+<p><strong>如果没有老大了，这个时候能不能选择一个老大出来呢？手动！</strong></p>
+<p>如果主机断开了连接，我们可以使用 slaveof no one 让自己变成主机！其他的节点就可以<strong>手动</strong>连接到最新的这个主节点。</p>
+<p><img src="/2021/01/25/Redis/image-20210202234253859.png" alt="image-20210202234253859"></p>
+<h4 id="4、哨兵模式"><a href="#4、哨兵模式" class="headerlink" title="4、哨兵模式"></a>4、哨兵模式</h4><p>自动选举老大的模式</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>主从切换技术的方法是：当主服务器宕机时，需要手动把一台服务器切换为主服务器，这就需要人工干预，费时费力，还会造成一段时间内服务不可用。这不是一种推荐的方式，更多时候，我们优先考虑哨兵模式。Redis从2.8开始正式提供了Sentinel（哨兵）架构来解决这个问题。</p>
+<p>谋朝篡位的自动版，能够后台监控主机是否故障，如果故障了根据投票数<strong>自动将从库转换为主库</strong>。</p>
+<p>哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是<strong>哨兵通过发送命令，等待Redis服务器响应，从而监控运行的多个Redis实例</strong>。</p>
+<p><img src="/2021/01/25/Redis/image-20210203111655887.png" alt="image-20210203111655887"></p>
+<p>这里的哨兵有两个作用</p>
+<ul>
+<li>通过发送命令，让Redis服务器返回监控其运行状态，包括主服务器和从服务器。</li>
+<li>当哨兵检测到master宕机，会自动将slave切换成master，然后通过<strong>发布订阅模式</strong>通知其他的从服务器，修改配置文件，让它们切换主机。</li>
+</ul>
+<p>然后一个哨兵进程对Redis服务器进行监控，可能会出现问题，为此，我们可以使用多个哨兵进行监控。各个监控之间还会进程监控，这样就形成了多哨兵模式。</p>
+<p><img src="/2021/01/25/Redis/image-20210203115945141.png" alt="image-20210203115945141"></p>
+<p><img src="/2021/01/25/Redis/image-20210203120105283.png" alt="image-20210203120105283"></p>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<p>目前状态是一主二从。</p>
+<p>1、配置哨兵配置文件sentinel.conf</p>
+<p><img src="/2021/01/25/Redis/image-20210203120247728.png" alt="image-20210203120247728"></p>
+<p>后面的这个数字1，代表主机挂了，slave投票看让谁接替成为主机，票数最多的，就会成为主机！</p>
+<p>2、启动哨兵</p>
+<p><img src="/2021/01/25/Redis/image-20210203120419053.png" alt="image-20210203120419053"></p>
+<p>如果master节点断开了，这个时候就会从从机中随机选择一个服务器！（这里有一个投票算法）</p>
+<p>如果此时主机回来了，只能归并到新的主机下，当作从机，这就是哨兵模式的规则！</p>
+<blockquote>
+<p>哨兵模式</p>
+</blockquote>
+<p><strong>优点：</strong></p>
+<p>1、哨兵集群，基于主机复制模式，所有的主从配置优点，它都有</p>
+<p>2、主从可以切换，故障可以转移，系统的可用性就会更好</p>
+<p>3、哨兵模式就是主从模式的升级，手动到自动，更加健壮！</p>
+<p><strong>缺点：</strong></p>
+<p>1、Redis不好在线扩容，集群容量一旦达到上限，在线扩容就十分麻烦！</p>
+<p>2、实现哨兵模式的配置其实是很麻烦的，里面有很多选择！</p>
+<blockquote>
+<p>哨兵模式的全部配置！</p>
+</blockquote>
+<p><img src="/2021/01/25/Redis/image-20210203121036186.png" alt="image-20210203121036186"></p>
+<p><img src="/2021/01/25/Redis/image-20210203121052624.png" alt="image-20210203121052624"></p>
+<p><img src="/2021/01/25/Redis/image-20210203121145889.png" alt="image-20210203121145889"></p>
+<p><img src="/2021/01/25/Redis/image-20210203121159396.png" alt="image-20210203121159396"></p>
+<p><img src="/2021/01/25/Redis/image-20210203121223933.png" alt="image-20210203121223933"></p>
+<h3 id="十二、Redis缓存穿透和雪崩（面试高频，工作常用-）"><a href="#十二、Redis缓存穿透和雪崩（面试高频，工作常用-）" class="headerlink" title="十二、Redis缓存穿透和雪崩（面试高频，工作常用~）"></a>十二、Redis缓存穿透和雪崩（面试高频，工作常用~）</h3><p>Redis缓存的使用，极大的提升了应用程序的性能和效率，特别是数据查询方面。但同时，它也带来了一些问题。其中，最要害的问题，就是数据的一致性问题，从严格意义上来讲，这个问题无解。如果对数据的一致性要求很高，那么就不能使用缓存。</p>
+<p>另外的一些典型问题就是，缓存穿透、缓存雪崩和缓存击透。目前，业界也都有比较流行的解决方案。</p>
+<p><img src="/2021/01/25/Redis/image-20210203121825856.png" alt="image-20210203121825856"></p>
+<h4 id="1、缓存穿透（查不到）"><a href="#1、缓存穿透（查不到）" class="headerlink" title="1、缓存穿透（查不到）"></a>1、缓存穿透（查不到）</h4><blockquote>
+<p>概念</p>
+</blockquote>
+<p>缓存穿透的概念很简单，用户想要查询一个数据，发现redis内存数据库没有，也就是缓存没有命中，于是向持久层数据库查询。发现也没有，于是本次查询失败。当用户很多的时候，缓存都没有命中，于是都去请求了持久层数据库。这会给持久层数据库造成很大压力，这时候就相当于出现了缓存击透。</p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<p><strong>布隆过滤器</strong></p>
+<p>布隆过滤器是一种数据结构，对所有可能查询的参数以hash形式存储，在控制层先进行校验，不符合则斗气，从而避免了对底层存储系统的查询压力。</p>
+<p><img src="/2021/01/25/Redis/image-20210203122154431.png" alt="image-20210203122154431"></p>
+<p><strong>缓存空对象</strong></p>
+<p>当存储层不命中后，即使返回的空对象也将其缓存起来，同时会设置一个过期时间，之后在访问这个数据将会从缓存中获取，保护了后端数据源；</p>
+<p><img src="/2021/01/25/Redis/image-20210203122327308.png" alt="image-20210203122327308"></p>
+<p>但是这个方法会存在两个问题：</p>
+<p>1、如果空值能够被缓存起来，这就意味着缓存需要更多的空间存储更多的键，因为这当中可能会有很多的空值的键；</p>
+<p>2、即使对空值设置了过期时间，还是会存在缓存层和存储层的数据会有一段时间窗口的不一致，这对于需要保持一致性的业务会有影响。</p>
+<h4 id="2、缓存击穿（量太大，缓存过期）"><a href="#2、缓存击穿（量太大，缓存过期）" class="headerlink" title="2、缓存击穿（量太大，缓存过期）"></a>2、缓存击穿（量太大，缓存过期）</h4><p>微博服务器宕机</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>这里需要注意和缓存击穿的区别，缓存击穿，是指一个key非常热点，在不停地扛着大并发，大并发几种对这一个点进行访问，当这个key在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库，就像在一个屏障上凿开了一个洞。</p>
+<p>当某个key在过期的瞬间，有大量的请求并发访问，这类数据一般是热点数据，由于缓存国企，会同时访问数据库来查询最新数据，并且回写缓存，会导致数据库瞬间压力过大。</p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<p><strong>设置热点数据永不过期</strong></p>
+<p>从缓存层面来看，没有设置过期时间，所以不会出现热点key过期后产生的问题。</p>
+<p><strong>加互斥锁</strong></p>
+<p>分布式锁：使用分布式锁，保证对于每个key同时只有一个线程去查询后端服务，其他线程没有获得分布式锁的权限，因此只需要等待即可。这种方式将高并发的压力转移到了分布式锁，所以分布式锁的压力很大。</p>
+<h4 id="3、缓存雪崩"><a href="#3、缓存雪崩" class="headerlink" title="3、缓存雪崩"></a>3、缓存雪崩</h4><blockquote>
+<p>概念</p>
+</blockquote>
+<p>缓存雪崩，是指在某一个时间段，缓存集中过期失效。</p>
+<p>产生雪崩的原因之一，比如在写文本的时候，马上就要到双十一零点，很快就会迎来一波抢购，这波商品时间比较集中的放入了缓存，假设缓存一个小时。那么到了凌晨一点的时候，这批商品的缓存就都过期了。而对这批商品的访问查询，都落到了数据库上，对于数据库而言，就会产生周期性的压力波峰，于是所有的请求都会达到存储层，存储层的调用量会暴增，造成存储层也会挂掉的情况。</p>
+<p><img src="/2021/01/25/Redis/image-20210203123212613.png" alt="image-20210203123212613"></p>
+<p>其实集中过期，倒不是非常致命，比较致命的缓存雪崩，是缓存服务器某个节点宕机或断网。因为自然形成的缓存雪崩，一定是在某个时间段集中创建缓存，这个时候，数据库也是可以顶住压力的。无非就是对数据库产生周期性的压力而已。而缓存服务节点的宕机，对数据库服务器造成的压力是不可预知的，很有可能瞬间就把数据库压垮。</p>
+<p>双十一：停掉一些服务（保证主要的服务可用！）</p>
+<blockquote>
+<p>j解决方案</p>
+</blockquote>
+<p><strong>redis高可用</strong></p>
+<p>这个思想的含义是，既然redis有可能改掉，那就多设几台redis，这样一台挂掉之后其他的还可以继续工作，其实就是搭建的集群。（异地多活）</p>
+<p><strong>限流降级</strong>（SpringCloud）</p>
+<p>这个解决方案的思想是，在缓存失效后，通过加锁或者队列来控制都数据库写缓存的线程数量。比如对某个key只允许一个线程查询数据和写缓存，其他线程等待。</p>
+<p><strong>数据预热</strong></p>
+<p>数据预热的含义就是在正式部署之前，先把可能的数据线预先访问一百年，这样部分可能大量访问的数据就会加载到缓存中。在即将发生大并发访问前手动触发加载缓存不同的key，设置不同的过期时间，让缓存失效的时间点尽量均匀。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/25/Redis/" data-id="ckm3497qc00114ctqg9aj7if8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/25/Linux/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/24/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">贪心算法之区间调度问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

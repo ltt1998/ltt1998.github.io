@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>BFS算法框架 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BFS算法框架DFS算法就是回溯算法 BFS的核心思想就是把一些问题抽象成图，从一个点开始，向四周开始扩散。一般来说，我们写BFS算法都是用【队列】这种数据结构，每次将一个节点周围的所有节点加入队列。 BFS相对DFS最主要的区别是：BFS找到的路径一定是最短的，但代价就是空间复杂度比DFS大很多。 算法框架问题的本质就是在一幅图中找到从起点start到终点target的最近距离。 这个广义的描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS算法框架">
+<meta property="og:url" content="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="BFS算法框架DFS算法就是回溯算法 BFS的核心思想就是把一些问题抽象成图，从一个点开始，向四周开始扩散。一般来说，我们写BFS算法都是用【队列】这种数据结构，每次将一个节点周围的所有节点加入队列。 BFS相对DFS最主要的区别是：BFS找到的路径一定是最短的，但代价就是空间复杂度比DFS大很多。 算法框架问题的本质就是在一幅图中找到从起点start到终点target的最近距离。 这个广义的描述">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640.webp">
+<meta property="og:image" content="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640-1611037949403.webp">
+<meta property="og:image" content="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640-1611046363169.webp">
+<meta property="og:image" content="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640-1611046375689.webp">
+<meta property="article:published_time" content="2021-01-19T02:53:10.000Z">
+<meta property="article:modified_time" content="2021-01-19T08:58:24.729Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640.webp">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-BFS算法框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time datetime="2021-01-19T02:53:10.000Z" itemprop="datePublished">2021-01-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BFS算法框架
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="BFS算法框架"><a href="#BFS算法框架" class="headerlink" title="BFS算法框架"></a>BFS算法框架</h2><p><strong>DFS算法就是回溯算法</strong></p>
+<p><strong>BFS的核心思想</strong>就是把一些问题抽象成图，从一个点开始，向四周开始扩散。一般来说，我们写BFS算法都是用【队列】这种数据结构，每次将一个节点周围的所有节点加入队列。</p>
+<p><strong>BFS相对DFS最主要的区别</strong>是：BFS找到的路径一定是最短的，但代价就是空间复杂度比DFS大很多。</p>
+<h4 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h4><p>问题的本质就是在一幅图中找到从起点start到终点target的最近距离。</p>
+<p>这个广义的描述可以有各种变体，比如走迷宫，有的格子是围墙不能走，从起点到终点的最短距离是多少？</p>
+<p>再比如说两个单词，要求通过某些替换，把其中一个变成另一个，每次只能替换一个字符，最少要替换几次？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算从起点 start 到终点 target 的最近距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BFS</span><span class="params">(Node start, Node target)</span> </span>&#123;</span><br><span class="line">    Queue&lt;Node&gt; q; <span class="comment">// 核心数据结构</span></span><br><span class="line">    Set&lt;Node&gt; visited; <span class="comment">// 避免走回头路</span></span><br><span class="line"></span><br><span class="line">    q.offer(start); <span class="comment">// 将起点加入队列</span></span><br><span class="line">    visited.add(start);</span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>; <span class="comment">// 记录扩散的步数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (q not empty) &#123;</span><br><span class="line">        <span class="keyword">int</span> sz = q.size();</span><br><span class="line">        <span class="comment">/* 将当前队列中的所有节点向四周扩散 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">            Node cur = q.poll();</span><br><span class="line">            <span class="comment">/* 划重点：这里判断是否到达终点 */</span></span><br><span class="line">            <span class="keyword">if</span> (cur is target)</span><br><span class="line">                <span class="keyword">return</span> step;</span><br><span class="line">            <span class="comment">/* 将 cur 的相邻节点加入队列 */</span></span><br><span class="line">            <span class="keyword">for</span> (Node x : cur.adj())</span><br><span class="line">                <span class="keyword">if</span> (x not in visited) &#123;</span><br><span class="line">                    q.offer(x);</span><br><span class="line">                    visited.add(x);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 划重点：更新步数在这里 */</span></span><br><span class="line">        step++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>队列q就不说了，BFS的核心数据结构；<code>cur.adj()</code>泛指cur相邻的节点，比如说二维数组中，cur上下左右四面的位置就是相邻节点；visited的主要作用是防止走回头路，大部分时候都是必须的，但是像一般的二叉树结构，没有子节点到父节点的指针，不会走回头路就不需要visited。</p>
+<h4 id="二叉树的最小高度"><a href="#二叉树的最小高度" class="headerlink" title="二叉树的最小高度"></a>二叉树的最小高度</h4><p><img src="/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640.webp" alt="img"></p>
+<p>显然起点就是root根节点，终点就是最靠近根节点的那个【叶子节点】。</p>
+<p>叶子节点就是两个子节点都是null的节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cur.left == <span class="keyword">null</span> &amp;&amp; cur.right == <span class="keyword">null</span>) </span><br><span class="line">    <span class="comment">// 到达叶子节点</span></span><br></pre></td></tr></table></figure>
+
+<p>按照上述框架稍加改造即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Queue&lt;TreeNode&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    q.offer(root);</span><br><span class="line">    <span class="comment">// root 本身就是一层，depth 初始化为 1</span></span><br><span class="line">    <span class="keyword">int</span> depth = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> sz = q.size();</span><br><span class="line">        <span class="comment">/* 将当前队列中的所有节点向四周扩散 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">            TreeNode cur = q.poll();</span><br><span class="line">            <span class="comment">/* 判断是否到达终点 */</span></span><br><span class="line">            <span class="keyword">if</span> (cur.left == <span class="keyword">null</span> &amp;&amp; cur.right == <span class="keyword">null</span>) </span><br><span class="line">                <span class="keyword">return</span> depth;</span><br><span class="line">            <span class="comment">/* 将 cur 的相邻节点加入队列 */</span></span><br><span class="line">            <span class="keyword">if</span> (cur.left != <span class="keyword">null</span>)</span><br><span class="line">                q.offer(cur.left);</span><br><span class="line">            <span class="keyword">if</span> (cur.right != <span class="keyword">null</span>) </span><br><span class="line">                q.offer(cur.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 这里增加步数 */</span></span><br><span class="line">        depth++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> depth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>1、为什么BFS可以找到最短距离，DFS不行吗？</strong></p>
+<p>BFS的逻辑是depth每增加一次，队列中的所有节点都向前迈进一步，这保证了第一次到达终点的时候，走的步数是最少的。</p>
+<p>DFS也可以找最短路径，但是时间复杂度相对高很多。</p>
+<p>DFS是靠递归中的堆栈记录走过的路径，要找到最短路径，就得把二叉树中所有树杈都探索完才能对比出最短的路径有多长。</p>
+<p>而BFS是借助队列做到一次一步【齐头并进】，是可以在不遍历完整棵树的条件下找到最短距离的。</p>
+<p><strong>DFS是线，BFS是面；DFS是单打独斗，BFS是集体行动。</strong></p>
+<p><strong>2、既然BFS那么好，为什么DFS还要存在？</strong></p>
+<p>BFS 可以找到最短距离，但是空间复杂度高，而 DFS 的空间复杂度较低。</p>
+<p>假设给你的这个二叉树是满二叉树，节点总数为<code>N</code>，对于 DFS 算法来说，空间复杂度无非就是递归堆栈，最坏情况下顶多就是树的高度，也就是<code>O(logN)</code>。</p>
+<p>BFS 算法，队列中每次都会储存着二叉树一层的节点，这样的话最坏情况下空间复杂度应该是树的最底层节点的数量，也就是<code>N/2</code>，用 Big O 表示的话也就是<code>O(N)</code>。</p>
+<p>BFS 还是有代价的，一般来说在找最短路径的时候使用 BFS，其他时候还是 DFS 使用得多一些（主要是递归代码好写）。</p>
+<h4 id="解开密码锁的最少次数"><a href="#解开密码锁的最少次数" class="headerlink" title="解开密码锁的最少次数"></a>解开密码锁的最少次数</h4><p><img src="/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640-1611037949403.webp" alt="img"></p>
+<p><strong>第一步，我们不管所有的限制条件，不管<code>deadends</code>和<code>target</code>的限制，就思考一个问题：如果让你设计一个算法，穷举所有可能的密码组合，你怎么做</strong>？</p>
+<p>穷举呗，再简单一点，如果你只转一下锁，有几种可能？总共有 4 个位置，每个位置可以向上转，也可以向下转，也就是有 8 种可能对吧。然后，再以这 8 种密码作为基础，对每个密码再转一下，穷举出所有可能…</p>
+<p><strong>仔细想想，这就可以抽象成一幅图，每个节点有 8 个相邻的节点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 s[j] 向上拨动一次</span></span><br><span class="line"><span class="function">String <span class="title">plusOne</span><span class="params">(String s, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] ch = s.toCharArray();</span><br><span class="line">    <span class="keyword">if</span> (ch[j] == <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">        ch[j] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ch[j] += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(ch);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 将 s[i] 向下拨动一次</span></span><br><span class="line"><span class="function">String <span class="title">minusOne</span><span class="params">(String s, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span>[] ch = s.toCharArray();</span><br><span class="line">    <span class="keyword">if</span> (ch[j] == <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">        ch[j] = <span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ch[j] -= <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BFS 框架，打印出所有可能的密码</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(String target)</span> </span>&#123;</span><br><span class="line">    Queue&lt;String&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    q.offer(<span class="string">&quot;0000&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> sz = q.size();</span><br><span class="line">        <span class="comment">/* 将当前队列中的所有节点向周围扩散 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">            String cur = q.poll();</span><br><span class="line">            <span class="comment">/* 判断是否到达终点 */</span></span><br><span class="line">            System.out.println(cur);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 将一个节点的相邻节点加入队列 */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">                String up = plusOne(cur, j);</span><br><span class="line">                String down = minusOne(cur, j);</span><br><span class="line">                q.offer(up);</span><br><span class="line">                q.offer(down);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 在这里增加步数 */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>这段 BFS 代码已经能够穷举所有可能的密码组合了，但是显然不能完成题目，有如下问题需要解决</strong>：</p>
+<p>1、会走回头路。比如说我们从<code>&quot;0000&quot;</code>拨到<code>&quot;1000&quot;</code>，但是等从队列拿出<code>&quot;1000&quot;</code>时，还会拨出一个<code>&quot;0000&quot;</code>，这样的话会产生死循环。</p>
+<p>2、没有终止条件，按照题目要求，我们找到<code>target</code>就应该结束并返回拨动的次数。</p>
+<p>3、没有对<code>deadends</code>的处理，按道理这些「死亡密码」是不能出现的，也就是说你遇到这些密码的时候需要跳过。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">openLock</span><span class="params">(String[] deadends, String target)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 记录需要跳过的死亡密码</span></span><br><span class="line">    Set&lt;String&gt; deads = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String s : deadends) deads.add(s);</span><br><span class="line">    <span class="comment">// 记录已经穷举过的密码，防止走回头路</span></span><br><span class="line">    Set&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    Queue&lt;String&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 从起点开始启动广度优先搜索</span></span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>;</span><br><span class="line">    q.offer(<span class="string">&quot;0000&quot;</span>);</span><br><span class="line">    visited.add(<span class="string">&quot;0000&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> sz = q.size();</span><br><span class="line">        <span class="comment">/* 将当前队列中的所有节点向周围扩散 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">            String cur = q.poll();</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 判断是否到达终点 */</span></span><br><span class="line">            <span class="keyword">if</span> (deads.contains(cur))</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (cur.equals(target))</span><br><span class="line">                <span class="keyword">return</span> step;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 将一个节点的未遍历相邻节点加入队列 */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">                String up = plusOne(cur, j);</span><br><span class="line">                <span class="keyword">if</span> (!visited.contains(up)) &#123;</span><br><span class="line">                    q.offer(up);</span><br><span class="line">                    visited.add(up);</span><br><span class="line">                &#125;</span><br><span class="line">                String down = minusOne(cur, j);</span><br><span class="line">                <span class="keyword">if</span> (!visited.contains(down)) &#123;</span><br><span class="line">                    q.offer(down);</span><br><span class="line">                    visited.add(down);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 在这里增加步数 */</span></span><br><span class="line">        step++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果穷举完都没找到目标密码，那就是找不到了</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有一个比较小的优化：可以不需要dead这个哈希集合，可以直接将这些元素初始化到visited集合中，</p>
+<h4 id="双向BFS优化"><a href="#双向BFS优化" class="headerlink" title="双向BFS优化"></a>双向BFS优化</h4><p><strong>传统的 BFS 框架就是从起点开始向四周扩散，遇到终点时停止；而双向 BFS 则是从起点和终点同时开始扩散，当两边有交集的时候停止</strong>。</p>
+<p><img src="/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640-1611046363169.webp" alt="img"></p>
+<p><img src="/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/640-1611046375689.webp" alt="img"></p>
+<p>如果终点在最底部，按照传统 BFS 算法的策略，会把整棵树的节点都搜索一遍，最后找到<code>target</code>；而双向 BFS 其实只遍历了半棵树就出现了交集，也就是找到了最短距离。从这个例子可以直观地感受到，双向 BFS 是要比传统 BFS 高效的。</p>
+<p><strong>不过，双向 BFS 也有局限，因为你必须知道终点在哪里</strong>。比如我们刚才讨论的二叉树最小高度的问题，你一开始根本就不知道终点在哪里，也就无法使用双向 BFS；但是第二个密码锁的问题，是可以使用双向 BFS 算法来提高效率的，代码稍加修改即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">openLock</span><span class="params">(String[] deadends, String target)</span> </span>&#123;</span><br><span class="line">    Set&lt;String&gt; deads = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (String s : deadends) deads.add(s);</span><br><span class="line">    <span class="comment">// 用集合不用队列，可以快速判断元素是否存在</span></span><br><span class="line">    Set&lt;String&gt; q1 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    Set&lt;String&gt; q2 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    Set&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>;</span><br><span class="line">    q1.add(<span class="string">&quot;0000&quot;</span>);</span><br><span class="line">    q2.add(target);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q1.isEmpty() &amp;&amp; !q2.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 哈希集合在遍历的过程中不能修改，用 temp 存储扩散结果</span></span><br><span class="line">        Set&lt;String&gt; temp = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 将 q1 中的所有节点向周围扩散 */</span></span><br><span class="line">        <span class="keyword">for</span> (String cur : q1) &#123;</span><br><span class="line">            <span class="comment">/* 判断是否到达终点 */</span></span><br><span class="line">            <span class="keyword">if</span> (deads.contains(cur))</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (q2.contains(cur))</span><br><span class="line">                <span class="keyword">return</span> step;</span><br><span class="line">            visited.add(cur);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 将一个节点的未遍历相邻节点加入集合 */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">                String up = plusOne(cur, j);</span><br><span class="line">                <span class="keyword">if</span> (!visited.contains(up))</span><br><span class="line">                    temp.add(up);</span><br><span class="line">                String down = minusOne(cur, j);</span><br><span class="line">                <span class="keyword">if</span> (!visited.contains(down))</span><br><span class="line">                    temp.add(down);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 在这里增加步数 */</span></span><br><span class="line">        step++;</span><br><span class="line">        <span class="comment">// temp 相当于 q1</span></span><br><span class="line">        <span class="comment">// 这里交换 q1 q2，下一轮 while 就是扩散 q2</span></span><br><span class="line">        q1 = q2;</span><br><span class="line">        q2 = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>双向BFS还是遵循BFS算法框架的，只是不再使用队列，而是使用HashSet方法快速判断两个集合是否有交集。</p>
+<p>另一个技巧点就是while循环的最后交换q1和q2的内容，所以只要默认扩散q1就相当于轮流扩散q1和q2。</p>
+<p>其实双向 BFS 还有一个优化，就是在 while 循环开始时做一个判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ...</span><br><span class="line">while (!q1.isEmpty() &amp;&amp; !q2.isEmpty()) &#123;</span><br><span class="line">    if (q1.size() &gt; q2.size()) &#123;</span><br><span class="line">        &#x2F;&#x2F; 交换 q1 和 q2</span><br><span class="line">        temp &#x3D; q1;</span><br><span class="line">        q1 &#x3D; q2;</span><br><span class="line">        q2 &#x3D; temp;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br></pre></td></tr></table></figure>
+
+<p>因为按照 BFS 的逻辑，队列（集合）中的元素越多，扩散之后新的队列（集合）中的元素就越多；在双向 BFS 算法中，如果我们每次都选择一个较小的集合进行扩散，那么占用的空间增长速度就会慢一些，效率就会高一些。</p>
+<p><strong>无论传统 BFS 还是双向 BFS，无论做不做优化，从 Big O 衡量标准来看，空间复杂度都是一样的</strong>，只能说双向 BFS 是一种 trick 吧，掌握不掌握其实都无所谓。最关键的是把 BFS 通用框架记下来，反正所有 BFS 算法都可以用它套出解法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/19/BFS%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/" data-id="ckm3497o600004ctqa14k550y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/19/Java%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">操作系统基础</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

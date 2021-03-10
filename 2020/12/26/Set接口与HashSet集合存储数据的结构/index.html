@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Set接口与HashSet集合存储数据的结构 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Set接口与HashSet集合存储数据的结构1、Set接口1java.util.Set接口 extends Collection接口  Set接口的特点： 1、不允许存储重复的元素 2、没有索引，没有带索引的方法，也不能使用普通的for循环遍历 1java.util.HashSet集合 implements Set接口  HashSet特点： 1、不允许存储重复的元素 2、没有索引，没有带索引的方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Set接口与HashSet集合存储数据的结构">
+<meta property="og:url" content="http://example.com/2020/12/26/Set%E6%8E%A5%E5%8F%A3%E4%B8%8EHashSet%E9%9B%86%E5%90%88%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Set接口与HashSet集合存储数据的结构1、Set接口1java.util.Set接口 extends Collection接口  Set接口的特点： 1、不允许存储重复的元素 2、没有索引，没有带索引的方法，也不能使用普通的for循环遍历 1java.util.HashSet集合 implements Set接口  HashSet特点： 1、不允许存储重复的元素 2、没有索引，没有带索引的方">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-26T07:53:10.000Z">
+<meta property="article:modified_time" content="2021-01-12T06:26:20.515Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Set接口与HashSet集合存储数据的结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/26/Set%E6%8E%A5%E5%8F%A3%E4%B8%8EHashSet%E9%9B%86%E5%90%88%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%93%E6%9E%84/" class="article-date">
+  <time datetime="2020-12-26T07:53:10.000Z" itemprop="datePublished">2020-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Set接口与HashSet集合存储数据的结构
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Set接口与HashSet集合存储数据的结构"><a href="#Set接口与HashSet集合存储数据的结构" class="headerlink" title="Set接口与HashSet集合存储数据的结构"></a>Set接口与HashSet集合存储数据的结构</h2><h3 id="1、Set接口"><a href="#1、Set接口" class="headerlink" title="1、Set接口"></a>1、Set接口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Set接口 extends Collection接口</span><br></pre></td></tr></table></figure>
+
+<p><strong>Set接口的特点：</strong></p>
+<p>1、不允许存储<strong>重复的元素</strong></p>
+<p>2、没有索引，<strong>没有带索引的方法</strong>，也不能使用普通的for循环遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.HashSet集合 implements Set接口</span><br></pre></td></tr></table></figure>
+
+<p><strong>HashSet特点：</strong></p>
+<p>1、不允许存储重复的元素</p>
+<p>2、没有索引，<strong>没有带索引的方法</strong>，也不能使用普通的for循环遍历</p>
+<p>3、是一个无序的集合，存储元素和取出元素的顺序有可能不一致</p>
+<p>4、底层是一个哈希表结构（查询的速度非常快）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="comment">//使用add方法往集合中添加元素</span></span><br><span class="line">set.add(<span class="number">1</span>);</span><br><span class="line">set.add(<span class="number">3</span>);</span><br><span class="line">set.add(<span class="number">2</span>);</span><br><span class="line">set.add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//使用迭代器遍历Set集合</span></span><br><span class="line">Iterator&lt;Integer&gt; it = set.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext()&#123;</span><br><span class="line">    Iterator n = it.next();</span><br><span class="line">    System.out.println(n);<span class="comment">//1,2,3 无序且不重复</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、HashSet集合存储数据的结构（哈希表）"><a href="#2、HashSet集合存储数据的结构（哈希表）" class="headerlink" title="2、HashSet集合存储数据的结构（哈希表）"></a>2、HashSet集合存储数据的结构（哈希表）</h3><p><strong>哈希值：</strong>是一个<strong>十进制的整数，由系统随机给出</strong>（就是对象的地址值，是一个逻辑地址，是模拟出来的地址，不是数据实际存储的物理地址）</p>
+<p>在Object类中有一个方法，可以获取对象的哈希值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int hashCode（）返回该对象的哈希码值</span><br></pre></td></tr></table></figure>
+
+<p>HashCode方法的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">native</span>:代表该方法调用的是本地操作系统的方法</span><br></pre></td></tr></table></figure>
+
+<p><strong>哈希表：</strong>hashSet集合存储数据的结构</p>
+<p>jdk1.8之前：<strong>哈希表=数组+链表</strong></p>
+<p>jdk1.8之后：<strong>哈希表=数组+链表</strong>   <strong>哈希表=数组+红黑树（提高查询的速度）</strong></p>
+<p>哈希表的特点：<strong>速度快</strong></p>
+<p>存储数据到集合中，先计算元素的哈希值</p>
+<p><strong>数组结构：</strong>把元素进行了分组（相同哈希值的元素是一组）</p>
+<p><strong>链表/红黑树结构：</strong>把相同哈希值的元素连在一起（如果链表的长度超过了8位，那么就会把链表转换成红黑树（提高查询的速度））</p>
+<h3 id="3、Set集合存储元素不重复的原理"><a href="#3、Set集合存储元素不重复的原理" class="headerlink" title="3、Set集合存储元素不重复的原理"></a>3、Set集合存储元素不重复的原理</h3><p><strong>前提：</strong>存储的元素<strong>必须重写hashCode方法和equals方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建HashSet集合对象</span></span><br><span class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();<span class="comment">//哈希表：数组+链表/红黑树 </span></span><br><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">set.add(s1);</span><br><span class="line">set.add(s2);</span><br><span class="line">set.add(<span class="string">&quot;重地&quot;</span>);</span><br><span class="line">set.add(<span class="string">&quot;通话&quot;</span>);</span><br><span class="line">set.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">System.out.println(set);/[重地，通话，abc]</span><br></pre></td></tr></table></figure>
+
+<p><strong>原因：Set集合在调用add方法时，add方法会调用元素hashCode方法和equals方法，判断元素是否重复</strong></p>
+<h4 id="HashSet存储自定义类型元素"><a href="#HashSet存储自定义类型元素" class="headerlink" title="HashSet存储自定义类型元素"></a>HashSet存储自定义类型元素</h4><p><strong>Set集合报错元素原因：</strong></p>
+<p>存储的元素（String，Integer,…Student,Person…),必须重写hashCode方法和equals方法</p>
+<h3 id="4、LinkedHashSet集合"><a href="#4、LinkedHashSet集合" class="headerlink" title="4、LinkedHashSet集合"></a>4、LinkedHashSet集合</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.LinkedHashSet集合 extends HashSet集合</span><br></pre></td></tr></table></figure>
+
+<p><strong>LinkedHashSet集合特点：</strong></p>
+<p>底层是一个哈希表（<strong>数组+链表/红黑树+链表：</strong>多了一条链（记录元素的存储顺序）），<strong>保存元素有序</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();<span class="comment">//[]无序，不允许重复</span></span><br><span class="line">LinkedHashSet&lt;String&gt; set = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();[]<span class="comment">//有序，不允许重复</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、可变参数"><a href="#5、可变参数" class="headerlink" title="5、可变参数"></a>5、可变参数</h3><p>可变参数：是JDK1.5之后出现的新特性</p>
+<p><strong>使用前提：</strong></p>
+<ul>
+<li>当方法的参数列表数据类型已经确定，但是参数的个数不确定，就可以使用可变参数</li>
+</ul>
+<p><strong>使用格式：</strong>定义方法时使用</p>
+<ul>
+<li>修饰符 返回值类型 方法名（数据类型…变量名）{}</li>
+</ul>
+<p><strong>可变参数的原理：</strong></p>
+<ul>
+<li>可变参数底层就是一个数组，根据传递参数个数不同，会创建不同长度的数组，来存储这些参数</li>
+<li>传递的参数个数，可以是0个（不传递），1，2…多个</li>
+</ul>
+<p><strong>可变参数的注意事项：</strong></p>
+<p>1、一个方法的参数列表，只能有一个可变参数</p>
+<p>2、如果方法的参数有多个，那么可变参数必须写在参数列表的末尾</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String b, <span class="keyword">double</span> c ,<span class="keyword">int</span> d ,<span class="keyword">int</span>...a)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可变参数的特殊（终极）写法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Object...obj)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Collections集合工具类的方法</span><br><span class="line">java.util.Collections是集合工具类，用来对集合进行操作。部分方法如下：</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;T&gt; List ,Comparator&lt;? <span class="keyword">super</span> T&gt;)</span>:将集合中元素按照指定规则排序。</span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function">    Comparator和Comparable的区别</span></span><br><span class="line"><span class="function">        Comparable：自己（<span class="keyword">this</span>）和别人（参数）比较，自己需要实现Comparable接口，重写比较的规则compareTo方法</span></span><br><span class="line"><span class="function">        Comparator:相当于找一个第三方的裁判，比较两</span></span><br><span class="line"><span class="function">        </span></span><br><span class="line"><span class="function">    Comparator的排序规则：</span></span><br><span class="line"><span class="function">        o1-o2:升序</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/26/Set%E6%8E%A5%E5%8F%A3%E4%B8%8EHashSet%E9%9B%86%E5%90%88%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%93%E6%9E%84/" data-id="ckm3497om00024ctq5v14db5z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/28/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A1%86%E6%9E%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          二分查找框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/26/%E7%BB%8F%E5%85%B8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%9A%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">经典动态规划：背包问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

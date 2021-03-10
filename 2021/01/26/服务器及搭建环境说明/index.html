@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>服务器及搭建环境说明 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="服务器相关知识 为什么程序员都需要一个自己的服务器  1、作为一个程序员，必须要发布自己的网站和项目 2、练习Linux操作 3、自己的远程仓库、远程数据库、远程tomcat。。。搭建在服务器上 4、练习，Linux进行任意的环境部署操作！Windows下开发，你不熟悉Linux。 5、。。。  服务器如何购买？  如果是学生或者24岁以下的小伙伴，可以购买学生机，100多元1年。 香港服务器可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器及搭建环境说明">
+<meta property="og:url" content="http://example.com/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务器相关知识 为什么程序员都需要一个自己的服务器  1、作为一个程序员，必须要发布自己的网站和项目 2、练习Linux操作 3、自己的远程仓库、远程数据库、远程tomcat。。。搭建在服务器上 4、练习，Linux进行任意的环境部署操作！Windows下开发，你不熟悉Linux。 5、。。。  服务器如何购买？  如果是学生或者24岁以下的小伙伴，可以购买学生机，100多元1年。 香港服务器可以">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194135288.png">
+<meta property="og:image" content="http://example.com/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194318922.png">
+<meta property="og:image" content="http://example.com/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194542157.png">
+<meta property="article:published_time" content="2021-01-26T07:53:10.000Z">
+<meta property="article:modified_time" content="2021-01-26T12:05:33.742Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194135288.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-服务器及搭建环境说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2021-01-26T07:53:10.000Z" itemprop="datePublished">2021-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      服务器及搭建环境说明
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="服务器相关知识"><a href="#服务器相关知识" class="headerlink" title="服务器相关知识"></a>服务器相关知识</h2><blockquote>
+<p>为什么程序员都需要一个自己的服务器</p>
+</blockquote>
+<p>1、作为一个程序员，必须要发布自己的网站和项目</p>
+<p>2、练习Linux操作</p>
+<p>3、自己的远程仓库、远程数据库、远程tomcat。。。搭建在服务器上</p>
+<p>4、练习，Linux进行任意的环境部署操作！Windows下开发，你不熟悉Linux。</p>
+<p>5、。。。</p>
+<blockquote>
+<p>服务器如何购买？</p>
+</blockquote>
+<p>如果是学生或者24岁以下的小伙伴，可以购买学生机，100多元1年。</p>
+<p>香港服务器可以避免备案，但是尽量不要自己挂VPN，会被封！</p>
+<blockquote>
+<p>买完服务器之后该做什么？</p>
+</blockquote>
+<p>服务器就是一个远程Linux</p>
+<p>1、在阿里云上购买的，需要<strong>开通安全组设置</strong>；端口映射 3306/8080</p>
+<p><img src="/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194135288.png" alt="image-20210126194135288"></p>
+<p>2、获取服务器的公网IP地址；修改实例名称和密码，第一次修改需要重启！使用xshell远程连接。</p>
+<p><img src="/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194318922.png" alt="image-20210126194318922"></p>
+<p>连接之后就是LInux的标准使用。</p>
+<blockquote>
+<p>连接到服务器之后，我们需要搭建环境！</p>
+</blockquote>
+<p>1、傻瓜式（宝塔面板）</p>
+<p><img src="/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/image-20210126194542157.png" alt="image-20210126194542157"></p>
+<p>下载完毕之后，就可以得到一个地址：宝塔的管理面板！</p>
+<ul>
+<li>url  username password</li>
+</ul>
+<blockquote>
+<p>自定义安装服务器环境</p>
+</blockquote>
+<blockquote>
+<p>一键部署应用</p>
+</blockquote>
+<blockquote>
+<p>端口开启</p>
+</blockquote>
+<blockquote>
+<p>放入网站进行访问</p>
+</blockquote>
+<p>比如tomcat 就直接放到webapps目录下！</p>
+<p>特殊的网站：开源项目，就按照自己操作来！</p>
+<blockquote>
+<p>上传文件尽量使用XFTP</p>
+</blockquote>
+<p>war直接丢到tomcat即可</p>
+<p>jar直接用java -jar执行即可访问</p>
+<p>网站如果访问测试失败，一定是防火墙的问题（Linux服务器，阿里云安全组面板）</p>
+<p>2、命令式（原生）Linux视频</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/" data-id="ckm3497oz000b4ctqbjve0ql1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/27/Git/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">贪心类型问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

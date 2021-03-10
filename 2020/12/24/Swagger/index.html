@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Swagger | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Swagger学习目标：  了解Swagger的作用和概念 了解前后端分离 在SpringBoot中集成Swagger  Swagger简介前后端分离 Vue+SpringBoot 后端时代：前端只用管理静态页面；html&#x3D;&#x3D;》后端。模板引擎 JSP&#x3D;》后端是主力 前后端分离时代：  后端：后端控制层、服务处、数据访问层 前端：前端控制层、视图层 伪造后端数据，json。已经存在了，不需要后端，前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swagger">
+<meta property="og:url" content="http://example.com/2020/12/24/Swagger/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Swagger学习目标：  了解Swagger的作用和概念 了解前后端分离 在SpringBoot中集成Swagger  Swagger简介前后端分离 Vue+SpringBoot 后端时代：前端只用管理静态页面；html&#x3D;&#x3D;》后端。模板引擎 JSP&#x3D;》后端是主力 前后端分离时代：  后端：后端控制层、服务处、数据访问层 前端：前端控制层、视图层 伪造后端数据，json。已经存在了，不需要后端，前">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201224203221733.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201224204747016.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225095822677.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225101116660.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225101336523.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225102542111.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225102956718.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225104244160.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225105646032.png">
+<meta property="og:image" content="http://example.com/2020/12/24/Swagger/image-20201225105736624.png">
+<meta property="article:published_time" content="2020-12-24T07:53:10.000Z">
+<meta property="article:modified_time" content="2020-12-25T03:02:04.628Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/24/Swagger/image-20201224203221733.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Swagger" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/Swagger/" class="article-date">
+  <time datetime="2020-12-24T07:53:10.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Swagger
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h2><p>学习目标：</p>
+<ul>
+<li>了解Swagger的作用和概念</li>
+<li>了解前后端分离</li>
+<li>在SpringBoot中集成Swagger</li>
+</ul>
+<h3 id="Swagger简介"><a href="#Swagger简介" class="headerlink" title="Swagger简介"></a>Swagger简介</h3><p><strong>前后端分离</strong></p>
+<p>Vue+SpringBoot</p>
+<p>后端时代：前端只用管理静态页面；html==》后端。模板引擎 JSP=》后端是主力</p>
+<p>前后端分离时代：</p>
+<ul>
+<li>后端：后端控制层、服务处、数据访问层</li>
+<li>前端：前端控制层、视图层<ul>
+<li>伪造后端数据，json。已经存在了，不需要后端，前端工程依旧能跑起来。</li>
+</ul>
+</li>
+<li>前后端如何交互？===&gt;API</li>
+<li>前后端相对独立，松耦合；</li>
+<li>前后端甚至可以部署在不同的服务器上。</li>
+</ul>
+<p>产生一个问题：</p>
+<ul>
+<li>前后端集成联调，前端人员和后端人员无法做到“及时协商，尽早解决”，最终导致问题集中爆发</li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>首先制定schema[计划的提纲]，实时更新最新API，降低集成的风险；</li>
+<li>早些年，制定word计划文档</li>
+<li>前后端分离<ul>
+<li>前端测试后端接口：postman</li>
+<li>后端提供接口，需要实时更新最新的消息及改动！</li>
+</ul>
+</li>
+</ul>
+<h3 id="Swagger-1"><a href="#Swagger-1" class="headerlink" title="Swagger"></a>Swagger</h3><ul>
+<li>号称世界上最流行的API框架</li>
+<li>RestFul Api 文档在线自动生成工具=&gt;APi文档与API定义同步更新</li>
+<li>直接运行，可以在线测试API接口</li>
+<li>支持多种语言</li>
+</ul>
+<p>官网：<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io</a></p>
+<p>在项目中使用Swagger需要springfox；</p>
+<ul>
+<li>swagger2</li>
+<li>ui</li>
+</ul>
+<h3 id="Springboot集成Swagger"><a href="#Springboot集成Swagger" class="headerlink" title="Springboot集成Swagger"></a>Springboot集成Swagger</h3><p>1、新建一个SpringBoot =》 web项目</p>
+<p>2、导入相关依赖</p>
+<p><img src="/2020/12/24/Swagger/image-20201224203221733.png" alt="image-20201224203221733"></p>
+<p>3、编写一个Hello工程</p>
+<p>4、配置Swagger ==&gt;Config</p>
+<p><img src="/2020/12/24/Swagger/image-20201224204747016.png" alt="image-20201224204747016"></p>
+<p>5、测试运行：<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></p>
+<h3 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h3><p>Swagger的bean实例Docket；</p>
+<p><img src="/2020/12/24/Swagger/image-20201225095822677.png" alt="image-20201225095822677"></p>
+<h3 id="Swagger配置扫描接口"><a href="#Swagger配置扫描接口" class="headerlink" title="Swagger配置扫描接口"></a>Swagger配置扫描接口</h3><p><img src="/2020/12/24/Swagger/image-20201225101116660.png" alt="image-20201225101116660"></p>
+<p><strong>配置是否启动Swagger</strong></p>
+<p><img src="/2020/12/24/Swagger/image-20201225101336523.png" alt="image-20201225101336523"></p>
+<p><strong>我只希望我的Swagger在生产环境中使用，在发布的时候不使用。</strong></p>
+<ul>
+<li>判断是不是生产环境 flag=false</li>
+<li>注入enable（flag）</li>
+</ul>
+<p><img src="/2020/12/24/Swagger/image-20201225102542111.png" alt="image-20201225102542111"></p>
+<h3 id="配置API文档的分组"><a href="#配置API文档的分组" class="headerlink" title="配置API文档的分组"></a>配置API文档的分组</h3><p><img src="/2020/12/24/Swagger/image-20201225102956718.png" alt="image-20201225102956718"></p>
+<p>如何配置多个分组：创建多个Docket实例即可。</p>
+<p><img src="/2020/12/24/Swagger/image-20201225104244160.png" alt="image-20201225104244160"></p>
+<p><strong>实体类配置</strong></p>
+<p><img src="/2020/12/24/Swagger/image-20201225105646032.png" alt="image-20201225105646032"></p>
+<p><strong>controller</strong></p>
+<p><img src="/2020/12/24/Swagger/image-20201225105736624.png" alt="image-20201225105736624"></p>
+<p>总结：</p>
+<p>1、我们可以通过Swagger给一些比较难理解的属性或者接口，增加注释信息</p>
+<p>2、接口文档实时更新</p>
+<p>3、可以在线测试</p>
+<p>Swagger是一个优秀的工具，几乎所有大公司都有使用它。</p>
+<p>【注意点】在正式发布的时候，关闭Swagger！！！出于安全考虑，而且节省运行内存。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/Swagger/" data-id="ckm3497op00044ctqc1wdfhbj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/26/%E8%81%8A%E8%81%8A%E7%8E%B0%E5%9C%A8%E5%92%8C%E6%9C%AA%E6%9D%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          聊聊现在和未来
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何分析开源项目</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

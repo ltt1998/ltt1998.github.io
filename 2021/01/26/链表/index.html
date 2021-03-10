@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>链表 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="链表一、递归反转链表：如何拆解复杂问题123456&#x2F;&#x2F; 单链表节点的结构public class ListNode &amp;#123;    int val;    ListNode next;    ListNode(int x) &amp;#123; val &#x3D; x; &amp;#125;&amp;#125;  反转单链表的一部分，就是给一个索引区间，把单链表中这部分元素反转，其他部分不变；  注：索引是从1开始的。迭代的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="链表一、递归反转链表：如何拆解复杂问题123456&#x2F;&#x2F; 单链表节点的结构public class ListNode &amp;#123;    int val;    ListNode next;    ListNode(int x) &amp;#123; val &#x3D; x; &amp;#125;&amp;#125;  反转单链表的一部分，就是给一个索引区间，把单链表中这部分元素反转，其他部分不变；  注：索引是从1开始的。迭代的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611631184366.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648211785.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648317772.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648420593.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648454029.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649303564.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649420516.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673870283.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673915498.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673933585.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673976426.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674007505.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674033845.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674532054.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674543910.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677220024.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677252397.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677282686.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677325316.webp">
+<meta property="article:published_time" content="2021-01-26T00:53:10.000Z">
+<meta property="article:modified_time" content="2021-01-27T03:25:58.349Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-链表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/26/%E9%93%BE%E8%A1%A8/" class="article-date">
+  <time datetime="2021-01-26T00:53:10.000Z" itemprop="datePublished">2021-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      链表
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="一、递归反转链表：如何拆解复杂问题"><a href="#一、递归反转链表：如何拆解复杂问题" class="headerlink" title="一、递归反转链表：如何拆解复杂问题"></a>一、递归反转链表：如何拆解复杂问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单链表节点的结构</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode(<span class="keyword">int</span> x) &#123; val = x; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反转单链表的一部分，就是给一个索引区间，把单链表中这部分元素反转，其他部分不变；</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp" alt="img"></p>
+<p><strong>注：索引是从1开始的。</strong>迭代的思路大概是：先用一个for循环找到第m个位置，然后再用一个for循环将m和n之间的元素反转。但是递归解法不用任何for循环。</p>
+<h4 id="1、递归反转整个链表"><a href="#1、递归反转整个链表" class="headerlink" title="1、递归反转整个链表"></a>1、递归反转整个链表</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head.next == <span class="keyword">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">    ListNode last = reverse(head.next);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于递归算法，最重要的就是明确递归函数的定义。</p>
+<p>reverse函数定义：<strong>输入一个节点head，将[以head为起点]的链表反转，并返回反转之后的头节点。</strong></p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611631184366.webp" alt="img"></p>
+<p>那么输入<code>reverse(head)</code>后，会在这里进行递归：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ListNode last = reverse(head.next);</span><br></pre></td></tr></table></figure>
+
+<p>不要跳进递归，而是要根据刚才的函数定义，来弄清这段代码会产生什么结果：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648211785.webp" alt="img"></p>
+<p>按照定义，这个<code>reverse(head.next)</code>执行完成后，整个链表应该变成了这样：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648317772.webp" alt="img"></p>
+<p>并且根据函数定义，<code>reverse</code>函数会返回反转之后的头结点，我们用变量<code>last</code>接收了。</p>
+<p>现在再来看下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head.next.next &#x3D; head;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648420593.webp" alt="img"></p>
+<p>接下来进行的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">head.next &#x3D; null;</span><br><span class="line">return last;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648454029.webp" alt="img"></p>
+<p>这样整个链表就反转过来了！</p>
+<p><strong>1、递归函数要有 base case</strong>，也就是这句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (head.next &#x3D;&#x3D; null) return head;</span><br></pre></td></tr></table></figure>
+
+<p>意思是如果链表只有一个节点的时候反转也是它自己，直接返回即可。</p>
+<p><strong>2、当链表递归反转之后，新的头节点是<code>last</code>，而之前的<code>head</code>变成了最后一个节点，别忘了链表的末尾要指向 null：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head.next &#x3D; null;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、反转链表前N个节点"><a href="#2、反转链表前N个节点" class="headerlink" title="2、反转链表前N个节点"></a>2、反转链表前N个节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将链表的前 n 个节点反转（n &lt;&#x3D; 链表长度）</span><br><span class="line">ListNode reverseN(ListNode head, int n)</span><br></pre></td></tr></table></figure>
+
+<p>比如说对于下图链表，执行<code>reverseN(head, 3)</code>：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649303564.webp" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ListNode successor = <span class="keyword">null</span>; <span class="comment">// 后驱节点</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 反转以 head 为起点的 n 个节点，返回新的头结点</span></span><br><span class="line"><span class="function">ListNode <span class="title">reverseN</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) &#123; </span><br><span class="line">        <span class="comment">// 记录第 n + 1 个节点</span></span><br><span class="line">        successor = head.next;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 以 head.next 为起点，需要反转前 n - 1 个节点</span></span><br><span class="line">    ListNode last = reverseN(head.next, n - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    head.next.next = head;</span><br><span class="line">    <span class="comment">// 让反转之后的 head 节点和后面的节点连起来</span></span><br><span class="line">    head.next = successor;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<p>1、base case 变为<code>n == 1</code>，反转一个元素，就是它本身，同时<strong>要记录后驱节点</strong>。</p>
+<p>2、刚才我们直接把<code>head.next</code>设置为 null，因为整个链表反转后原来的<code>head</code>变成了整个链表的最后一个节点。但现在<code>head</code>节点在递归反转之后不一定是最后一个节点了，所以要记录后驱<code>successor</code>（第 n + 1 个节点），反转之后将<code>head</code>连接上。</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649420516.webp" alt="img"></p>
+<h4 id="3、反转链表的一部分"><a href="#3、反转链表的一部分" class="headerlink" title="3、反转链表的一部分"></a>3、反转链表的一部分</h4><p>给一个索引区间<code>[m,n]</code>（索引从 1 开始），仅反转区间中的链表元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ListNode reverseBetween(ListNode head, int m, int n)</span><br></pre></td></tr></table></figure>
+
+<p>首先，如果<code>m == 1</code>，就相当于反转链表开头的<code>n</code>个元素嘛，也就是我们刚才实现的功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ListNode reverseBetween(ListNode head, int m, int n) &#123;</span><br><span class="line">    &#x2F;&#x2F; base case</span><br><span class="line">    if (m &#x3D;&#x3D; 1) &#123;</span><br><span class="line">        &#x2F;&#x2F; 相当于反转前 n 个元素</span><br><span class="line">        return reverseN(head, n);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>m != 1</code>怎么办？如果我们把<code>head</code>的索引视为 1，那么我们是想从第<code>m</code>个元素开始反转对吧；如果把<code>head.next</code>的索引视为 1 呢？那么相对于<code>head.next</code>，反转的区间应该是从第<code>m - 1</code>个元素开始的；那么对于<code>head.next.next</code>呢……</p>
+<p>区别于迭代思想，这就是递归思想，所以我们可以完成代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ListNode reverseBetween(ListNode head, int m, int n) &#123;</span><br><span class="line">    &#x2F;&#x2F; base case</span><br><span class="line">    if (m &#x3D;&#x3D; 1) &#123;</span><br><span class="line">        return reverseN(head, n);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 前进到反转的起点触发 base case</span><br><span class="line">    head.next &#x3D; reverseBetween(head.next, m - 1, n - 1);</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、最后总结"><a href="#4、最后总结" class="headerlink" title="4、最后总结"></a>4、最后总结</h4><p>值得一提的是，<strong>递归操作链表并不高效。</strong>和迭代解法相比，虽然时间复杂度都是 O(N)，但是迭代解法的空间复杂度是 O(1)，而递归解法需要堆栈，空间复杂度是 O(N)。所以递归操作链表可以作为对递归算法的练习或者拿去和小伙伴装逼，但是考虑效率的话还是使用迭代算法更好。</p>
+<h3 id="二、如何K个一组反转链表"><a href="#二、如何K个一组反转链表" class="headerlink" title="二、如何K个一组反转链表"></a>二、如何K个一组反转链表</h3><p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673870283.webp" alt="img"></p>
+<h4 id="1、分析问题"><a href="#1、分析问题" class="headerlink" title="1、分析问题"></a>1、分析问题</h4><p>链表是一种兼具递归和迭代性质的数据结构</p>
+<p>什么叫递归性质？直接上图理解，比如说我们对这个链表调用 <code>reverseKGroup(head, 2)</code>，即以 2 个节点为一组反转链表：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673915498.webp" alt="img"></p>
+<p>如果我设法把前 2 个节点反转，那么后面的那些节点怎么处理？后面的这些节点也是一条链表，而且规模（长度）比原来这条链表小，这就叫<strong>子问题</strong>。</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673933585.webp" alt="img"></p>
+<p>我们可以直接递归调用 <code>reverseKGroup(head, 2)</code>，因为子问题和原问题的结构完全相同，这就是所谓的递归性质。</p>
+<p>算法流程大致如下：</p>
+<p>1、<strong>先反转以head开头的k个元素。</strong></p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673976426.webp" alt="img"></p>
+<p>2、<strong>将第k+1个元素作为head递归调用reverseKGroup函数。</strong></p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674007505.webp" alt="img"></p>
+<p>3、<strong>将上述两个过程的结果连接起来。</strong></p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674033845.webp" alt="img"></p>
+<p>如果最后的元素不足 <code>k</code> 个，就保持不变。这就是 <strong>base case</strong>。</p>
+<h4 id="2、代码实现"><a href="#2、代码实现" class="headerlink" title="2、代码实现"></a>2、代码实现</h4><p>首先，实现一个reverse函数反转一个区间之内的元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 反转以 a 为头结点的链表</span></span><br><span class="line"><span class="function">ListNode <span class="title">reverse</span><span class="params">(ListNode a)</span> </span>&#123;</span><br><span class="line">    ListNode pre, cur, nxt;</span><br><span class="line">    pre = <span class="keyword">null</span>; cur = a; nxt = a;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">        nxt = cur.next;</span><br><span class="line">        <span class="comment">// 逐个结点反转</span></span><br><span class="line">        cur.next = pre;</span><br><span class="line">        <span class="comment">// 更新指针位置</span></span><br><span class="line">        pre = cur;</span><br><span class="line">        cur = nxt;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回反转后的头结点</span></span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>「反转以 <code>a</code> 为头结点的链表」其实就是「反转 <code>a</code> 到 null 之间的结点」，那么如果让你「反转 <code>a</code> 到 <code>b</code> 之间的结点」呢？</p>
+<p>只要更改函数签名，并把上面的代码中 <code>null</code> 改成 <code>b</code> 即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 反转区间 [a, b) 的元素，注意是左闭右开 */</span></span><br><span class="line"><span class="function">ListNode <span class="title">reverse</span><span class="params">(ListNode a, ListNode b)</span> </span>&#123;</span><br><span class="line">    ListNode pre, cur, nxt;</span><br><span class="line">    pre = <span class="keyword">null</span>; cur = a; nxt = a;</span><br><span class="line">    <span class="comment">// while 终止的条件改一下就行了</span></span><br><span class="line">    <span class="keyword">while</span> (cur != b) &#123;</span><br><span class="line">        nxt = cur.next;</span><br><span class="line">        cur.next = pre;</span><br><span class="line">        pre = cur;</span><br><span class="line">        cur = nxt;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回反转后的头结点</span></span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来就按照之前的逻辑编写 <code>reverseKGroup</code> 函数即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// 区间 [a, b) 包含 k 个待反转元素</span></span><br><span class="line">    ListNode a, b;</span><br><span class="line">    a = b = head;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="comment">// 不足 k 个，不需要反转，base case</span></span><br><span class="line">        <span class="keyword">if</span> (b == <span class="keyword">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        b = b.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 反转前 k 个元素</span></span><br><span class="line">    ListNode newHead = reverse(a, b);</span><br><span class="line">    <span class="comment">// 递归反转后续链表并连接起来</span></span><br><span class="line">    a.next = reverseKGroup(b, k);</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>for</code> 循环之后的几句代码，<code>reverse</code> 函数是反转区间 <code>[a, b)</code>，所以情形是这样的：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674532054.webp" alt="img"></p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674543910.webp" alt="img"></p>
+<h3 id="三、如何高效判断回文单链表"><a href="#三、如何高效判断回文单链表" class="headerlink" title="三、如何高效判断回文单链表"></a>三、如何高效判断回文单链表</h3><h4 id="1、判断回文单链表"><a href="#1、判断回文单链表" class="headerlink" title="1、判断回文单链表"></a>1、判断回文单链表</h4><p>输入一个单链表的头结点，判断这个链表中的数字是不是回文：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 单链表节点的定义：</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span></span>;</span><br><span class="line"></span><br><span class="line">输入: <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="keyword">null</span></span><br><span class="line">输出: <span class="keyword">false</span></span><br><span class="line"></span><br><span class="line">输入: <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">2</span>-&gt;<span class="number">1</span>-&gt;<span class="keyword">null</span></span><br><span class="line">输出: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<p>这道题的难点在于，单链表无法倒着遍历，无法使用双指针技巧。那么最简单的办法就是，把原始链表反转存入一条新的链表，然后比较这两条链表是否相同。</p>
+<p><strong>借助二叉树后序遍历的思路，不需要显式反转原始链表也可以倒序遍历链表</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 左侧指针</span></span><br><span class="line">ListNode left;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    left = head;</span><br><span class="line">    <span class="keyword">return</span> traverse(head);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">traverse</span><span class="params">(ListNode right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (right == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">boolean</span> res = traverse(right.next);</span><br><span class="line">    <span class="comment">// 后序遍历代码</span></span><br><span class="line">    res = res &amp;&amp; (right.val == left.val);</span><br><span class="line">    left = left.next;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实际上就是把链表节点放入一个栈，然后再拿出来，这时候元素顺序就是反的</strong></p>
+<p>无论造一条反转链表还是利用后续遍历，算法的时间和空间复杂度都是 O(N)。</p>
+<h4 id="2、优化空间复杂度"><a href="#2、优化空间复杂度" class="headerlink" title="2、优化空间复杂度"></a>2、优化空间复杂度</h4><p>1、<strong>先通过快慢指针来找到链表的中点：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ListNode slow, fast;</span><br><span class="line">slow = fast = head;</span><br><span class="line"><span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">    slow = slow.next;</span><br><span class="line">    fast = fast.next.next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// slow 指针现在指向链表中点</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677220024.webp" alt="img"></p>
+<p>2、<strong>如果<code>fast</code>指针没有指向<code>null</code>，说明链表长度为奇数，<code>slow</code>还要再前进一步</strong>：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677252397.webp" alt="img"></p>
+<p>3、<strong>从<code>slow</code>开始反转后面的链表，现在就可以开始比较回文串了</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ListNode left = head;</span><br><span class="line">ListNode right = reverse(slow);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left.val != right.val)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    left = left.next;</span><br><span class="line">    right = right.next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677282686.webp" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode pre = <span class="keyword">null</span>, cur = head;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode next = cur.next;</span><br><span class="line">        cur.next = pre;</span><br><span class="line">        pre = cur;</span><br><span class="line">        cur = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总体的时间复杂度 O(N)，空间复杂度 O(1)，已经是最优的了。</p>
+<p>缺点是但破坏了输入链表的原始结构，这个问题很好解决，关键在于得到<code>p, q</code>这两个指针位置：</p>
+<p><img src="/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677325316.webp" alt="img"></p>
+<p>这样，只要在函数 return 之前加一段代码即可恢复原先链表顺序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p.next = reverse(q);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/" data-id="ckm3497pl000h4ctq5wd70y98" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/26/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9F%BA%E6%9C%AC%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          服务器及搭建环境说明
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/25/Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

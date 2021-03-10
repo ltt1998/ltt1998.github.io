@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>如何分析开源项目 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如何分析开源项目一、为什么？学习方式的角度 1、这个代码怎么来的？ 2、项目跑不起来？ 3、不会模块化分析 任何一个开源项目，都可以让自己得到提升！ 二、观察开源项目  三、开源项目下载下载解压（优先使用码云） 先不要着急运行 观察： 1、用了哪些技术？ 2、是否有数据库 3、你的环境是否匹配 通过了，然后再想办法运行 四、跑起来是第一步1、建立数据库，执行sql 2、前端需要跑起来 3、后端项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何分析开源项目">
+<meta property="og:url" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如何分析开源项目一、为什么？学习方式的角度 1、这个代码怎么来的？ 2、项目跑不起来？ 3、不会模块化分析 任何一个开源项目，都可以让自己得到提升！ 二、观察开源项目  三、开源项目下载下载解压（优先使用码云） 先不要着急运行 观察： 1、用了哪些技术？ 2、是否有数据库 3、你的环境是否匹配 通过了，然后再想办法运行 四、跑起来是第一步1、建立数据库，执行sql 2、前端需要跑起来 3、后端项目">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224160123631.png">
+<meta property="og:image" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224160401897.png">
+<meta property="og:image" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224162716551.png">
+<meta property="og:image" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224162841115.png">
+<meta property="og:image" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224163123689.png">
+<meta property="article:published_time" content="2020-12-24T07:53:10.000Z">
+<meta property="article:modified_time" content="2020-12-24T11:23:47.962Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224160123631.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-如何分析开源项目" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" class="article-date">
+  <time datetime="2020-12-24T07:53:10.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何分析开源项目
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="如何分析开源项目"><a href="#如何分析开源项目" class="headerlink" title="如何分析开源项目"></a>如何分析开源项目</h2><h3 id="一、为什么？"><a href="#一、为什么？" class="headerlink" title="一、为什么？"></a>一、为什么？</h3><p>学习方式的角度</p>
+<p>1、这个代码怎么来的？</p>
+<p>2、项目跑不起来？</p>
+<p>3、不会模块化分析</p>
+<p>任何一个开源项目，都可以让自己得到提升！</p>
+<h3 id="二、观察开源项目"><a href="#二、观察开源项目" class="headerlink" title="二、观察开源项目"></a>二、观察开源项目</h3><p><img src="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224160123631.png" alt="image-20201224160123631"></p>
+<p><img src="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224160401897.png" alt="image-20201224160401897"></p>
+<h3 id="三、开源项目下载"><a href="#三、开源项目下载" class="headerlink" title="三、开源项目下载"></a>三、开源项目下载</h3><p>下载解压（优先使用码云）</p>
+<p>先不要着急运行</p>
+<p>观察：</p>
+<p>1、用了哪些技术？</p>
+<p>2、是否有数据库</p>
+<p>3、你的环境是否匹配</p>
+<p>通过了，然后再想办法运行</p>
+<h3 id="四、跑起来是第一步"><a href="#四、跑起来是第一步" class="headerlink" title="四、跑起来是第一步"></a>四、跑起来是第一步</h3><p>1、建立数据库，执行sql</p>
+<p>2、前端需要跑起来</p>
+<p>3、后端项目<strong>导入</strong>跑起来</p>
+<p>4、启动后端项目</p>
+<p>只要发现了Swagger，那么跑起来的第一步就是先进入Swagger-ui页面！因为这里面都是接口！</p>
+<p>进而查看配置文件！默认端口，有哪些配置，需要改为自己的项目和环境地址！</p>
+<p>前端就是安装依赖，启动测试运行，看接口是否正常！</p>
+<h3 id="五、前后端分离项目固定套路"><a href="#五、前后端分离项目固定套路" class="headerlink" title="五、前后端分离项目固定套路"></a>五、前后端分离项目固定套路</h3><p>1、从前端开始分析。打开控制台，点一个接口，分析一波调用关系!</p>
+<p>2、前后端端口调用不一致 8013——8000，怎么操作的</p>
+<ul>
+<li>封装了接口请求 ajax  axios  request</li>
+<li>找到配置</li>
+</ul>
+<p><img src="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224162716551.png" alt="image-20201224162716551"></p>
+<ul>
+<li>前后端分离项目的重点：找到接口调用关系</li>
+<li>Springboot提供服务！前端调用接口数据！Vue负责渲染页面！</li>
+</ul>
+<p><img src="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224162841115.png" alt="image-20201224162841115"></p>
+<ul>
+<li>前端项目固定套路</li>
+</ul>
+<p><img src="/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/image-20201224163123689.png" alt="image-20201224163123689"></p>
+<ul>
+<li>通过抓取前端的请求，找到后端对应接口</li>
+<li>后端分析</li>
+<li>Controller–Service–Dao</li>
+<li>现在从前到后可以分析了，但是如何渲染到视图上的呢？——&gt;看前端</li>
+<li>vue标准套路</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;temolate&gt;</span><br><span class="line">    视图层</span><br><span class="line">&lt;&#x2F;temolate&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    js操作，接口调用</span><br><span class="line">    export default&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果你现在自己的项目或者要学习一个模块，将这个模块独立抽取出来即可！——&gt;删除法</li>
+</ul>
+<h3 id="六、如何找到一个好的开源项目"><a href="#六、如何找到一个好的开源项目" class="headerlink" title="六、如何找到一个好的开源项目"></a>六、如何找到一个好的开源项目</h3><p>1、找分类 JAVA</p>
+<p>2、看收藏</p>
+<p>3、看具有价值</p>
+<p>4、根据自身的理解情况去看</p>
+<p>如何学习Java</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" data-id="ckm3497ow00094ctqbfelaohr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/24/Swagger/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Swagger
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/22/%E5%91%98%E5%B7%A5%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">员工管理系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

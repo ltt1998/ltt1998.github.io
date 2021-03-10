@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>贪心类型问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="贪心类型问题一、贪心算法之区间调度问题贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。 什么是贪心选择性质呢，简单说就是：每一步都做出一个局部最优的选择，最终的结果就是全局最优。注意哦，这是一种特殊性质，其实只有一小部分问题拥有这个性质。 1、问题概述给你很多形如[start,end]的闭区间，请你设计一个算法，算出这些区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贪心类型问题">
+<meta property="og:url" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="贪心类型问题一、贪心算法之区间调度问题贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。 什么是贪心选择性质呢，简单说就是：每一步都做出一个局部最优的选择，最终的结果就是全局最优。注意哦，这是一种特殊性质，其实只有一小部分问题拥有这个性质。 1、问题概述给你很多形如[start,end]的闭区间，请你设计一个算法，算出这些区">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png">
+<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.jfif">
+<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1612751864631.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505367366.webp">
+<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505858898.webp">
+<meta property="article:published_time" content="2021-01-26T07:53:10.000Z">
+<meta property="article:modified_time" content="2021-02-08T02:37:58.992Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-贪心类型问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-01-26T07:53:10.000Z" itemprop="datePublished">2021-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      贪心类型问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="贪心类型问题"><a href="#贪心类型问题" class="headerlink" title="贪心类型问题"></a>贪心类型问题</h2><h3 id="一、贪心算法之区间调度问题"><a href="#一、贪心算法之区间调度问题" class="headerlink" title="一、贪心算法之区间调度问题"></a>一、贪心算法之区间调度问题</h3><p>贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。</p>
+<p>什么是贪心选择性质呢，简单说就是：每一步都做出一个局部最优的选择，最终的结果就是全局最优。注意哦，这是一种特殊性质，其实只有一小部分问题拥有这个性质。</p>
+<h4 id="1、问题概述"><a href="#1、问题概述" class="headerlink" title="1、问题概述"></a>1、问题概述</h4><p>给你很多形如<code>[start,end]</code>的闭区间，请你设计一个算法，<strong>算出这些区间中最多有几个互不相交的区间</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int intervalScheduling(int[][] ints) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>举个例子，<code>intvs=[[1,3],[2,4],[3,6]]</code>，这些区间最多有两个区间互不相交，即<code>[[1,3],[3,6]]</code>，你的算法应该返回 2。注意边界相同并不算相交。</p>
+<h4 id="2、贪心解法"><a href="#2、贪心解法" class="headerlink" title="2、贪心解法"></a>2、贪心解法</h4><p>也许我们可以每次选择可选区间中开始最早的那个？但是可能存在某些区间开始很早，但是很长，使得我们错误地错过了一些短的区间。</p>
+<p>或者我们每次选择可选区间中最短的那个？或者选择出现冲突最少的那个区间？这些方案都能很容易举出反例，不是正确的方案。</p>
+<p>正确的思路其实很简单，可以分为以下三步：</p>
+<ol>
+<li>从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中<strong>结束最早的</strong>（end 最小）。</li>
+<li>把所有与 x 区间相交的区间从区间集合 intvs 中删除。</li>
+<li>重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。</li>
+</ol>
+<p>把这个思路实现成算法的话，可以按每个区间的<code>end</code>数值升序排序，因为这样处理之后实现步骤 1 和步骤 2 都方便很多:</p>
+<p><strong>由于我们事先排了序</strong>，不难发现所有与 x 相交的区间必然会与 x 的<code>end</code>相交；如果一个区间不想与 x 的<code>end</code>相交，它的<code>start</code>必须要大于（或等于）x 的<code>end</code>：</p>
+<p><img src="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png" alt="image-20210125000634947"></p>
+<h4 id="3、应用举例"><a href="#3、应用举例" class="headerlink" title="3、应用举例"></a>3、应用举例</h4><p><img src="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.webp" alt="img"></p>
+<p>会求最多有几个区间不会重叠了，那么剩下的不就是至少需要去除的区间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">eraseOverlapIntervals</span><span class="params">(<span class="keyword">int</span>[][] intervals)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = intervals.length;</span><br><span class="line">    <span class="keyword">return</span> n - intervalSchedule(intervals);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.jfif" alt="img"></p>
+<p>有一点不一样，在<code>intervalSchedule</code>算法中，如果两个区间的边界触碰，不算重叠；而按照这道题目的描述，箭头如果碰到气球的边界气球也会爆炸，所以说相当于区间的边界触碰也算重叠：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findMinArrowShots</span><span class="params">(<span class="keyword">int</span>[][] intvs)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>[] interval : intvs) &#123;</span><br><span class="line">        <span class="keyword">int</span> start = interval[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">// 把 &gt;= 改成 &gt; 就行了</span></span><br><span class="line">        <span class="keyword">if</span> (start &gt; x_end) &#123;</span><br><span class="line">            count++;</span><br><span class="line">            x_end = interval[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为现在边界接触也算重叠，所以<code>start == x_end</code>时不能更新区间 x。</p>
+<h3 id="二、经典贪心算法：跳跃游戏"><a href="#二、经典贪心算法：跳跃游戏" class="headerlink" title="二、经典贪心算法：跳跃游戏"></a>二、经典贪心算法：跳跃游戏</h3><p><img src="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1612751864631.webp" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">bool <span class="title">canJump</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="keyword">int</span> farthest = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// 不断计算能跳到的最远距离</span></span><br><span class="line">        farthest = max(farthest, i + nums[i]);</span><br><span class="line">        <span class="comment">// 可能碰到了 0，卡住跳不动了</span></span><br><span class="line">        <span class="keyword">if</span> (farthest &lt;= i) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> farthest &gt;= n - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一步都计算一下从当前位置最远能够跳到哪里，然后和一个全局最优的最远位置<code>farthest</code>做对比，通过每一步的最优解，更新全局最优解，这就是贪心。</p>
+<p><img src="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505367366.webp" alt="img"></p>
+<p><strong>现在的问题是，保证你一定可以跳到最后一格，请问你最少要跳多少次，才能跳过去？</strong></p>
+<p>我们先来说说动态规划的思路，采用自顶向下的递归动态规划，可以这样定义一个<code>dp</code>函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义：从索引 p 跳到最后一格，至少需要 dp(nums, p) 步</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> p)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们想求的结果就是<code>dp(nums, 0)</code>，base case 就是当<code>p</code>超过最后一格时，不需要跳跃：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (p &gt;= nums.size() - <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以暴力穷举所有可能的跳法，通过备忘录<code>memo</code>消除重叠子问题，取其中的最小值最为最终答案：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; memo;</span><br><span class="line">// 主函数</span><br><span class="line">int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">    int n = nums.size();</span><br><span class="line">    // 备忘录都初始化为 n，相当于 INT_MAX</span><br><span class="line">    // 因为从 <span class="number">0</span> 调到 n - <span class="number">1</span> 最多 n - <span class="number">1</span> 步</span><br><span class="line">    memo = vector&lt;int&gt;(n, n);</span><br><span class="line">    <span class="keyword">return</span> dp(nums, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int dp(vector&lt;int&gt;&amp; nums, int p) &#123;</span><br><span class="line">    int n = nums.size();</span><br><span class="line">    // base case</span><br><span class="line">    <span class="keyword">if</span> (p &gt;= n - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    // 子问题已经计算过</span><br><span class="line">    <span class="keyword">if</span> (memo[p] != n) &#123;</span><br><span class="line">        <span class="keyword">return</span> memo[p];</span><br><span class="line">    &#125;</span><br><span class="line">    int steps = nums[p];</span><br><span class="line">    // 你可以选择跳 <span class="number">1</span> 步，<span class="number">2</span> 步...</span><br><span class="line">    <span class="keyword">for</span> (int i = <span class="number">1</span>; i &lt;= steps; i++) &#123;</span><br><span class="line">        // 穷举每一个选择</span><br><span class="line">        // 计算每一个子问题的结果</span><br><span class="line">        int subProblem = dp(nums, p + i);</span><br><span class="line">        // 取其中最小的作为最终结果</span><br><span class="line">        memo[p] = min(memo[p], subProblem + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> memo[p];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>状态就是当前所站立的索引<code>p</code>，选择就是可以跳出的步数。</p>
+<p>该算法的时间复杂度是 递归深度 × 每次递归需要的时间复杂度，即 O(N^2)，在 LeetCode 上是无法通过所有用例的，会超时。</p>
+<p><strong>直观地想一想，似乎不需要递归，只需要判断哪一个选择最具有「潜力」即可</strong>：</p>
+<p><img src="/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505858898.webp" alt="img"></p>
+<p>比如上图这种情况应该跳多少呢？</p>
+<p>显然应该跳 2 步调到索引 2，因为<code>nums[2]</code>的可跳跃区域涵盖了索引区间<code>[3..6]</code>，比其他的都大。如果想求最少的跳跃次数，那么往索引 2 跳必然是最优的选择。</p>
+<p>你看，<strong>这就是贪心选择性质，我们不需要「递归地」计算出所有选择的具体结果然后比较求最值，而只需要做出那个最有「潜力」，看起来最优的选择即可</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">jump</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="keyword">int</span> end = <span class="number">0</span>, farthest = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> jumps = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        farthest = max(nums[i] + i, farthest);</span><br><span class="line">        <span class="keyword">if</span> (end == i) &#123;</span><br><span class="line">            jumps++;</span><br><span class="line">            end = farthest;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> jumps;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>i</code>和<code>end</code>标记了可以选择的跳跃步数，<code>farthest</code>标记了所有可选择跳跃步数<code>[i..end]</code>中能够跳到的最远距离，<code>jumps</code>记录了跳跃次数。</p>
+<p>本算法的时间复杂度 O(N)，空间复杂度 O(1)，可以说是非常高效，动态规划都被吊起来打了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/" data-id="ckm3497pj000g4ctq7lcebtpv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          服务器及搭建环境说明
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/26/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9F%BA%E6%9C%AC%E6%8A%80%E5%B7%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">服务器及搭建环境说明</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

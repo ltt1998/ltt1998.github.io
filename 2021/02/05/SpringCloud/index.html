@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringCloud | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringCloud模块化的开发的思想来源于服务越来越多，数据量越来越多，all in one导致服务器压力很大。 微服务架构4个核心问题： 1、服务很多，客户端该怎么访问？ 2、这么多服务，服务之间如何通信？ 3、这么多服务，如何治理？ 4、服务挂了怎么办？ 123456789101112131415161718192021解决方案：Spring Cloud 生态！1、Spring Cloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud">
+<meta property="og:url" content="http://example.com/2021/02/05/SpringCloud/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringCloud模块化的开发的思想来源于服务越来越多，数据量越来越多，all in one导致服务器压力很大。 微服务架构4个核心问题： 1、服务很多，客户端该怎么访问？ 2、这么多服务，服务之间如何通信？ 3、这么多服务，如何治理？ 4、服务挂了怎么办？ 123456789101112131415161718192021解决方案：Spring Cloud 生态！1、Spring Cloud">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206001631056.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206001816633.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206124219657.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206124616153.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206124710903.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206134451673.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206134636070.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206135314292.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206135654210.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206135912306.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206135948471.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206140054453.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206140439453.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206140718229.png">
+<meta property="og:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206140738546.png">
+<meta property="article:published_time" content="2021-02-05T15:53:10.000Z">
+<meta property="article:modified_time" content="2021-02-08T04:15:50.102Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/05/SpringCloud/image-20210206001631056.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SpringCloud" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/05/SpringCloud/" class="article-date">
+  <time datetime="2021-02-05T15:53:10.000Z" itemprop="datePublished">2021-02-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringCloud
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h2><p><strong>模块化的开发的思想来源于服务越来越多，数据量越来越多，all in one导致服务器压力很大。</strong></p>
+<p>微服务架构4个核心问题：</p>
+<p>1、服务很多，客户端该怎么访问？</p>
+<p>2、这么多服务，服务之间如何通信？</p>
+<p>3、这么多服务，如何治理？</p>
+<p>4、服务挂了怎么办？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">解决方案：Spring Cloud 生态！</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、Spring Cloud NetFlix 一站式解决方案</span><br><span class="line">    api网关，zuul组件</span><br><span class="line">    Feign——HttpClient——Http通信方式，同步，阻塞</span><br><span class="line">    服务注册发现：Eureka</span><br><span class="line">    熔断机制：Hystrix</span><br><span class="line">    。。。。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、Apache Dubbo zookeeper 半自动，需要整合别人的！</span><br><span class="line">    API：没有，找第三方组件，或者自己实现</span><br><span class="line">    Dubbo</span><br><span class="line">    zookeeper</span><br><span class="line">    没有：借助 Hystrix</span><br><span class="line">    </span><br><span class="line">    Dubbo这个方案并不完善</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、Spring Cloud Alibaba  一站式解决方案！更简单</span><br><span class="line">    </span><br><span class="line">新概念：服务网格~ Server Mesh</span><br><span class="line">    istio</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2021/02/05/SpringCloud/image-20210206001631056.png" alt="image-20210206001631056"></p>
+<p>带着问题去学习！</p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206001816633.png" alt="image-20210206001816633"></p>
+<h3 id="1、微服务概述"><a href="#1、微服务概述" class="headerlink" title="1、微服务概述"></a>1、微服务概述</h3><h4 id="1、什么是微服务？"><a href="#1、什么是微服务？" class="headerlink" title="1、什么是微服务？"></a>1、什么是微服务？</h4><p>什么是微服务？微服务是近几年流行的一种架构思想。</p>
+<ul>
+<li>就目前而言，对于微服务，业界并没有一个统一的，标准的定义</li>
+<li>但通常而言，微服务架构是一种架构模式，或者说一种架构风格，<strong>它提倡将单一的应用程序划分为一组小的服务</strong>，每个服务运行在其独立的自己的进程内，服务之间互相协调，互相配置，为用户提供最终价值。服务之间采用轻量级的通信机制互相沟通，每个服务都围绕着具体的业务进行构建，并且能够被独立的部署到生产环境中，另外，应尽量避免统一的，集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言，工具对其构建，可以有一个非常轻量级的集中式管理来协调这些服务，可以使用不同的语言来编写服务，也可以使用不同的数据存储。</li>
+</ul>
+<p><strong>从技术角度来理解下：</strong></p>
+<ul>
+<li>微服务化的核心就是将传统的一站式应用，根据业务拆分成一个一个的服务，彻底的去耦合，每一个微服务提供单个业务功能的服务，一个服务做一件事情，从技术角度看就是一种小而独立的处理过程，类似进程的概念，能够自行单独启动或销毁，拥有自己独立的数据库。</li>
+</ul>
+<h4 id="2、微服务与微服务架构"><a href="#2、微服务与微服务架构" class="headerlink" title="2、微服务与微服务架构"></a>2、微服务与微服务架构</h4><p><strong>微服务</strong></p>
+<p>强调的是服务的大小，它关注的是某一个点，是具体解决某一个问题/提供落地对应服务的一个服务应用，狭义的看，可以看做是IDEA中的一个个微服务共享，或者Module</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、IDEA工具里面使用Maven开发的一个个独立的小Module，它具体是使用springboot开发的一个小模块，专业的事情交给专业的模块来做，一个模块就做着一件事情</span><br><span class="line">2、强调的是一个个的个体，每个个体完成一个具体的任务或者功能！</span><br></pre></td></tr></table></figure>
+
+<p><strong>微服务架构</strong></p>
+<p>一种新的架构形式</p>
+<p>微服务架构是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调，互相配合，为用户提供最终价值。</p>
+<h4 id="3、微服务优缺点"><a href="#3、微服务优缺点" class="headerlink" title="3、微服务优缺点"></a>3、微服务优缺点</h4><p><strong>优点</strong></p>
+<ul>
+<li>每个服务足够内聚，足够小，代码容易理解，这样能聚焦一个指定的业务功能或业务需求；、</li>
+<li>开发简单，开发效率提高，一个服务可能就是专一的只干一件事；</li>
+<li>微服务能够被小团队单独开发，这个小团队是2-5人的开发人员组成；</li>
+<li>微服务是松耦合的，是有功能意义的服务，无论是在开发阶段或部署阶段都是独立的；</li>
+<li>微服务能够使用不同的语言开发；</li>
+<li>容易与第三方集成，微服务允许容易且灵活的方式集成自动部署，通过持续集成工具， 如jenkins、Hudson、bamboo</li>
+<li>微服务易于被一个开发人员理解，修改和维护，这样小团队能够更关注自己的工作成果，无需通过合作才能体现价值。</li>
+<li>微服务允许融合最新技术</li>
+<li><strong>微服务只是业务逻辑的代码，不会和HTML、CSS和其他界面混合</strong></li>
+<li><strong>每个微服务都有自己的存储能力，可以有自己的数据库，也可以有统一数据库</strong></li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>开发人员要处理分布式系统的复杂性</li>
+<li>多服务运维难度，围着服务的增加，运维的压力也在增大</li>
+<li>系统部署依赖</li>
+<li>服务间通信成本</li>
+<li>数据一致性</li>
+<li>系统集成测试</li>
+<li>性能监控…</li>
+</ul>
+<h4 id="4、微服务技术栈"><a href="#4、微服务技术栈" class="headerlink" title="4、微服务技术栈"></a>4、微服务技术栈</h4><p><img src="/2021/02/05/SpringCloud/image-20210206124219657.png" alt="image-20210206124219657"></p>
+<h4 id="5、为什么选择SpringCloud作为微服务架构"><a href="#5、为什么选择SpringCloud作为微服务架构" class="headerlink" title="5、为什么选择SpringCloud作为微服务架构"></a>5、为什么选择SpringCloud作为微服务架构</h4><p><strong>1、选型依据</strong></p>
+<ul>
+<li>整体解决方案和框架成熟度</li>
+<li>社区热度</li>
+<li>可维护性</li>
+<li>学习曲线</li>
+</ul>
+<p><strong>2、当前各大IT公司用的微服务架构有哪些？</strong></p>
+<ul>
+<li>阿里：dubbo+HFS</li>
+<li>京东：JSF</li>
+<li>新浪：Motan</li>
+<li>当当网:DubboX</li>
+</ul>
+<p>。。。</p>
+<p><strong>3、各微服务框架对比</strong></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206124616153.png" alt="image-20210206124616153"></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206124710903.png" alt="image-20210206124710903"></p>
+<h3 id="2、SpringCloud入门概述"><a href="#2、SpringCloud入门概述" class="headerlink" title="2、SpringCloud入门概述"></a>2、SpringCloud入门概述</h3><h4 id="1、SpringCloud是什么？"><a href="#1、SpringCloud是什么？" class="headerlink" title="1、SpringCloud是什么？"></a>1、SpringCloud是什么？</h4><p>SpringCloud，基于SpringBoot提供了一套微服务解决方案，包括服务注册与发现，配置中心，全链路监控，服务网关，负载均衡，熔断器等组件，除了基于NetFlix的开源组件做高度抽象封装之外，还有一些选型中立的开源组件。</p>
+<p>SpringCloud利用SpringBoot的开发便利性，巧妙地简化了分布式系统基础设施的开发，SpringCloud为开发人员提供了快速构建分布式系统的一些工具，<strong>包括配置管理，服务发现，断路器，路由，微代理，事件总线，全局锁，决策竞选，分布式会话等等，</strong>他们都可以用SpringBoot的开发风格做到一键启动和部署。</p>
+<p>SpringBoot并没有重复造轮子，它只是将目前各家公司开发的比较成熟，经得起实际考验的服务框架组合起来，通过SpringBoot风格进行再封装，屏蔽掉了复杂的配置和实现原理，<strong>最终给开发者留出了一套简单易懂，易部署和易维护的分布式系统开发工具包。</strong></p>
+<p>SpringCloud是分布式微服务架构下的一站式解决方案，是各个微服务架构落地技术的集合体，俗称微服务全家桶。</p>
+<h4 id="2、SpringCloud和SpringBoot关系"><a href="#2、SpringCloud和SpringBoot关系" class="headerlink" title="2、SpringCloud和SpringBoot关系"></a>2、SpringCloud和SpringBoot关系</h4><ul>
+<li>SpringBoot专注于快速方便的开发单个个体微服务</li>
+<li>SpringCloud是关注全局的微服务协调整理治理框架，它将SpringBoot开发的一个个单体微服务整合并管理起来，为各个微服务之间提供：配置管理，服务发现，断路器，路由，微代理，事件总线，全局锁，决策竞选，分布式会话等等集成服务。</li>
+<li>SpringBoot可以离开SpringCloud独立使用，开发项目，但是SpringCloud离不开SpringBoot，属于依赖关系。</li>
+<li><strong>SpringBoot专注于快速、方便的开发单个个体微服务，SpringCloud关注全局的服务治理框架</strong></li>
+</ul>
+<h4 id="3、Dubbo和SpringCloud技术选型"><a href="#3、Dubbo和SpringCloud技术选型" class="headerlink" title="3、Dubbo和SpringCloud技术选型"></a>3、Dubbo和SpringCloud技术选型</h4><p><strong>1、分布式+服务治理Dubbo</strong></p>
+<p>目前成熟的互联网架构：应用服务化拆分+消息中间件</p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206134451673.png" alt="image-20210206134451673"></p>
+<p><strong>2、Dubbo和SpringCloud对比</strong></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206134636070.png" alt="image-20210206134636070"></p>
+<p><strong>最大区别：SpringCloud抛弃了Dubbo的RPC通信，采用的是基于HTTP的REST方式。</strong></p>
+<p>严格来说，这两种方式各有优劣。虽然从一定角度上来说，后者牺牲了服务调用的性能，但也避免了上面提到的原生RPC带来的问题。而且REST相比RPC更加灵活，服务提供方和调用方的依赖只依靠一纸契约，不存在代码级别的强依赖，这在强调快速演化的微服务环境下，显得更加合适。</p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206135314292.png" alt="image-20210206135314292"></p>
+<p>设计模式+微服务拆分思想</p>
+<p><strong>解决的问题域不一样：Dubbo的定位是一款RPC框架，Spring Cloud的目标是微服务架构下的一站式解决方案</strong></p>
+<h4 id="4、SpringCloud能干吗？"><a href="#4、SpringCloud能干吗？" class="headerlink" title="4、SpringCloud能干吗？"></a>4、SpringCloud能干吗？</h4><p><img src="/2021/02/05/SpringCloud/image-20210206135654210.png" alt="image-20210206135654210"></p>
+<h4 id="5、SpringCloud在哪下？"><a href="#5、SpringCloud在哪下？" class="headerlink" title="5、SpringCloud在哪下？"></a>5、SpringCloud在哪下？</h4><p>官网：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud">https://spring.io/projects/spring-cloud</a></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206135912306.png" alt="image-20210206135912306"></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206135948471.png" alt="image-20210206135948471"></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206140054453.png" alt="image-20210206140054453"></p>
+<h3 id="3、总体介绍"><a href="#3、总体介绍" class="headerlink" title="3、总体介绍"></a>3、总体介绍</h3><h4 id="1、准备工作"><a href="#1、准备工作" class="headerlink" title="1、准备工作"></a>1、准备工作</h4><ul>
+<li>使用一个Dept部门模块做一个微服务通用案例Consumer消费者（Client）通过REST调用Provider提供者（Server）提供的服务/</li>
+<li>Maven的分包分模块架构</li>
+</ul>
+<p><img src="/2021/02/05/SpringCloud/image-20210206140439453.png" alt="image-20210206140439453"></p>
+<p>一个父工程带着多个子Module子模块</p>
+<p>MicroServiceCloud父工程（Project）下初次带着3个子模块（Module）</p>
+<ul>
+<li>microservicecloud-api 【封装的整体entity/接口/公共配置等】</li>
+<li>microservicecloud-provider-dept-8001 【服务提供者】</li>
+<li>microservicecloud-consumer-dept-80 【服务消费者】</li>
+</ul>
+<p>动手开干！</p>
+<h4 id="2、SpringCloud版本选择"><a href="#2、SpringCloud版本选择" class="headerlink" title="2、SpringCloud版本选择"></a>2、SpringCloud版本选择</h4><p><img src="/2021/02/05/SpringCloud/image-20210206140718229.png" alt="image-20210206140718229"></p>
+<p><img src="/2021/02/05/SpringCloud/image-20210206140738546.png" alt="image-20210206140738546"></p>
+<h4 id="3、创建父工程"><a href="#3、创建父工程" class="headerlink" title="3、创建父工程"></a>3、创建父工程</h4><ul>
+<li>新建父工程项目microservicecloud，切记Packageing是pom模式</li>
+<li>主要是定义POM文件，将后续各个子模块公用的jar包等统一提取出来，类似一个抽象父类</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--打包方式 pom--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">junit.version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">junit.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">lombok.version</span>&gt;</span>1.16.18<span class="tag">&lt;/<span class="name">lombok.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--springcloud的依赖--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>Greenwich.SR1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--springBoot--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--parent只能单继承，这样写相当于多继承--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--数据库--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.47<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--SpringBoot启动器--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--日志测试--&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--log4j--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--lombok--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;lombok.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--log4j--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、Eureka服务注册与发现"><a href="#4、Eureka服务注册与发现" class="headerlink" title="4、Eureka服务注册与发现"></a>4、Eureka服务注册与发现</h3><h4 id="1、什么是Eureka"><a href="#1、什么是Eureka" class="headerlink" title="1、什么是Eureka"></a>1、什么是Eureka</h4><ul>
+<li>Netflix在设计Eureka时，遵循的就是AP原则</li>
+<li>Eureka是Netflix的一个子模块，也是核心模块之一。Eureka是一个基于REST的服务，用于定位服务，以实现云端中间层服务发现和故障转移，服务注册与发现对于微服务来说是非常重要的，有了服务发现与注册，只需要使用服务的标识符，就可以访问到服务，而不需要修改服务调用的配置文件了，功能类似于Dubbo的注册中心，比如Zookeeper。</li>
+</ul>
+<h4 id="2、原理讲解"><a href="#2、原理讲解" class="headerlink" title="2、原理讲解"></a>2、原理讲解</h4><ul>
+<li><p>Eureka的基本架构</p>
+<ul>
+<li><p>SpringCloud封装了NetFlix公司开发的Eureka模块来实现服务注册和发现（对比Zookeeper）</p>
+</li>
+<li><p>Eureka采用了C-S的架构设计，EurekaServer作为服务注册功能的服务器，它是服务注册中心</p>
+</li>
+<li><p>而系统中的其他微服务。使用Eureka的客户端连接到EurekaServer并维持心跳连接。这样系统的维护人员就可以通过EurekaServer来监控系统中各个微服务是否正常运行，SpringCloud的一些其他模块（比如Zuul）就可以通过EurekaServer来发现系统中的其他微服务，并执行相关的逻辑；</p>
+</li>
+<li><p>和Dubbo架构对比</p>
+</li>
+<li><p>Eureka包含两个组件：<strong>Eureka Server和Eureka Client</strong></p>
+</li>
+<li><p>Eureka Server提供服务注册服务，各个节点启动后，会在EurekaServer中进行注册，这样Eureka Server中的服务注册表中将会存储所有可用服务节点的信息，服务节点的信息可以在界面中直观的看到。</p>
+</li>
+<li><p>Eureka Client是一个Java客户端，用于简化EurekaServer的交互，客户端同时也具备一个内置的，使用轮询负载算法的负载均衡器。在应用启动后，将会向EurekaServer发送心跳（默认周期为30s）。如果Eureka Server在多个心跳周期内没有接收到某个节点的心跳，EurekaServer将会从服务注册表中把这个服务节点移除掉（默认周期为90s）</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>三大角色</p>
+<p>Eureka Server：提供服务的注册与发现。</p>
+<p>Service Provider：将自身服务注册到Eureka中， 从而使消费方能够找到。</p>
+<p>Service Consumer：服务消费方从Eureka中获取注册服务链表，从而找到消费服务。</p>
+</li>
+</ul>
+<h4 id="3、工程"><a href="#3、工程" class="headerlink" title="3、工程"></a>3、工程</h4><p>1、导入依赖</p>
+<p>2、编写配置文件</p>
+<p>3、开启这个功能 @EnableXXXX</p>
+<p>4、配置类</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/05/SpringCloud/" data-id="ckm3497oo00034ctq63e65vby" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          子序列类型问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/29/JVM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JVM</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

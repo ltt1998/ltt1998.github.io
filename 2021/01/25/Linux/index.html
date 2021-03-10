@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux基于 CentOS 7版本的学习！ 学习方式： 1、认识Linux（Linux一切皆文件：文件读、写（权限）） 2、基本的命令（重点：Git讲了一些基本的命令（文件操作、目录管理、文件属性、Vim编辑器、账号管理、磁盘管理…）） 3、软件的安装和部署！（Java、tomcat、docker） 1、入门概述2、环境搭建Linux 的安装，安装步骤比较繁琐，现在其实云服务器挺普遍的，价格也便">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http://example.com/2021/01/25/Linux/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux基于 CentOS 7版本的学习！ 学习方式： 1、认识Linux（Linux一切皆文件：文件读、写（权限）） 2、基本的命令（重点：Git讲了一些基本的命令（文件操作、目录管理、文件属性、Vim编辑器、账号管理、磁盘管理…）） 3、软件的安装和部署！（Java、tomcat、docker） 1、入门概述2、环境搭建Linux 的安装，安装步骤比较繁琐，现在其实云服务器挺普遍的，价格也便">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/640.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/image-20210126212421979.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/image-20210126211816295.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/640.webp">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/640.jfif">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/image-20210128220128921.png">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/640-1611842498698.webp">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/640-1611909032352.webp">
+<meta property="og:image" content="http://example.com/2021/01/25/Linux/640-1611909196994.webp">
+<meta property="article:published_time" content="2021-01-25T11:53:10.000Z">
+<meta property="article:modified_time" content="2021-01-29T12:51:52.319Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/25/Linux/640.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/25/Linux/" class="article-date">
+  <time datetime="2021-01-25T11:53:10.000Z" itemprop="datePublished">2021-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>基于 CentOS 7版本的学习！</p>
+<p><strong>学习方式：</strong></p>
+<p>1、认识Linux（<strong>Linux一切皆文件：文件读、写（权限）</strong>）</p>
+<p>2、基本的命令（重点：Git讲了一些基本的命令（文件操作、目录管理、文件属性、Vim编辑器、账号管理、磁盘管理…））</p>
+<p>3、软件的安装和部署！（Java、tomcat、docker）</p>
+<h3 id="1、入门概述"><a href="#1、入门概述" class="headerlink" title="1、入门概述"></a>1、入门概述</h3><h3 id="2、环境搭建"><a href="#2、环境搭建" class="headerlink" title="2、环境搭建"></a>2、环境搭建</h3><p>Linux 的安装，安装步骤比较繁琐，现在其实云服务器挺普遍的，价格也便宜，如果直接不想搭建，也可以直接买一台学习用用！</p>
+<blockquote>
+<p>安装CentOS（虚拟机安装，耗资源）</p>
+</blockquote>
+<p>1、可以通过镜像进行安装！</p>
+<p>2、可以使用我已经制作好的镜像！视频中讲解了该种方式！</p>
+<p>3、安装 VMware 虚拟机软件，然后打开我们的镜像即可使用！</p>
+<blockquote>
+<p>购买云服务器（推荐）</p>
+</blockquote>
+<p>虚拟机安装后占用空间，也会有些卡顿，我们作为程序员其实可以选择购买一台自己的服务器，这样的话更加接近真实线上工作；</p>
+<p>1、阿里云购买服务器：<a target="_blank" rel="noopener" href="https://www.aliyun.com/minisite/goods?userCode=0phtycgr">https://www.aliyun.com/minisite/goods?userCode=0phtycgr</a></p>
+<p>2、购买完毕后，获取服务器的ip地址，重置服务器密码，就可以远程登录了</p>
+<p>3、下载 xShell 工具，进行远程连接使用！连接成功效果如下：</p>
+<p><img src="/2021/01/25/Linux/640.png" alt="图片"></p>
+<p>ctrl +鼠标滚轮，放大和缩小字体！</p>
+<p>再下载一个<strong>xftp</strong>，用于上传文件！</p>
+<p><img src="/2021/01/25/Linux/image-20210126212421979.png" alt="image-20210126212421979"></p>
+<p><strong>注意事项：</strong></p>
+<p>如果要打开端口，需要在阿里云的安全组面板中开启对应的出入规则，不然的话会被阿里拦截！</p>
+<p><img src="/2021/01/25/Linux/image-20210126211816295.png" alt="image-20210126211816295"></p>
+<blockquote>
+<p>如果前期不好操作，可以推荐安装宝塔面板，傻瓜式管理服务器</p>
+</blockquote>
+<p>安装教程：<a target="_blank" rel="noopener" href="https://www.bt.cn/bbs/thread-19376-1-1.html">https://www.bt.cn/bbs/thread-19376-1-1.html</a></p>
+<p>1、开启对应的端口</p>
+<p>2、一键安装</p>
+<p>3、安装完毕后会得到远程面板的地址，账号，密码，就可以登录了</p>
+<p>4、登录之后就可以可视化的安装环境和部署网站！</p>
+<p><img src="/2021/01/25/Linux/640.webp" alt="图片"></p>
+<blockquote>
+<p>关于域名</p>
+</blockquote>
+<p>如果自己的网站想要上线，就一定要购买一个域名然后进行备案；</p>
+<p><img src="/2021/01/25/Linux/640.jfif" alt="图片"></p>
+<p>备案的话需要一些认证和时间，备完完毕后，就可以解析到自己的网站了，这个时候就可以使用域名来进行服务器的访问！</p>
+<h3 id="3、走进Linux系统"><a href="#3、走进Linux系统" class="headerlink" title="3、走进Linux系统"></a>3、走进Linux系统</h3><p><strong>开机登录</strong></p>
+<p>开机会启动许多程序。它们在Windows叫做”服务”（service），在Linux就叫做”守护进程”（daemon）。</p>
+<p>开机成功后，它会显示一个文本登录界面，这个界面就是我们经常看到的登录界面，在这个登录界面中会提示用户输入用户名，而用户输入的用户将作为参数传给login程序来验证用户的身份，密码是不显示的，输完回车即可！</p>
+<p>一般来说，用户的登录方式有三种：</p>
+<ul>
+<li>命令行登录</li>
+<li>ssh登录</li>
+<li>图形界面登录</li>
+</ul>
+<p>最高权限账户为 root，可以操作一切！</p>
+<p><strong>关机</strong></p>
+<p>在linux领域内大多用在服务器上，很少遇到关机的操作。毕竟服务器上跑一个服务是永无止境的，除非特殊情况下，不得已才会关机。</p>
+<p>关机指令为：shutdown ；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sync <span class="comment"># 将数据由内存同步到硬盘中。</span></span><br><span class="line"></span><br><span class="line">shutdown <span class="comment"># 关机指令，你可以man shutdown 来看一下帮助文档。例如你可以运行如下命令关机：</span></span><br><span class="line"></span><br><span class="line">shutdown –h 10 <span class="comment"># 这个命令告诉大家，计算机将在10分钟后关机</span></span><br><span class="line"></span><br><span class="line">shutdown –h now <span class="comment"># 立马关机</span></span><br><span class="line"></span><br><span class="line">shutdown –h 20:25 <span class="comment"># 系统会在今天20:25关机</span></span><br><span class="line"></span><br><span class="line">shutdown –h +10 <span class="comment"># 十分钟后关机</span></span><br><span class="line"></span><br><span class="line">shutdown –r now <span class="comment"># 系统立马重启</span></span><br><span class="line"></span><br><span class="line">shutdown –r +10 <span class="comment"># 系统十分钟后重启</span></span><br><span class="line"></span><br><span class="line">reboot <span class="comment"># 就是重启，等同于 shutdown –r now</span></span><br><span class="line"></span><br><span class="line">halt <span class="comment"># 关闭系统，等同于shutdown –h now 和 poweroff</span></span><br></pre></td></tr></table></figure>
+
+<p>最后总结一下，不管是重启系统还是关闭系统，首先要运行 <strong>sync</strong> 命令，把内存中的数据写到磁盘中。</p>
+<p><strong>系统目录结构</strong></p>
+<p>登录系统后，在当前命令窗口下输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/01/25/Linux/image-20210128220128921.png" alt="image-20210128220128921"></p>
+<p>树状目录结构：（Linux的一切资源都挂载在这个 / 根节点下）</p>
+<p><img src="/2021/01/25/Linux/640-1611842498698.webp" alt="img"></p>
+<p><strong>以下是对这些目录的解释：</strong></p>
+<ul>
+<li><strong>/bin</strong>：bin是Binary的缩写, 这个目录存放着最经常使用的命令。</li>
+<li><strong>/boot：</strong> 这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</li>
+<li><strong>/dev ：</strong> dev是Device(设备)的缩写, 存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。</li>
+<li><strong>/etc：</strong> <strong>这个目录用来存放所有的系统管理所需要的配置文件和子目录。</strong></li>
+<li><strong>/home</strong>：<strong>用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</strong></li>
+<li><strong>/lib</strong>：这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。</li>
+<li><strong>/lost+found</strong>：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</li>
+<li><strong>/media</strong>：linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</li>
+<li><strong>/mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</li>
+<li><strong>/opt</strong>：<strong>这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</strong></li>
+<li><strong>/proc</strong>：这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。（不用管）</li>
+<li><strong>/root</strong>：<strong>该目录为系统管理员，也称作超级权限者的用户主目录。</strong></li>
+<li><strong>/sbin</strong>：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</li>
+<li><strong>/srv</strong>：该目录存放一些服务启动之后需要提取的数据。</li>
+<li><strong>/sys</strong>：这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</li>
+<li><strong>/tmp</strong>：<strong>这个目录是用来存放一些临时文件的。</strong></li>
+<li><strong>/usr</strong>：<strong>这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。</strong></li>
+<li><strong>/usr/bin：</strong> 系统用户使用的应用程序。</li>
+<li><strong>/usr/sbin：</strong> 超级用户使用的比较高级的管理程序和系统守护程序。</li>
+<li><strong>/usr/src：</strong> 内核源代码默认的放置目录。</li>
+<li><strong>/var</strong>：<strong>这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</strong></li>
+<li><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。</li>
+<li><strong>/www：存放服务器网站相关的资源，环境，网站的项目</strong></li>
+</ul>
+<h3 id="4、常用的基本命令"><a href="#4、常用的基本命令" class="headerlink" title="4、常用的基本命令"></a>4、常用的基本命令</h3><h4 id="4-1-目录管理"><a href="#4-1-目录管理" class="headerlink" title="4.1 目录管理"></a>4.1 目录管理</h4><p><strong>绝对路径和相对路径</strong></p>
+<p>我们知道Linux的目录结构为树状结构，最顶级的目录为根目录 /。</p>
+<p>其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。</p>
+<p>在开始本教程前我们需要先知道什么是绝对路径与相对路径。</p>
+<p><strong>绝对路径：</strong></p>
+<p>路径的写法，由根目录 / 写起，例如：/usr/share/doc 这个目录。</p>
+<p><strong>相对路径：</strong></p>
+<p>路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成：cd ../man 这就是相对路径的写法啦！</p>
+<h4 id="4-2-处理目录的常见命令"><a href="#4-2-处理目录的常见命令" class="headerlink" title="4.2 处理目录的常见命令"></a>4.2 处理目录的常见命令</h4><ul>
+<li>ls: 列出目录</li>
+<li>cd：切换目录</li>
+<li>pwd：显示目前的目录</li>
+<li>mkdir：创建一个新的目录</li>
+<li>rmdir：删除一个空的目录</li>
+<li>cp: 复制文件或目录</li>
+<li>rm: 移除文件或目录</li>
+<li>mv: 移动文件与目录，或修改文件与目录的名称</li>
+</ul>
+<p>你可以使用 <em>man [命令]</em> 来查看各个命令的使用文档，如 ：man cp。</p>
+<h4 id="4-3-ls（列出目录）"><a href="#4-3-ls（列出目录）" class="headerlink" title="4.3 ls（列出目录）"></a>4.3 ls（列出目录）</h4><p>在Linux系统当中， ls 命令可能是最常被运行的。</p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># ls [-aAdfFhilnrRSt] 目录名称</span></span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-a ：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+</ul>
+<p>将目录下的所有文件列出来(含属性与隐藏档)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># ls -al ~</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4（切换目录）"><a href="#4-4（切换目录）" class="headerlink" title="4.4（切换目录）"></a>4.4（切换目录）</h4><p>cd是Change Directory的缩写，这是用来变换工作目录的命令。</p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [相对路径或绝对路径]</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到用户目录下</span></span><br><span class="line">[root@kuangshen /]<span class="comment"># cd home  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 mkdir 命令创建 kuangstudy 目录</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mkdir kuangstudy</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入 kuangstudy 目录</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cd kuangstudy</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回到上一级</span></span><br><span class="line">[root@kuangshen kuangstudy]<span class="comment"># cd ..</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回到根目录</span></span><br><span class="line">[root@kuangshen kuangstudy]<span class="comment"># cd /</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 表示回到自己的家目录，亦即是 /root 这个目录</span></span><br><span class="line">[root@kuangshen kuangstudy]<span class="comment"># cd ~</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-pwd（显示目前所在的目录）"><a href="#4-5-pwd（显示目前所在的目录）" class="headerlink" title="4.5 pwd（显示目前所在的目录）"></a>4.5 pwd（显示目前所在的目录）</h4><p>pwd 是 <strong>Print Working Directory</strong> 的缩写，也就是显示目前所在目录的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen kuangstudy]<span class="comment">#pwd [-P]</span></span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：**-P** ：显示出确实的路径，而非使用连接(link) 路径。</p>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单纯显示出目前的工作目录</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># pwd</span></span><br><span class="line">/root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是链接，要显示真实地址，可以使用 -P参数</span></span><br><span class="line">[root@kuangshen /]<span class="comment"># cd bin</span></span><br><span class="line">[root@kuangshen bin]<span class="comment"># pwd -P</span></span><br><span class="line">/usr/bin</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-6-mkdir（创建新目录）"><a href="#4-6-mkdir（创建新目录）" class="headerlink" title="4.6 mkdir（创建新目录）"></a>4.6 mkdir（创建新目录）</h4><p>如果想要创建新的目录的话，那么就使用mkdir (make directory)吧。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～</li>
+<li>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入我们用户目录下</span></span><br><span class="line">[root@kuangshen /]<span class="comment"># cd /home</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 test 文件夹</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mkdir test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建多层级目录</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mkdir test1/test2/test3/test4</span></span><br><span class="line">mkdir: cannot create directory ‘test1/test2/test3/test4’:</span><br><span class="line">No such file or directory  <span class="comment"># &lt;== 没办法直接创建此目录啊！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加了这个 -p 的选项，可以自行帮你创建多层目录！</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mkdir -p test1/test2/test3/test4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建权限为 rwx--x--x 的目录。</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mkdir -m 711 test2</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls -l</span></span><br><span class="line">drwxr-xr-x 2 root root  4096 Mar 12 21:55 <span class="built_in">test</span></span><br><span class="line">drwxr-xr-x 3 root root  4096 Mar 12 21:56 test1</span><br><span class="line">drwx--x--x 2 root root  4096 Mar 12 21:58 test2</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-7-rmdir（删除空的目录）"><a href="#4-7-rmdir（删除空的目录）" class="headerlink" title="4.7 rmdir（删除空的目录）"></a>4.7 rmdir（删除空的目录）</h4><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：**-p ：**连同上一级『空的』目录也一起删除</p>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看看有多少目录存在？</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls -l</span></span><br><span class="line">drwxr-xr-x 2 root root  4096 Mar 12 21:55 <span class="built_in">test</span></span><br><span class="line">drwxr-xr-x 3 root root  4096 Mar 12 21:56 test1</span><br><span class="line">drwx--x--x 2 root root  4096 Mar 12 21:58 test2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可直接删除掉，没问题</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># rmdir test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为尚有内容，所以无法删除！</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># rmdir test1</span></span><br><span class="line">rmdir: failed to remove ‘test1’: Directory not empty</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用 -p 这个选项，立刻就可以将 test1/test2/test3/test4 依次删除。</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># rmdir -p test1/test2/test3/test4</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：这个 rmdir 仅能删除空的目录，你可以使用 rm 命令来删除非空目录！</p>
+<h4 id="4-8-cp（复制文件或目录）"><a href="#4-8-cp（复制文件或目录）" class="headerlink" title="4.8 cp（复制文件或目录）"></a>4.8 cp（复制文件或目录）</h4><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># cp [-adfilprsu] 来源档(source) 目标档(destination)</span></span><br><span class="line">[root@www ~]<span class="comment"># cp [options] source1 source2 source3 .... directory</span></span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li><strong>-a：</strong>相当于 -pdr 的意思，至于 pdr 请参考下列说明；(常用)</li>
+<li><strong>-p：</strong>连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li><strong>-d：</strong>若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li><strong>-r：</strong>递归持续复制，用于目录的复制行为；(常用)</li>
+<li><strong>-f：</strong>为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li><strong>-i：</strong>若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li><strong>-l：</strong>进行硬式连结(hard link)的连结档创建，而非复制文件本身。</li>
+<li><strong>-s：</strong>复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li><strong>-u：</strong>若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找一个有文件的目录，我这里找到 root目录</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cd /root</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># ls</span></span><br><span class="line">install.sh</span><br><span class="line">[root@kuangshen ~]<span class="comment"># cd /home</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制 root目录下的install.sh 到 home目录下</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cp /root/install.sh /home</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls</span></span><br><span class="line">install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再次复制，加上-i参数，增加覆盖询问？</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cp -i /root/install.sh /home</span></span><br><span class="line">cp: overwrite ‘/home/install.sh’? y <span class="comment"># n不覆盖，y为覆盖</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-9-rm（移除文件或目录）"><a href="#4-9-rm（移除文件或目录）" class="headerlink" title="4.9 rm（移除文件或目录）"></a>4.9 rm（移除文件或目录）</h4><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将刚刚在 cp 的实例中创建的 install.sh删除掉！</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># rm -i install.sh</span></span><br><span class="line">rm: remove regular file ‘install.sh’? y</span><br><span class="line"><span class="comment"># 如果加上 -i 的选项就会主动询问喔，避免你删除到错误的档名！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 尽量不要在服务器上使用 rm -rf /</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-10-mv（移动文件与目录，或修改名称）"><a href="#4-10-mv（移动文件与目录，或修改名称）" class="headerlink" title="4.10 mv（移动文件与目录，或修改名称）"></a>4.10 mv（移动文件与目录，或修改名称）</h4><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># mv [-fiu] source destination</span></span><br><span class="line">[root@www ~]<span class="comment"># mv [options] source1 source2 source3 .... directory</span></span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制一个文件到当前目录</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cp /root/install.sh /home</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个文件夹 test</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mkdir test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将复制过来的文件移动到我们创建的目录，并查看</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mv install.sh test</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls</span></span><br><span class="line"><span class="built_in">test</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cd test</span></span><br><span class="line">[root@kuangshen <span class="built_in">test</span>]<span class="comment"># ls</span></span><br><span class="line">install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文件夹重命名，然后再次查看！</span></span><br><span class="line">[root@kuangshen <span class="built_in">test</span>]<span class="comment"># cd ..</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># mv test mvtest</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls</span></span><br><span class="line">mvtest</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、基本属性"><a href="#5、基本属性" class="headerlink" title="5、基本属性"></a>5、基本属性</h3><h4 id="5-1-看懂文件属性"><a href="#5-1-看懂文件属性" class="headerlink" title="5.1 看懂文件属性"></a>5.1 看懂文件属性</h4><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统的安全性，Linux系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。</p>
+<p>在Linux中我们可以使用<code>ll</code>或者<code>ls –l</code>命令来显示一个文件的属性以及文件所属的用户和组，如：</p>
+<p><img src="/2021/01/25/Linux/640-1611909032352.webp" alt="img"></p>
+<p>实例中，boot文件的第一个属性用”d”表示。”d”在Linux中代表该文件是一个目录文件。</p>
+<p>在Linux中第一个字符代表这个文件是目录、文件或链接文件等等：</p>
+<ul>
+<li>当为[ <strong>d</strong> ]则是目录</li>
+<li>当为[ <strong>-</strong> ]则是文件；</li>
+<li>若是[ <strong>l</strong> ]则表示为链接文档 ( link file )；</li>
+<li>若是[ <strong>b</strong> ]则表示为装置文件里面的可供储存的接口设备 ( 可随机存取装置 )；</li>
+<li>若是[ <strong>c</strong> ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标 ( 一次性读取装置 )。</li>
+</ul>
+<p>接下来的字符中，以三个为一组，且均为『rwx』 的三个参数的组合。</p>
+<p>其中，[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。</p>
+<p>要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<p>每个文件的属性由左边第一部分的10个字符来确定（如下图）：</p>
+<p><img src="/2021/01/25/Linux/640-1611909196994.webp" alt="img"></p>
+<p>从左至右用0-9这些数字来表示。</p>
+<p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
+<p>其中：</p>
+<p>第1、4、7位表示读权限，如果用”r”字符表示，则有读权限，如果用”-“字符表示，则没有读权限；</p>
+<p>第2、5、8位表示写权限，如果用”w”字符表示，则有写权限，如果用”-“字符表示没有写权限；</p>
+<p>第3、6、9位表示可执行权限，如果用”x”字符表示，则有执行权限，如果用”-“字符表示，则没有执行权限。</p>
+<p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。</p>
+<p>同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。</p>
+<p>文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。</p>
+<p>因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。</p>
+<p>在以上实例中，boot 文件是一个目录文件，属主和属组都为 root。</p>
+<h4 id="5-2-修改文件属性"><a href="#5-2-修改文件属性" class="headerlink" title="5.2 修改文件属性"></a>5.2 修改文件属性</h4><p><strong>1、chgrp：更改文件属组</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</p>
+<p><strong>2、chown：更改文件属主，也可以同时更改文件属组</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [–R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、chmod：更改文件9个属性</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [-R] xyz 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+<p>先复习一下刚刚上面提到的数据：文件的权限字符为：『-rwxrwxrwx』， 这九个权限是三个三个一组的！其中，我们可以使用数字来代表各个权限，各权限的分数对照表如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4     w:2         x:1</span><br></pre></td></tr></table></figure>
+
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为：[-rwxrwx—] 分数则是：</p>
+<ul>
+<li>owner = rwx = 4+2+1 = 7</li>
+<li>group = rwx = 4+2+1 = 7</li>
+<li>others= — = 0+0+0 = 0</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、文件内容查看"><a href="#6、文件内容查看" class="headerlink" title="6、文件内容查看"></a>6、文件内容查看</h3><p>Linux系统中使用以下命令来查看文件的内容：</p>
+<ul>
+<li>cat 由第一行开始显示文件内容</li>
+<li>tac 从最后一行开始显示，可以看出 tac 是 cat 的倒着写！</li>
+<li>nl  显示的时候，顺道输出行号！</li>
+<li>more 一页一页的显示文件内容</li>
+<li>less 与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li>head 只看头几行</li>
+<li>tail 只看尾巴几行</li>
+</ul>
+<p><strong>cat 由第一行开始显示文件内容</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [-AbEnTv]</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；</li>
+<li>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！</li>
+<li>-E ：将结尾的断行字节 $ 显示出来；</li>
+<li>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；</li>
+<li>-T ：将 [tab] 按键以 ^I 显示出来；</li>
+<li>-v ：列出一些看不出来的特殊字符</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看网络配置: 文件地址 /etc/sysconfig/network-scripts/</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># cat /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">DEVICE=eth0</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">ONBOOT=yes</span><br></pre></td></tr></table></figure>
+
+<p><strong>tac</strong></p>
+<p>tac与cat命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写！如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen ~]<span class="comment"># tac /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">DEVICE=eth0</span><br></pre></td></tr></table></figure>
+
+<p><strong>nl（显示行号）</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl [-bnw] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-b ：指定行号指定的方式，主要有两种：-b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；-b t ：如果有空行，空的那一行不要列出行号(默认值)；</li>
+<li>-n ：列出行号表示的方法，主要有三种：-n ln ：行号在荧幕的最左方显示；-n rn ：行号在自己栏位的最右方显示，且不加 0 ；-n rz ：行号在自己栏位的最右方显示，且加 0 ；</li>
+<li>-w ：行号栏位的占用的位数。</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen ~]<span class="comment"># nl /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">1DEVICE=eth0</span><br><span class="line">2BOOTPROTO=dhcp</span><br><span class="line">3ONBOOT=yes</span><br></pre></td></tr></table></figure>
+
+<p><strong>more 一页一页翻动</strong></p>
+<p>在 more 这个程序的运行过程中，你有几个按键可以按的：</p>
+<ul>
+<li>空白键 (space)：代表向下翻一页；</li>
+<li>Enter   ：代表向下翻『一行』；</li>
+<li>/字串   ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；</li>
+<li>:f    ：立刻显示出档名以及目前显示的行数；</li>
+<li>q    ：代表立刻离开 more ，不再显示该文件内容。</li>
+<li>b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># more /etc/csh.login</span></span><br><span class="line">....(中间省略)....</span><br><span class="line">--More--(28%) <span class="comment"># 重点在这一行喔！你的光标也会在这里等待你的命令</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>less  一页一页翻动，以下实例输出/etc/man.config文件的内容：</strong></p>
+<p>less运行时可以输入的命令有：</p>
+<ul>
+<li>空白键  ：向下翻动一页；</li>
+<li>[pagedown]：向下翻动一页；</li>
+<li>[pageup] ：向上翻动一页；</li>
+<li>/字串  ：向下搜寻『字串』的功能；</li>
+<li>?字串  ：向上搜寻『字串』的功能；</li>
+<li>n   ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N   ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q   ：离开 less 这个程序；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># less /etc/csh.login</span></span><br><span class="line">....(中间省略)....</span><br><span class="line">:   <span class="comment"># 这里可以等待你输入命令！</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>head 取出文件前面几行</strong></p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n number] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：**-n** 后面接数字，代表显示几行的意思！</p>
+<p>默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># head -n 20 /etc/csh.login</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>tail 取出文件后面几行</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [-n number] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+</ul>
+<p>默认的情况中，显示最后 10 行！若要显示最后 20 行，就得要这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># tail -n 20 /etc/csh.login</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7、Linux链接概念"><a href="#7、Linux链接概念" class="headerlink" title="7、Linux链接概念"></a>7、Linux链接概念</h3><p>Linux 链接分两种，一种被称为硬链接（Hard Link），另一种被称为符号链接（Symbolic Link）。</p>
+<p>情况下，<strong>ln</strong> 命令产生硬链接。</p>
+<p><strong>硬连接</strong></p>
+<p>硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。在 Linux 中，多个文件名指向同一索引节点是存在的。比如：A 是 B 的硬链接（A 和 B 都是文件名），则 A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号相同，即一个 inode 节点对应两个不同的文件名，两个文件名指向同一个文件，A 和 B 对文件系统来说是完全平等的。删除其中任何一个都不会影响另外一个的访问。</p>
+<p>硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。</p>
+<p><strong>软连接</strong></p>
+<p>另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。比如：A 是 B 的软链接（A 和 B 都是文件名），A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号不相同，A 和 B 指向的是两个不同的 inode，继而指向两块不同的数据块。但是 A 的数据块中存放的只是 B 的路径名（可以根据这个找到 B 的目录项）。A 和 B 之间是“主从”关系，如果 B 被删除了，A 仍然存在（因为两个是不同的文件），但指向的是一个无效的链接。</p>
+<p>从上面的结果中可以看出，硬连接文件 f2 与原文件 f1 的 inode 节点相同，均为 397247，然而符号连接文件的 inode 节点不同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo 字符串输出 &gt;&gt; f1 输出到 f1文件</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># echo &quot;I am f1 file&quot; &gt;&gt;f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f1</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f2</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f3</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># rm -f f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f2</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f3</span></span><br><span class="line">cat: f3: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的测试可以看出：当删除原始文件 f1 后，硬连接 f2 不受影响，但是符号连接 f1 文件无效；</p>
+<p>依此您可以做一些相关的测试，可以得到以下全部结论：</p>
+<ul>
+<li>删除符号连接f3,对f1,f2无影响；</li>
+<li>删除硬连接f2，对f1,f3也无影响；</li>
+<li>删除原文件f1，对硬连接f2没有影响，导致符号连接f3失效；</li>
+<li>同时删除原文件f1,硬连接f2，整个文件会真正的被删除。</li>
+</ul>
+<h3 id="9、环境安装"><a href="#9、环境安装" class="headerlink" title="9、环境安装"></a>9、环境安装</h3><h4 id="9-1-JDK安装（rpm安装）"><a href="#9-1-JDK安装（rpm安装）" class="headerlink" title="9.1 JDK安装（rpm安装）"></a>9.1 JDK安装（rpm安装）</h4><p>1、下载rpm安装包<a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+<p>2、如果有安装openjdk则卸载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen ~]<span class="comment"># java -version</span></span><br><span class="line">java version <span class="string">&quot;1.8.0_121&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_121-b13)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)</span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># rpm -qa|grep jdk</span></span><br><span class="line">jdk1.8.0_121-1.8.0_121-fcs.x86_64</span><br><span class="line"><span class="comment"># 卸载 -e --nodeps 强制删除</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># rpm -e --nodeps jdk1.8.0_121-1.8.0_121-fcs.x86_64</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># java -version</span></span><br><span class="line">-bash: /usr/bin/java: No such file or directory  <span class="comment"># OK</span></span><br></pre></td></tr></table></figure>
+
+<p>3、安装jdk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装java rpm</span></span><br><span class="line">[root@kuangshen kuangshen]<span class="comment"># rpm -ivh jdk-8u221-linux-x64.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完成后配置环境变量 文件：/etc/profile</span></span><br><span class="line">JAVA_HOME=/usr/java/jdk1.8.0_221-amd64</span><br><span class="line">CLASSPATH=%JAVA_HOME%/lib:%JAVA_HOME%/jre/lib</span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin</span><br><span class="line"><span class="built_in">export</span> PATH CLASSPATH JAVA_HOME</span><br><span class="line"><span class="comment"># 保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 让新增的环境变量生效！</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 java -version</span></span><br><span class="line">[root@kuangshen java]<span class="comment"># java -version</span></span><br><span class="line">java version <span class="string">&quot;1.8.0_221&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_221-b11)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.221-b11, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-2-Tomcat安装（解压缩安装）"><a href="#9-2-Tomcat安装（解压缩安装）" class="headerlink" title="9.2 Tomcat安装（解压缩安装）"></a>9.2 Tomcat安装（解压缩安装）</h4><p>1、安装好了Java环境后我们可以测试下Tomcat！准备好Tomcat的安装包！</p>
+<p>2、将文件移动到/usr/tomcat下，并解压！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen kuangshen]<span class="comment"># mv apache-tomcat-9.0.22.tar.gz /usr</span></span><br><span class="line">[root@kuangshen kuangshen]<span class="comment"># cd /usr</span></span><br><span class="line">[root@kuangshen usr]<span class="comment"># ls</span></span><br><span class="line">apache-tomcat-9.0.22.tar.gz</span><br><span class="line">[root@kuangshen usr]<span class="comment"># tar -zxvf apache-tomcat-9.0.22.tar.gz   # 解压</span></span><br></pre></td></tr></table></figure>
+
+<p>3、运行Tomcat，进入bin目录。和以前Windows下看的是一样的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行：startup.sh --&gt;启动tomcat</span></span><br><span class="line"><span class="comment"># 执行：shutdown.sh --&gt;关闭tomcat</span></span><br><span class="line">./startup.sh</span><br><span class="line">./shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<p>4、确保LInux的防火墙端口是开启的，如果是阿里云，需要保证阿里云的安全组策略是开放的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看firewall服务状态</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启、重启、关闭、firewalld.service服务</span></span><br><span class="line"><span class="comment"># 开启</span></span><br><span class="line">service firewalld start</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">service firewalld restart</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">service firewalld stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看防火墙规则</span></span><br><span class="line">firewall-cmd --list-all    <span class="comment"># 查看全部信息</span></span><br><span class="line">firewall-cmd --list-ports  <span class="comment"># 只看端口信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启端口</span></span><br><span class="line">开端口命令：firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line">重启防火墙：systemctl restart firewalld.service</span><br><span class="line"></span><br><span class="line">命令含义：</span><br><span class="line">--zone <span class="comment">#作用域</span></span><br><span class="line">--add-port=80/tcp  <span class="comment">#添加端口，格式为：端口/通讯协议</span></span><br><span class="line">--permanent   <span class="comment">#永久生效，没有此参数重启后失效</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-3-安装Docker（yum安装）"><a href="#9-3-安装Docker（yum安装）" class="headerlink" title="9.3 安装Docker（yum安装）"></a>9.3 安装Docker（yum安装）</h4><p>基于CentOS 7安装</p>
+<ol>
+<li><p>官网安装参考手册：<a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/centos/">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+</li>
+<li><p>确定你是CentOS7及以上版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@192 Desktop]<span class="comment"># cat /etc/redhat-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>yum安装gcc相关（需要确保 虚拟机可以上外网 ）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc</span><br><span class="line">yum -y install gcc-c++</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载旧版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum -y remove docker docker-common docker-selinux docker-engine</span><br><span class="line"><span class="comment"># 官网版本</span></span><br><span class="line">yum remove docker \</span><br><span class="line">          docker-client \</span><br><span class="line">          docker-client-latest \</span><br><span class="line">          docker-common \</span><br><span class="line">          docker-latest \</span><br><span class="line">          docker-latest-logrotate \</span><br><span class="line">          docker-logrotate \</span><br><span class="line">          docker-engine</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装需要的软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置stable镜像仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误</span></span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"><span class="comment">## 报错</span></span><br><span class="line">[Errno 14] curl<span class="comment">#35 - TCP connection reset by peer</span></span><br><span class="line">[Errno 12] curl<span class="comment">#35 - Timeout</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 正确推荐使用国内的</span></span><br><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新yum软件包索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Docker CE</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line"></span><br><span class="line">docker run hello-world</span><br><span class="line"></span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<p><strong>宝塔面板安装</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/25/Linux/" data-id="ckm3497pq000k4ctq67wsc75v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/26/%E9%93%BE%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          链表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/25/Redis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redis</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/12/Java%E9%9B%86%E5%90%88/">Java集合</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/10/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/08/%E5%AD%90%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/">子序列类型问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/05/SpringCloud/">SpringCloud</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/29/JVM/">JVM</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
