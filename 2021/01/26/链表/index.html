@@ -10,35 +10,35 @@
   <meta name="description" content="链表一、递归反转链表：如何拆解复杂问题123456&#x2F;&#x2F; 单链表节点的结构public class ListNode &amp;#123;    int val;    ListNode next;    ListNode(int x) &amp;#123; val &#x3D; x; &amp;#125;&amp;#125;  反转单链表的一部分，就是给一个索引区间，把单链表中这部分元素反转，其他部分不变；  注：索引是从1开始的。迭代的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表">
-<meta property="og:url" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:url" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="链表一、递归反转链表：如何拆解复杂问题123456&#x2F;&#x2F; 单链表节点的结构public class ListNode &amp;#123;    int val;    ListNode next;    ListNode(int x) &amp;#123; val &#x3D; x; &amp;#125;&amp;#125;  反转单链表的一部分，就是给一个索引区间，把单链表中这部分元素反转，其他部分不变；  注：索引是从1开始的。迭代的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611631184366.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648211785.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648317772.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648420593.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648454029.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649303564.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649420516.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673870283.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673915498.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673933585.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673976426.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674007505.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674033845.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674532054.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674543910.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677220024.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677252397.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677282686.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677325316.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611631184366.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648211785.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648317772.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648420593.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611648454029.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649303564.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611649420516.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673870283.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673915498.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673933585.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611673976426.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674007505.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674033845.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674532054.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611674543910.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677220024.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677252397.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677282686.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640-1611677325316.webp">
 <meta property="article:published_time" content="2021-01-26T00:53:10.000Z">
 <meta property="article:modified_time" content="2021-01-27T03:25:58.349Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp">
+<meta name="twitter:image" content="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/640.webp">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -81,7 +81,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ltt1998.github.io"></form>
       </div>
     </div>
   </div>
@@ -222,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/26/%E9%93%BE%E8%A1%A8/" data-id="ckm3497pl000h4ctq5wd70y98" class="article-share-link">Share</a>
+      <a data-url="https://ltt1998.github.io/2021/01/26/%E9%93%BE%E8%A1%A8/" data-id="ckm3497pl000h4ctq5wd70y98" class="article-share-link">Share</a>
       
       
     </footer>

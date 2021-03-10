@@ -10,40 +10,40 @@
   <meta name="description" content="我为什么要学习这个技术? 在java web开发中，需要导入大量的jar包，我们手动去导入；  如何能够让一个东西自动帮我导入和配置这个jar包 由此，Maven诞生了！   5.1 Maven项目架构管理工具 Maven的核心思想：约定大于配置 有约束，不要去违反。    Maven会规定好你该如何去编写java代码，必须要按照这个规范来 5.2 下载安装Maven官网下载src和bin两个压缩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven">
-<meta property="og:url" content="http://example.com/2020/11/02/Maven/index.html">
+<meta property="og:url" content="https://ltt1998.github.io/2020/11/02/Maven/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="我为什么要学习这个技术? 在java web开发中，需要导入大量的jar包，我们手动去导入；  如何能够让一个东西自动帮我导入和配置这个jar包 由此，Maven诞生了！   5.1 Maven项目架构管理工具 Maven的核心思想：约定大于配置 有约束，不要去违反。    Maven会规定好你该如何去编写java代码，必须要按照这个规范来 5.2 下载安装Maven官网下载src和bin两个压缩">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102172134874.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102173823906.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102174555307.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102174724544.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102175400306.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102175942620.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102180156996.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102203543521.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102203927258.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102203945886.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103104811298.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102204327435.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102204655638.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102204842826.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102205439261.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102205605761.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201102205753108.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103151137702.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103151516224.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103151831299.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103153244194.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103153400070.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103160429515.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103164612772.png">
-<meta property="og:image" content="http://example.com/2020/11/02/Maven/image-20201103175511797.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102172134874.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102173823906.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102174555307.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102174724544.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102175400306.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102175942620.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102180156996.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102203543521.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102203927258.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102203945886.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103104811298.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102204327435.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102204655638.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102204842826.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102205439261.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102205605761.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102205753108.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103151137702.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103151516224.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103151831299.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103153244194.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103153400070.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103160429515.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103164612772.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201103175511797.png">
 <meta property="article:published_time" content="2020-11-02T07:53:10.000Z">
 <meta property="article:modified_time" content="2020-11-05T01:52:33.415Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/02/Maven/image-20201102172134874.png">
+<meta name="twitter:image" content="https://ltt1998.github.io/2020/11/02/Maven/image-20201102172134874.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -86,7 +86,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ltt1998.github.io"></form>
       </div>
     </div>
   </div>
@@ -197,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/02/Maven/" data-id="ckm3497oj00014ctqf6u7542q" class="article-share-link">Share</a>
+      <a data-url="https://ltt1998.github.io/2020/11/02/Maven/" data-id="ckm3497oj00014ctqf6u7542q" class="article-share-link">Share</a>
       
       
     </footer>

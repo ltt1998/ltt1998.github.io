@@ -10,28 +10,28 @@
   <meta name="description" content="Java基础1、面向对象和面向过程的区别 面向过程：面向过程的性能比面向对象高。因为类调用时需要实例化，开销比较大，比较消耗资源，所以当性能是最重要的考量因素的时候，比如单片机、嵌入式开发、Linux&#x2F;Unix 等一般采用面向过程开发。但是，面向过程没有面向对象易维护、易复用、易扩展。 面向对象：面向对象易维护、易复用、易扩展。因为面向对象有封装、继承、多态性的特性，所以可以设计出低耦合的系统，使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础">
-<meta property="og:url" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Java基础1、面向对象和面向过程的区别 面向过程：面向过程的性能比面向对象高。因为类调用时需要实例化，开销比较大，比较消耗资源，所以当性能是最重要的考量因素的时候，比如单片机、嵌入式开发、Linux&#x2F;Unix 等一般采用面向过程开发。但是，面向过程没有面向对象易维护、易复用、易扩展。 面向对象：面向对象易维护、易复用、易扩展。因为面向对象有封装、继承、多态性的特性，所以可以设计出低耦合的系统，使">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B.png">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/86735519.jpg">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/86735519.jpg">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktopjava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E9%87%8D%E8%BD%BD.jpg">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/image-20210120152210294.png">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/22191348.jpg">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/image-20210120152506207.png">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/3825204.jpg">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/image-20210120152824083.png">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/88729818.jpg">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/34384414.jpg">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/image-20210120152210294.png">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/22191348.jpg">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/image-20210120152506207.png">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/3825204.jpg">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/image-20210120152824083.png">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/88729818.jpg">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/34384414.jpg">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81.png">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/19-1-29/Java%20%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81.png">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/RUNNABLE-VS-RUNNING.png">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/RUNNABLE-VS-RUNNING.png">
 <meta property="og:image" content="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE.png">
 <meta property="og:image" content="https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2020-12/Java%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE2.png">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F%E5%88%86%E7%B1%BB.png">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/IO-%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E5%88%86%E7%B1%BB.png">
-<meta property="og:image" content="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/java-deep-and-shallow-copy.jpg">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/java-deep-and-shallow-copy.jpg">
 <meta property="article:published_time" content="2021-01-19T13:33:10.000Z">
 <meta property="article:modified_time" content="2021-01-20T08:15:40.287Z">
 <meta property="article:author" content="John Doe">
@@ -79,7 +79,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ltt1998.github.io"></form>
       </div>
     </div>
   </div>
@@ -429,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/19/Java%E5%9F%BA%E7%A1%80/" data-id="ckm3497q1000t4ctqgftlamk2" class="article-share-link">Share</a>
+      <a data-url="https://ltt1998.github.io/2021/01/19/Java%E5%9F%BA%E7%A1%80/" data-id="ckm3497q1000t4ctqgftlamk2" class="article-share-link">Share</a>
       
       
     </footer>

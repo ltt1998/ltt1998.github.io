@@ -10,87 +10,87 @@
   <meta name="description" content="JUC并发编程1、什么是JUC 源码+官方文档 面试高频问 java.util 工具包、包、分类 业务：普通的线程代码 Thread Runnable 没有返回值、效率相比Callable相对较低！   2、线程和进程如果不能使用一句话说出来的技术，不扎实！ （1）进程 进程：一个程序，QQ.exe Music.exe 程序的集合；数据+代码+PCB 一个进程可以包含多个线程，至少包含一个线程！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JUC并发编程">
-<meta property="og:url" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:url" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="JUC并发编程1、什么是JUC 源码+官方文档 面试高频问 java.util 工具包、包、分类 业务：普通的线程代码 Thread Runnable 没有返回值、效率相比Callable相对较低！   2、线程和进程如果不能使用一句话说出来的技术，不扎实！ （1）进程 进程：一个程序，QQ.exe Music.exe 程序的集合；数据+代码+PCB 一个进程可以包含多个线程，至少包含一个线程！">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230141801429.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230150201290.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230150251232.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230161655563.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230161756917.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230164038073.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201231154040614.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201231154404969.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210105211532259.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210105213144795.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210105214936648.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111204122276.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111221051535.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111222002510.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111222027819.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111222616552.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111223427368.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111223721457.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225738741.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225836670.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225902335.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225933012.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114162807659.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114163502354.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114163521649.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114163652438.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118185350169.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118185529100.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118195638106.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118202134543.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210119225950355.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121001041049.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121001357464.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121162840841.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121163744002.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121191000280.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121202212601.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121203007164.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121204143264.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121204315034.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121205257269.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123105542591.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123105742513.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123113133331.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123151612254.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123162111096.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123162318085.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123165609066.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123165748270.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123181135173.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124144506903.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124144603820.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124150757730.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124151030919.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124151617086.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124151711846.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155122053.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155400016.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155440944.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155524576.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155812492.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155924365.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124161246157.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124161534678.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124162027208.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124162106008.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124162220969.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163120016.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163029411.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163405188.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163607456.png">
-<meta property="og:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163719489.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230141801429.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230150201290.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230150251232.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230161655563.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230161756917.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230164038073.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201231154040614.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201231154404969.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210105211532259.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210105213144795.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210105214936648.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111204122276.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111221051535.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111222002510.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111222027819.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111222616552.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111223427368.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111223721457.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225738741.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225836670.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225902335.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210111225933012.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114162807659.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114163502354.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114163521649.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210114163652438.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118185350169.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118185529100.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118195638106.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210118202134543.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210119225950355.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121001041049.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121001357464.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121162840841.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121163744002.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121191000280.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121202212601.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121203007164.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121204143264.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121204315034.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210121205257269.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123105542591.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123105742513.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123113133331.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123151612254.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123162111096.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123162318085.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123165609066.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123165748270.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210123181135173.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124144506903.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124144603820.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124150757730.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124151030919.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124151617086.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124151711846.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155122053.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155400016.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155440944.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155524576.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155812492.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124155924365.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124161246157.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124161534678.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124162027208.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124162106008.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124162220969.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163120016.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163029411.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163405188.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163607456.png">
+<meta property="og:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20210124163719489.png">
 <meta property="article:published_time" content="2020-12-30T05:53:10.000Z">
 <meta property="article:modified_time" content="2021-01-24T10:36:38.098Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230141801429.png">
+<meta name="twitter:image" content="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20201230141801429.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -133,7 +133,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ltt1998.github.io"></form>
       </div>
     </div>
   </div>
@@ -616,7 +616,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" data-id="ckm3497qa000y4ctq1ars21ws" class="article-share-link">Share</a>
+      <a data-url="https://ltt1998.github.io/2020/12/30/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" data-id="ckm3497qa000y4ctq1ars21ws" class="article-share-link">Share</a>
       
       
     </footer>

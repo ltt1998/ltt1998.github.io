@@ -10,21 +10,21 @@
   <meta name="description" content="贪心类型问题一、贪心算法之区间调度问题贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。 什么是贪心选择性质呢，简单说就是：每一步都做出一个局部最优的选择，最终的结果就是全局最优。注意哦，这是一种特殊性质，其实只有一小部分问题拥有这个性质。 1、问题概述给你很多形如[start,end]的闭区间，请你设计一个算法，算出这些区">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪心类型问题">
-<meta property="og:url" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="贪心类型问题一、贪心算法之区间调度问题贪心算法可以认为是动态规划算法的一个特例，相比动态规划，使用贪心需要满足更多的条件（贪心选择性质），但是效率比动态规划要高。 什么是贪心选择性质呢，简单说就是：每一步都做出一个局部最优的选择，最终的结果就是全局最优。注意哦，这是一种特殊性质，其实只有一小部分问题拥有这个性质。 1、问题概述给你很多形如[start,end]的闭区间，请你设计一个算法，算出这些区">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png">
-<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.jfif">
-<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1612751864631.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505367366.webp">
-<meta property="og:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505858898.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640.jfif">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1612751864631.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505367366.webp">
+<meta property="og:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/640-1611505858898.webp">
 <meta property="article:published_time" content="2021-01-26T07:53:10.000Z">
 <meta property="article:modified_time" content="2021-02-08T02:37:58.992Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png">
+<meta name="twitter:image" content="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/image-20210125000634947.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -67,7 +67,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ltt1998.github.io"></form>
       </div>
     </div>
   </div>
@@ -151,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/" data-id="ckm3497pj000g4ctq7lcebtpv" class="article-share-link">Share</a>
+      <a data-url="https://ltt1998.github.io/2021/01/26/%E8%B4%AA%E5%BF%83%E7%B1%BB%E5%9E%8B%E9%97%AE%E9%A2%98/" data-id="ckm3497pj000g4ctq7lcebtpv" class="article-share-link">Share</a>
       
       
     </footer>
